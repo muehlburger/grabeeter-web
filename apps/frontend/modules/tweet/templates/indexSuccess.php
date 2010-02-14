@@ -22,4 +22,4 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('tweet/new') ?>">New</a>
+  <a href="<?php echo url_for('tweet_new') ?>">New</a>
