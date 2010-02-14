@@ -1,0 +1,11 @@
+# data/fixtures/users.yml
+
+TwitterUser:
+  hmuehlburger:
+    name: hmuehlburger
+  flowolf:
+    name: flowolf
+  mebner:
+    name: mebner
+  behi_at:
+    name: behi_at

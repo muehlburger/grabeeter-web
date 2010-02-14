@@ -1,0 +1,15 @@
+# data/fixtures/tweets.yml
+
+Tweet:
+  hmuehlburger:
+    text: RT @mebner Join European Technology Enhanced Learning Summer School 2010 http://bit.ly/aEf8S9
+    TwitterUser: hmuehlburger
+  flowolf:
+    text: any recommendations for a custom @htc #hero firmware? the current v1.5 just annoys me! i want 2.1!! #android
+    TwitterUser: flowolf
+  mebner:
+    text: RT @mrtech: Alcatel Lucent video demonstrates the future of apps & the developer opportunities - http://mrte.ch/4d9 RT @magicmerl #mwc2010
+    TwitterUser: mebner
+  behi_at:
+    text: currently Watching: http://bit.ly/bunMsI
+    TwitterUser: behi_at
