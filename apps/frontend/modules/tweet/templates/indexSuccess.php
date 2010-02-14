@@ -13,11 +13,10 @@
   <tbody>
     <?php foreach ($tweets as $tweet): ?>
     <tr>
-      <td><a href="<?php echo url_for('tweet/show?id='.$tweet->getId()) ?>"><?php echo $tweet->getId() ?></a></td>
+      <td><a href="<?php echo url_for('tweet_show', $tweet) ?>"><?php echo $tweet->getId() ?></a></td>
+      
       <td><?php echo $tweet->getUserId() ?></td>
       <td><?php echo $tweet->getText() ?></td>
-      <td><?php echo $tweet->getCreatedAt() ?></td>
-      <td><?php echo $tweet->getUpdatedAt() ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

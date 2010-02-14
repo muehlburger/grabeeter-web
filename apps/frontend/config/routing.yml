@@ -9,6 +9,14 @@ tweet:
   class:   sfDoctrineRouteCollection
   options: { model: Tweet }
 
+tweet_show:
+  url: /tweet/:id/:text_slug
+  class:   sfDoctrineRoute
+  options: { model: Tweet, type: object }
+  param:   { module: tweet, action: show }
+  requirements:
+    id: \d+
+
 # default rules
 homepage:
   url:   /
