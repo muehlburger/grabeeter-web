@@ -10,6 +10,11 @@
  */
 class userActions extends sfActions
 {
+	
+  public function executeSearchTweets(sfWebRequest $request) {
+    $this->twitterUser = "hmuehlburger";	
+  }
+  
   public function executeIndex(sfWebRequest $request)
   {
     $this->twitter_users = Doctrine::getTable('TwitterUser')

@@ -17,13 +17,16 @@ tweet_show:
   requirements:
     id: \d+
 
+user_search_tweets:
+  url: /tweets
+  params:  { module: user, action: searchTweets }
+  
 # default rules
 homepage:
   url:   /
   param: { module: tweet, action: index }
 
- 
-default_index:
+default_indecurlx:
   url:   /:module
   param: { action: index }
  
