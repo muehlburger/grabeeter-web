@@ -2,9 +2,35 @@
 
 TweetUser:
   hmuehlburger:
+    name: Herbert Mühlburger
     screen_name: hmuehlburger
+    twitter_user_id: 15284045
+    description: I'm a Software Developer and Internet Marketer who developing a unique set of Online Internet Marketing. Tools at mywebwork.com.
+    followers_count: 150
+    url: http://www.muehlburger.at
+    friends_count: 180
+    geo_enabled: false
+    twitter_created_at: 2010/10/10
+    time_zone: Vienna
+    location: Graz, Austria
+    lang: en
+    utc_offset: 3600
+    profile_image_url: http://a3.twimg.com/profile_images/274915033/50_normal.jpeg
   flowolf:
+    name: Florian Klien
     screen_name: flowolf
+    twitter_user_id: 15284045
+    description: Nothing to say.
+    followers_count: 165
+    url: http://flo.cx
+    friends_count: 18
+    geo_enabled: true
+    twitter_created_at: Sun Apr 19 18:52:00 +0000 2009
+    time_zone: Vienna
+    location: Graz, Austria
+    lang: en
+    utc_offset: 3600
+    profile_image_url: http://a3.twimg.com/profile_images/274915033/50_normal.jpeg
   mebner:
     screen_name: mebner
   behi_at:

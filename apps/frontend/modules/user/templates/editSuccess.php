@@ -1,3 +1,3 @@
-<h1>Edit Twitter user</h1>
+<h1>Edit Tweet user</h1>
 
 <?php include_partial('form', array('form' => $form)) ?>

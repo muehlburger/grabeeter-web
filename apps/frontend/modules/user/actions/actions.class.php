@@ -10,12 +10,11 @@
  */
 class userActions extends sfActions
 {
-
 	public function executeSearchTweets(sfWebRequest $request) {
 		$this->twitterUser = "hmuehlburger";
 
 		$url = 'http://twitter.com/statuses/user_timeline.json?page=7&count=200&screen_name=behi_at';
-		
+
 		// initialize curl
 		$curl = curl_init();
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -24,32 +23,31 @@ class userActions extends sfActions
 		//make the request
 		$this->result = json_decode(curl_exec($curl));
 		curl_close($curl);
-		
-	}
 
+	}
 	public function executeIndex(sfWebRequest $request)
 	{
-		$this->twitter_users = Doctrine::getTable('TwitterUser')
+		$this->tweet_users = Doctrine::getTable('TweetUser')
 		->createQuery('a')
 		->execute();
 	}
 
 	public function executeShow(sfWebRequest $request)
 	{
-		$this->twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id')));
-		$this->forward404Unless($this->twitter_user);
+		$this->tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id')));
+		$this->forward404Unless($this->tweet_user);
 	}
 
 	public function executeNew(sfWebRequest $request)
 	{
-		$this->form = new TwitterUserForm();
+		$this->form = new TweetUserForm();
 	}
 
 	public function executeCreate(sfWebRequest $request)
 	{
 		$this->forward404Unless($request->isMethod(sfRequest::POST));
 
-		$this->form = new TwitterUserForm();
+		$this->form = new TweetUserForm();
 
 		$this->processForm($request, $this->form);
 
@@ -58,15 +56,15 @@ class userActions extends sfActions
 
 	public function executeEdit(sfWebRequest $request)
 	{
-		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-		$this->form = new TwitterUserForm($twitter_user);
+		$this->forward404Unless($tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id'))), sprintf('Object tweet_user does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TweetUserForm($tweet_user);
 	}
 
 	public function executeUpdate(sfWebRequest $request)
 	{
 		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-		$this->form = new TwitterUserForm($twitter_user);
+		$this->forward404Unless($tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id'))), sprintf('Object tweet_user does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TweetUserForm($tweet_user);
 
 		$this->processForm($request, $this->form);
 
@@ -77,8 +75,8 @@ class userActions extends sfActions
 	{
 		$request->checkCSRFProtection();
 
-		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-		$twitter_user->delete();
+		$this->forward404Unless($tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id'))), sprintf('Object tweet_user does not exist (%s).', $request->getParameter('id')));
+		$tweet_user->delete();
 
 		$this->redirect('user/index');
 	}
@@ -88,9 +86,9 @@ class userActions extends sfActions
 		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
 		if ($form->isValid())
 		{
-			$twitter_user = $form->save();
+			$tweet_user = $form->save();
 
-			$this->redirect('user/edit?id='.$twitter_user->getId());
+			$this->redirect('user/edit?id='.$tweet_user->getId());
 		}
 	}
 }

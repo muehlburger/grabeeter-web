@@ -9,10 +9,6 @@ Tweet:
       notnull: true
     geolocation_id:
       type: integer
-    contributors:       
-      type: string(255)
-    contributors_enabled: 
-      type: boolean
     in_reply_to_user_id:
       type: integer
     in_reply_to_status_id:
@@ -20,10 +16,6 @@ Tweet:
     tweet_created_at:
       type: timestamp 
       notnull: true
-    truncated:
-      type: boolean
-      notnull: true
-      default: false
     tweet_twitter_id:
       type: integer
       notnull: true
@@ -39,8 +31,13 @@ Tweet:
 TweetUser:
   actAs: { Timestampable: ~ }
   columns:
+    name:
+      type: string(255)
     screen_name: 
       type: string(15)
+      notnull: true
+    twitter_user_id:
+      type: integer
       notnull: true
     description:
       type: string(255)
@@ -51,10 +48,6 @@ TweetUser:
     screen_name:
       type: string(15)
       notnull: true
-    contributors_enabled:
-      type: boolean
-      notnull: true
-      default: false
     url:
       type: string(255)
     friends_count:
@@ -63,21 +56,17 @@ TweetUser:
       default: 0
     geo_enabled:
       type: boolean
+      notnull: true
+      default: false
     twitter_created_at:
       type: timestamp
       notnull: true
     time_zone:
       type: string(255)
-      notnull: true
     location:
-      type: string(255)
-    name:
       type: string(255)
     lang:
       type: string(10)
-    twitter_user_id:
-      type: integer
-      notnull: true
     utc_offset:
       type: integer
     profile_image_url:
