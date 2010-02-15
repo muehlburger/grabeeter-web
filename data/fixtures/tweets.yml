@@ -1,1 +1,15 @@
 # data/fixtures/tweets.yml
+
+Tweet:
+  tweet1:
+    TweetUser: hmuehlburger
+    TweetSource: twitter
+    TweetGeoLocation: location1
+    contributors:       
+    contributors_enabled: 
+    in_reply_to_user_id:
+    in_reply_to_status_id:
+    tweet_created_at: 2010/01/01
+    truncated:
+    tweet_twitter_id: 1559715821
+    text: RT @tweetmeme JQuery HowTo: Add table row using jQuery and JavaScript http://is.gd/kje5

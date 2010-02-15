@@ -4,10 +4,10 @@ Tweet:
     user_id:
       type: integer
       notnull: true
-    tweet_source_id:
+    source_id:
       type: integer
       notnull: true
-    geo_id:
+    geolocation_id:
       type: integer
     contributors:       
       type: string(255)
@@ -25,16 +25,16 @@ Tweet:
       notnull: true
       default: false
     tweet_twitter_id:
-      type: string(20)
-    source:
-      type: string(255)
+      type: integer
+      notnull: true
+      default: 0
     text:                 
       type: string(140)
       notnull: true
   relations:
     TweetUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
-    TweetSource:  { onDelete: CASCADE, local: tweet_source_id, foreign: id, foreignAlias: Tweets } 
-    TweetGeoLocation:  { onDelete: CASCADE, local: geo_id, foreign: id, foreignAlias: Tweets }
+    TweetSource:  { onDelete: CASCADE, local: source_id, foreign: id, foreignAlias: Tweets } 
+    TweetGeoLocation:  { onDelete: CASCADE, local: geolocation_id, foreign: id, foreignAlias: Tweets }
 
 TweetUser:
   actAs: { Timestampable: ~ }

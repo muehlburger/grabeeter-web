@@ -1,0 +1,7 @@
+# data/fixtures/sources.yml
+
+TweetSource:
+  twitter:
+  tweetdeck:
+    label: Tweetdeck
+    url: http://www.tweetdeck.com

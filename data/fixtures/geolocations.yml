@@ -1,0 +1,15 @@
+# data/fixtures/locations.yml
+
+TweetGeoLocation:
+  location1:
+    latitude: 12.23003
+    longitude: 23.43435
+  location2:
+    latitude: 10.03233
+    longitude: 23
+  location3:
+    latitude: 1.30232
+    longitude: 98.48383
+  location4:
+    latitude: 5.03232
+    longitude: 8.98989

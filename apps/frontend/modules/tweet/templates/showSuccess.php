@@ -9,12 +9,12 @@
       <td><?php echo $tweet->getUserId() ?></td>
     </tr>
     <tr>
-      <th>Tweet source:</th>
-      <td><?php echo $tweet->getTweetSourceId() ?></td>
+      <th>Source:</th>
+      <td><?php echo $tweet->getSourceId() ?></td>
     </tr>
     <tr>
-      <th>Geo:</th>
-      <td><?php echo $tweet->getGeoId() ?></td>
+      <th>Geolocation:</th>
+      <td><?php echo $tweet->getGeolocationId() ?></td>
     </tr>
     <tr>
       <th>Contributors:</th>
@@ -33,10 +33,6 @@
       <td><?php echo $tweet->getInReplyToStatusId() ?></td>
     </tr>
     <tr>
-      <th>In reply to screen name:</th>
-      <td><?php echo $tweet->getInReplyToScreenName() ?></td>
-    </tr>
-    <tr>
       <th>Tweet created at:</th>
       <td><?php echo $tweet->getTweetCreatedAt() ?></td>
     </tr>
@@ -47,10 +43,6 @@
     <tr>
       <th>Tweet twitter:</th>
       <td><?php echo $tweet->getTweetTwitterId() ?></td>
-    </tr>
-    <tr>
-      <th>Source:</th>
-      <td><?php echo $tweet->getSource() ?></td>
     </tr>
     <tr>
       <th>Text:</th>
