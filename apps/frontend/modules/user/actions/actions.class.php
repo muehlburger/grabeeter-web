@@ -13,7 +13,7 @@ class userActions extends sfActions
 	public function executeSearchTweets(sfWebRequest $request) {
 		$this->twitterUser = "hmuehlburger";
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?page=7&count=200&screen_name=behi_at';
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=hmuehlburger';
 
 		// initialize curl
 		$curl = curl_init();
@@ -21,8 +21,19 @@ class userActions extends sfActions
 		curl_setopt($curl, CURLOPT_URL, $url);
 
 		//make the request
-		$this->result = json_decode(curl_exec($curl));
+		$results = json_decode(curl_exec($curl));
+		
+		foreach ($results as $result) {
+			$tweet = new Tweet();
+			$tweet->setText($result->text);
+			
+			echo $result->text;
+			break;
+		}
+		
+		
 		curl_close($curl);
+		exit;
 
 	}
 	public function executeIndex(sfWebRequest $request)

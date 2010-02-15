@@ -17,14 +17,6 @@
       <td><?php echo $tweet->getGeolocationId() ?></td>
     </tr>
     <tr>
-      <th>Contributors:</th>
-      <td><?php echo $tweet->getContributors() ?></td>
-    </tr>
-    <tr>
-      <th>Contributors enabled:</th>
-      <td><?php echo $tweet->getContributorsEnabled() ?></td>
-    </tr>
-    <tr>
       <th>In reply to user:</th>
       <td><?php echo $tweet->getInReplyToUserId() ?></td>
     </tr>
@@ -35,10 +27,6 @@
     <tr>
       <th>Tweet created at:</th>
       <td><?php echo $tweet->getTweetCreatedAt() ?></td>
-    </tr>
-    <tr>
-      <th>Truncated:</th>
-      <td><?php echo $tweet->getTruncated() ?></td>
     </tr>
     <tr>
       <th>Tweet twitter:</th>
