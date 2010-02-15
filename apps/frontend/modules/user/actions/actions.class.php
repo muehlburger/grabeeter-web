@@ -22,18 +22,23 @@ class userActions extends sfActions
 
 		//make the request
 		$results = json_decode(curl_exec($curl));
+		$this->results = $results;
 		
 		foreach ($results as $result) {
-			$tweet = new Tweet();
-			$tweet->setText($result->text);
+			$source = new TweetSource();
+			$source->setLabel($result->source);
+			$source->setUrl($result->source);
 			
-			echo $result->text;
-			break;
+			$user = new TweetUser();
+			$user->setDescription($result->user->description);
+			
+			$tweet = new Tweet();
+			$tweet->setSourceId($source);
+			$tweet->setText($result->text);
 		}
 		
 		
 		curl_close($curl);
-		exit;
 
 	}
 	public function executeIndex(sfWebRequest $request)
