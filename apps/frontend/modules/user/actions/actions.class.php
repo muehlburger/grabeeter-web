@@ -10,75 +10,87 @@
  */
 class userActions extends sfActions
 {
-	
-  public function executeSearchTweets(sfWebRequest $request) {
-    $this->twitterUser = "hmuehlburger";	
-  }
-  
-  public function executeIndex(sfWebRequest $request)
-  {
-    $this->twitter_users = Doctrine::getTable('TwitterUser')
-      ->createQuery('a')
-      ->execute();
-  }
 
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->twitter_user);
-  }
+	public function executeSearchTweets(sfWebRequest $request) {
+		$this->twitterUser = "hmuehlburger";
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new TwitterUserForm();
-  }
+		$url = 'http://twitter.com/statuses/user_timeline.json?page=7&count=200&screen_name=behi_at';
+		
+		// initialize curl
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_URL, $url);
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+		//make the request
+		$this->result = json_decode(curl_exec($curl));
+		curl_close($curl);
+		
+	}
 
-    $this->form = new TwitterUserForm();
+	public function executeIndex(sfWebRequest $request)
+	{
+		$this->twitter_users = Doctrine::getTable('TwitterUser')
+		->createQuery('a')
+		->execute();
+	}
 
-    $this->processForm($request, $this->form);
+	public function executeShow(sfWebRequest $request)
+	{
+		$this->twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id')));
+		$this->forward404Unless($this->twitter_user);
+	}
 
-    $this->setTemplate('new');
-  }
+	public function executeNew(sfWebRequest $request)
+	{
+		$this->form = new TwitterUserForm();
+	}
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-    $this->form = new TwitterUserForm($twitter_user);
-  }
+	public function executeCreate(sfWebRequest $request)
+	{
+		$this->forward404Unless($request->isMethod(sfRequest::POST));
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-    $this->form = new TwitterUserForm($twitter_user);
+		$this->form = new TwitterUserForm();
 
-    $this->processForm($request, $this->form);
+		$this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
-  }
+		$this->setTemplate('new');
+	}
 
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
+	public function executeEdit(sfWebRequest $request)
+	{
+		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TwitterUserForm($twitter_user);
+	}
 
-    $this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
-    $twitter_user->delete();
+	public function executeUpdate(sfWebRequest $request)
+	{
+		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TwitterUserForm($twitter_user);
 
-    $this->redirect('user/index');
-  }
+		$this->processForm($request, $this->form);
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $twitter_user = $form->save();
+		$this->setTemplate('edit');
+	}
 
-      $this->redirect('user/edit?id='.$twitter_user->getId());
-    }
-  }
+	public function executeDelete(sfWebRequest $request)
+	{
+		$request->checkCSRFProtection();
+
+		$this->forward404Unless($twitter_user = Doctrine::getTable('TwitterUser')->find(array($request->getParameter('id'))), sprintf('Object twitter_user does not exist (%s).', $request->getParameter('id')));
+		$twitter_user->delete();
+
+		$this->redirect('user/index');
+	}
+
+	protected function processForm(sfWebRequest $request, sfForm $form)
+	{
+		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+		if ($form->isValid())
+		{
+			$twitter_user = $form->save();
+
+			$this->redirect('user/edit?id='.$twitter_user->getId());
+		}
+	}
 }

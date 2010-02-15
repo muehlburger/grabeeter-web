@@ -1,11 +1,11 @@
 # data/fixtures/users.yml
 
-TwitterUser:
+TweetUser:
   hmuehlburger:
-    name: hmuehlburger
+    screen_name: hmuehlburger
   flowolf:
-    name: flowolf
+    screen_name: flowolf
   mebner:
-    name: mebner
+    screen_name: mebner
   behi_at:
-    name: behi_at
+    screen_name: behi_at

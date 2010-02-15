@@ -1,12 +1,81 @@
 Tweet:
   actAs: { Timestampable: ~ }
   columns:
-    user_id: { type: integer, notnull: true }
-    text:    { type: string(140), notnull: true }
+    user_id:
+      type: integer
+      notnull: true
+    tweet_source_id:
+      type: integer
+      notnull: true
+    geo_id:
+      type: integer
+    contributors:       
+      type: string(255)
+    contributors_enabled: 
+      type: boolean
+    in_reply_to_user_id:
+      type: integer
+    in_reply_to_status_id:
+      type: string(20)
+    tweet_created_at:
+      type: timestamp 
+      notnull: true
+    truncated:
+      type: boolean
+      notnull: true
+      default: false
+    tweet_twitter_id:
+      type: string(20)
+    source:
+      type: string(255)
+    text:                 
+      type: string(140)
+      notnull: true
   relations:
-    TwitterUser: { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
+    TweetUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
+    TweetSource:  { onDelete: CASCADE, local: tweet_source_id, foreign: id, foreignAlias: Tweets } 
+    TweetGeo:  { onDelete: CASCADE, local: geo_id, foreign: id, foreignAlias: Tweets }
 
-TwitterUser:
+TweetUser:
   actAs: { Timestampable: ~ }
   columns:
-    name:  { type: string(255), notnull: true, unique: true }
+    screen_name: 
+      type: string(15)
+      notnull: true
+    description:
+      type: string(255)
+    followers_count:
+      type: integer
+      notnull: true
+      default: 0
+    screen_name:
+      type: string(15)
+      notnull: true
+    contributors_enabled:
+      type: boolean
+      notnull: true
+      default: false
+    url:
+      type: string(255)
+    friends_count:
+      type: integer
+      notnull: true
+      default: 0
+    
+TweetSource:
+  actAs: { Timestampable: ~ }
+  columns:
+    label:
+      type: string(255)
+      notnull: true
+      default: web
+    url:
+      type: string(255)
+
+TweetGeo:
+  actAs: { Timestampable: ~ }
+  columns:
+    latitude:
+      type: float
+    longitude:
+      type: float

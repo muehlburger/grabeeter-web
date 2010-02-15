@@ -19,7 +19,8 @@ class tweetActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-  	$this->tweet = $this->getRoute()->getObject();
+    $this->tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id')));
+    $this->forward404Unless($this->tweet);
   }
 
   public function executeNew(sfWebRequest $request)
