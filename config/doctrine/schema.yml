@@ -34,7 +34,7 @@ Tweet:
   relations:
     TweetUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
     TweetSource:  { onDelete: CASCADE, local: tweet_source_id, foreign: id, foreignAlias: Tweets } 
-    TweetGeo:  { onDelete: CASCADE, local: geo_id, foreign: id, foreignAlias: Tweets }
+    TweetGeoLocation:  { onDelete: CASCADE, local: geo_id, foreign: id, foreignAlias: Tweets }
 
 TweetUser:
   actAs: { Timestampable: ~ }
@@ -61,7 +61,29 @@ TweetUser:
       type: integer
       notnull: true
       default: 0
-    
+    geo_enabled:
+      type: boolean
+    twitter_created_at:
+      type: timestamp
+      notnull: true
+    time_zone:
+      type: string(255)
+      notnull: true
+    location:
+      type: string(255)
+    name:
+      type: string(255)
+    lang:
+      type: string(10)
+    twitter_user_id:
+      type: integer
+      notnull: true
+    utc_offset:
+      type: integer
+    profile_image_url:
+      type: string(255)
+      notnull: true
+        
 TweetSource:
   actAs: { Timestampable: ~ }
   columns:
@@ -72,10 +94,14 @@ TweetSource:
     url:
       type: string(255)
 
-TweetGeo:
+TweetGeoLocation:
   actAs: { Timestampable: ~ }
   columns:
     latitude:
-      type: float
+      type: float(9,6)
+      notnull: true
+      default: 0
     longitude:
-      type: float
+      type: float(9,6)
+      notnull: true
+      default: 0
