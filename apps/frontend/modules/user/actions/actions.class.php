@@ -12,7 +12,9 @@ class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
 		$twitterUser = "hmuehlburger";
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name='.$twitterUser;
+		$count = 200;
+
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=1&screen_name='.$twitterUser;
 
 		// initialize curl
 		$curl = curl_init();
@@ -21,66 +23,79 @@ class userActions extends sfActions
 
 		//make the request
 		$results = json_decode(curl_exec($curl));
-		$this->results = $results;
-		$result = $results[0];
+		$statusesCount = $results[0]->user->statuses_count;
+		$pages = ceil($statusesCount / $count);
 
-		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
+		if($pages < 0)
+		$pages = 1;
+			
+		for($i = 1; $i <= $pages; $i++) {
+			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$i.'&screen_name='.$twitterUser;
+			curl_setopt($curl, CURLOPT_URL, $url);
+				
+			//make the request
+			$results = json_decode(curl_exec($curl));
+				
+			$this->results = $results;
+			$result = $results[0];
 
-		// If user doesn't exist, create new one with the new values
-		if(!$user) {
-			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
-		}
+			$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
 
-		$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
-
-		foreach ($results as $result) {
-			$break = false;
-			foreach ($tweetTwitterIds as $id) {
-				if ($result->id == $id['tweet_twitter_id']) {
-					$break = true;
-					break;
-				}
+			// If user doesn't exist, create new one with the new values
+			if(!$user) {
+				$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
 			}
-			if($break) {
-				break;
-			} else {
 
-				// Create new TweetSource
-				$source = new TweetSource();
-				$source->setLabel($result->source);
-				$source->setUrl($result->source);
+			$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
 
-				// Create new Tweet and populate its values
-				$tweet = new Tweet();
-				$tweet->setTweetUser($user);
-				$tweet->setTweetSource($source);
-
-
-				// Add geo information if it is enabled
-				if($result->user->geo_enabled == 1) {
-					if(isset($result->geo)) {
-						// TODO: Parse and update correct geolocation
-						$tweet->setGeolocationId(new TweetGeoLocation());
+			foreach ($results as $result) {
+				$break = false;
+				foreach ($tweetTwitterIds as $id) {
+					if ($result->id == $id['tweet_twitter_id']) {
+						$break = true;
+						break;
 					}
 				}
+				if($break) {
+					break;
+				} else {
 
-				// Tweet is a reply
-				if(isset($result->in_reply_to_status_id)) {
-					$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-					$tweet->setInReplyToUserId($result->in_reply_to_user_id);
+					// Create new TweetSource
+					$source = new TweetSource();
+					$source->setLabel($result->source);
+					$source->setUrl($result->source);
+
+					// Create new Tweet and populate its values
+					$tweet = new Tweet();
+					$tweet->setTweetUser($user);
+					$tweet->setTweetSource($source);
+
+
+					// Add geo information if it is enabled
+					if($result->user->geo_enabled == 1) {
+						if(isset($result->geo)) {
+							// TODO: Parse and update correct geolocation
+							$tweet->setGeolocationId(new TweetGeoLocation());
+						}
+					}
+
+					// Tweet is a reply
+					if(isset($result->in_reply_to_status_id)) {
+						$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
+						$tweet->setInReplyToUserId($result->in_reply_to_user_id);
+					}
+
+					$parsedDate = date_parse($result->created_at);
+					$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+					$tweet->setTweetCreatedAt($createdAt);
+
+					$tweet->setTweetTwitterId($result->id);
+					$tweet->setText($result->text);
+
+					$tweet->save();
 				}
-
-				$parsedDate = date_parse($result->created_at);
-				$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-				$tweet->setTweetCreatedAt($createdAt);
-
-				$tweet->setTweetTwitterId($result->id);
-				$tweet->setText($result->text);
-
-				$tweet->save();
 			}
 		}
-
 		curl_close($curl);
 	}
 
