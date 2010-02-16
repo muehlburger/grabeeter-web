@@ -11,10 +11,10 @@
 class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "hmuehlburger";
+		$twitterUser = "mebner";
 		$count = 200;
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=1&screen_name='.$twitterUser;
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name='.$twitterUser;
 
 		// initialize curl
 		$curl = curl_init();
@@ -26,15 +26,19 @@ class userActions extends sfActions
 		$statusesCount = $results[0]->user->statuses_count;
 		$pages = ceil($statusesCount / $count);
 
+
 		if($pages < 0)
-		$pages = 1;
+			$pages = 1;
 			
 		for($i = 1; $i <= $pages; $i++) {
-			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$i.'&screen_name='.$twitterUser;
-			curl_setopt($curl, CURLOPT_URL, $url);
+			
+			$curl2 = curl_init();
+			curl_setopt($curl2, CURLOPT_RETURNTRANSFER, true);
+			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&page='.$i.'&screen_name='.$twitterUser;
+			curl_setopt($curl2, CURLOPT_URL, $url);
 				
 			//make the request
-			$results = json_decode(curl_exec($curl));
+			$results = json_decode(curl_exec($curl2));
 				
 			$this->results = $results;
 			$result = $results[0];
@@ -94,7 +98,9 @@ class userActions extends sfActions
 
 					$tweet->save();
 				}
+				
 			}
+			curl_close($curl2);
 		}
 		curl_close($curl);
 	}
