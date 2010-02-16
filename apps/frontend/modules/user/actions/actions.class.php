@@ -13,7 +13,7 @@ class userActions extends sfActions
 	public function executeSearchTweets(sfWebRequest $request) {
 		$this->twitterUser = "hmuehlburger";
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name=hmuehlburger';
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=hmuehlburger';
 
 		// initialize curl
 		$curl = curl_init();
@@ -25,14 +25,8 @@ class userActions extends sfActions
 		$this->results = $results;
 
 		$result = $results[0];
-		// Create new TweetUser
-		// TODO: Check if user already exists in database and only create one if not already present
-
-		$q = Doctrine_Query::create()
-		->from('TweetUser u')
-		->where('u.twitter_user_id = ?', $result->user->id);
-			
-		$userCount = $q->count();
+		
+		$userCount = Doctrine_Core::getTable('TweetUser')->findOneByTwitterUserId($result->user->id);
 
 		// Just store new users
 		if($userCount == 0) {
@@ -61,17 +55,13 @@ class userActions extends sfActions
 				
 			$user = $q->fetchOne();
 		}
+		
+		$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
 
 		foreach ($results as $result) {
 				
-			$q = Doctrine_Query::create()
-			->from('Tweet t')
-			->where('t.tweet_twitter_id = ?', $result->id);
-				
-			$tweetCount = $q->count();
-				
 			// Just store tweet if it has not already been stored
-			if($tweetCount == 0) {
+			if(!in_array($result->id, $tweetTwitterIds)) {
 
 				// Create new TweetSource
 				$source = new TweetSource();
