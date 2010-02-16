@@ -13,7 +13,7 @@ class userActions extends sfActions
 	public function executeSearchTweets(sfWebRequest $request) {
 		$this->twitterUser = "hmuehlburger";
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=mebner';
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name=hmuehlburger';
 
 		// initialize curl
 		$curl = curl_init();
@@ -29,11 +29,12 @@ class userActions extends sfActions
 		// TODO: Check if user already exists in database and only create one if not already present
 
 		$q = Doctrine_Query::create()
-			->from('TweetUser u')
-			->where('u.twitter_user_id = ?', $result->user->id);
+		->from('TweetUser u')
+		->where('u.twitter_user_id = ?', $result->user->id);
 			
 		$userCount = $q->count();
-		
+
+		// Just store new users
 		if($userCount == 0) {
 			$user = new TweetUser();
 			$user->setName($result->user->name);
@@ -44,7 +45,7 @@ class userActions extends sfActions
 			$user->setUrl($result->user->url);
 			$user->setFriendsCount($result->user->friends_count);
 			$user->setGeoEnabled($result->user->geo_enabled);
-			
+				
 			$parsedDate = date_parse($result->user->created_at);
 			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
 			$user->setTwitterCreatedAt($createdAt);
@@ -57,47 +58,56 @@ class userActions extends sfActions
 			$q = Doctrine_Query::create()
 			->from('TweetUser u')
 			->where('u.twitter_user_id = ?', $result->user->id);
-			
+				
 			$user = $q->fetchOne();
 		}
-		
+
 		foreach ($results as $result) {
 				
-			// Create new TweetSource
-			$source = new TweetSource();
-			$source->setLabel($result->source);
-			$source->setUrl($result->source);				
+			$q = Doctrine_Query::create()
+			->from('Tweet t')
+			->where('t.tweet_twitter_id = ?', $result->id);
 				
-			// Create new Tweet and populate its values
-			$tweet = new Tweet();
-			$tweet->setTweetUser($user);
-			$tweet->setTweetSource($source);
+			$tweetCount = $q->count();
 				
-				
-			// Add geo information if it is enabled
-			if($result->user->geo_enabled == 1) {
-				if(isset($result->geo)) {
-					// TODO: Parse and update correct geolocation
-					$tweet->setGeolocationId(new TweetGeoLocation());
+			// Just store tweet if it has not already been stored
+			if($tweetCount == 0) {
+
+				// Create new TweetSource
+				$source = new TweetSource();
+				$source->setLabel($result->source);
+				$source->setUrl($result->source);
+
+				// Create new Tweet and populate its values
+				$tweet = new Tweet();
+				$tweet->setTweetUser($user);
+				$tweet->setTweetSource($source);
+
+
+				// Add geo information if it is enabled
+				if($result->user->geo_enabled == 1) {
+					if(isset($result->geo)) {
+						// TODO: Parse and update correct geolocation
+						$tweet->setGeolocationId(new TweetGeoLocation());
+					}
 				}
-			}
-				
-			// Tweet is a reply
-			if(isset($result->in_reply_to_status_id)) {
-				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
-			}
 
-			$parsedDate = date_parse($result->created_at);
-			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-			$tweet->setTweetCreatedAt($createdAt);
-				
-			$tweet->setTweetTwitterId($result->id);
-			$tweet->setText($result->text);
-				
-			$tweet->save();
+				// Tweet is a reply
+				if(isset($result->in_reply_to_status_id)) {
+					$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
+					$tweet->setInReplyToUserId($result->in_reply_to_user_id);
+				}
+
+				$parsedDate = date_parse($result->created_at);
+				$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+				$tweet->setTweetCreatedAt($createdAt);
+
+				$tweet->setTweetTwitterId($result->id);
+				$tweet->setText($result->text);
+
+				$tweet->save();
+			}
 		}
-
 
 		curl_close($curl);
 
