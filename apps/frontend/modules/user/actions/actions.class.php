@@ -13,7 +13,7 @@ class userActions extends sfActions
 	public function executeSearchTweets(sfWebRequest $request) {
 		$this->twitterUser = "hmuehlburger";
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=hmuehlburger';
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=mebner';
 
 		// initialize curl
 		$curl = curl_init();
@@ -28,24 +28,38 @@ class userActions extends sfActions
 		// Create new TweetUser
 		// TODO: Check if user already exists in database and only create one if not already present
 
-		$user = new TweetUser();
-		$user->setName($result->user->name);
-		$user->setScreenName($result->user->screen_name);
-		$user->setTwitterUserId($result->user->id);
-		$user->setDescription($result->user->description);
-		$user->setFollowersCount($result->user->followers_count);
-		$user->setUrl($result->user->url);
-		$user->setFriendsCount($result->user->friends_count);
-		$user->setGeoEnabled($result->user->geo_enabled);
+		$q = Doctrine_Query::create()
+			->from('TweetUser u')
+			->where('u.twitter_user_id = ?', $result->user->id);
+			
+		$userCount = $q->count();
 		
-		$parsedDate = date_parse($result->user->created_at);
-		$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-		$user->setTwitterCreatedAt($createdAt);
-		$user->setTimeZone($result->user->time_zone);
-		$user->setLocation($result->user->location);
-		$user->setLang($result->user->lang);
-		$user->setUtcOffset($result->user->utc_offset);
-		$user->setProfileImageUrl($result->user->profile_image_url);
+		if($userCount == 0) {
+			$user = new TweetUser();
+			$user->setName($result->user->name);
+			$user->setScreenName($result->user->screen_name);
+			$user->setTwitterUserId($result->user->id);
+			$user->setDescription($result->user->description);
+			$user->setFollowersCount($result->user->followers_count);
+			$user->setUrl($result->user->url);
+			$user->setFriendsCount($result->user->friends_count);
+			$user->setGeoEnabled($result->user->geo_enabled);
+			
+			$parsedDate = date_parse($result->user->created_at);
+			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+			$user->setTwitterCreatedAt($createdAt);
+			$user->setTimeZone($result->user->time_zone);
+			$user->setLocation($result->user->location);
+			$user->setLang($result->user->lang);
+			$user->setUtcOffset($result->user->utc_offset);
+			$user->setProfileImageUrl($result->user->profile_image_url);
+		} else {
+			$q = Doctrine_Query::create()
+			->from('TweetUser u')
+			->where('u.twitter_user_id = ?', $result->user->id);
+			
+			$user = $q->fetchOne();
+		}
 		
 		foreach ($results as $result) {
 				
