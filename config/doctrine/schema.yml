@@ -10,9 +10,9 @@ Tweet:
     geolocation_id:
       type: integer
     in_reply_to_user_id:
-      type: integer
+      type: integer(12)
     in_reply_to_status_id:
-      type: string(20)
+      type: integer(20)
     tweet_created_at:
       type: timestamp 
       notnull: true

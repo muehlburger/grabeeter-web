@@ -1,4 +1,4 @@
-<h4><?php echo "username: " . $twitterUser ?></h4>
+<h4>Searching Tweets</h4>
 <ul>
-	<li><pre><?php echo print_r($results) ?></pre></li>
+	<!-- <li><pre><?php echo print_r($results) ?></pre></li> -->
 </ul>

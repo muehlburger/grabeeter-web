@@ -11,9 +11,8 @@
 class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
-		$this->twitterUser = "hmuehlburger";
-
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=3&screen_name=hmuehlburger';
+		$twitterUser = "hmuehlburger";
+		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name='.$twitterUser;
 
 		// initialize curl
 		$curl = curl_init();
@@ -23,15 +22,14 @@ class userActions extends sfActions
 		//make the request
 		$results = json_decode(curl_exec($curl));
 		$this->results = $results;
-
 		$result = $results[0];
-
 
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
 
 		// If user doesn't exist, create new one with the new values
-		if(!$user)
+		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
+		}
 
 		$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
 
@@ -84,8 +82,8 @@ class userActions extends sfActions
 		}
 
 		curl_close($curl);
-
 	}
+
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')
