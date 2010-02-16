@@ -22,38 +22,44 @@ class userActions extends sfActions
 
 		//make the request
 		$results = json_decode(curl_exec($curl));
-		
 		$this->results = $results;
+
+		$result = $results[0];
+		// Create new TweetUser
+		// TODO: Check if user already exists in database and only create one if not already present
+
+		$user = new TweetUser();
+		$user->setName($result->user->name);
+		$user->setScreenName($result->user->screen_name);
+		$user->setTwitterUserId($result->user->id);
+		$user->setDescription($result->user->description);
+		$user->setFollowersCount($result->user->followers_count);
+		$user->setUrl($result->user->url);
+		$user->setFriendsCount($result->user->friends_count);
+		$user->setGeoEnabled($result->user->geo_enabled);
+		
+		$parsedDate = date_parse($result->user->created_at);
+		$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+		$user->setTwitterCreatedAt($createdAt);
+		$user->setTimeZone($result->user->time_zone);
+		$user->setLocation($result->user->location);
+		$user->setLang($result->user->lang);
+		$user->setUtcOffset($result->user->utc_offset);
+		$user->setProfileImageUrl($result->user->profile_image_url);
+		
 		foreach ($results as $result) {
-			
+				
 			// Create new TweetSource
 			$source = new TweetSource();
 			$source->setLabel($result->source);
-			$source->setUrl($result->source);
-			
-			// Create new TweetUser
-			// TODO: Check if user already exists in database and only create one if not already present
-			$user = new TweetUser();
-			$user->setName($result->user->name);
-			$user->setScreenName($result->user->screen_name);
-			$user->setTwitterUserId($result->user->id);
-			$user->setDescription($result->user->description);
-			$user->setFollowersCount($result->user->followers_count);
-			$user->setUrl($result->user->url);
-			$user->setFriendsCount($result->user->friends_count);
-			$user->setGeoEnabled($result->user->geo_enabled);
-			$user->setTwitterCreatedAt($result->user->created_at);
-			$user->setTimeZone($result->user->time_zone);
-			$user->setLocation($result->user->location);
-			$user->setLang($result->user->lang);
-			$user->setUtcOffset($result->user->utc_offset);
-			$user->setProfileImageUrl($result->user->profile_image_url);
-			
+			$source->setUrl($result->source);				
+				
 			// Create new Tweet and populate its values
 			$tweet = new Tweet();
 			$tweet->setTweetUser($user);
 			$tweet->setTweetSource($source);
-			
+				
+				
 			// Add geo information if it is enabled
 			if($result->user->geo_enabled == 1) {
 				if(isset($result->geo)) {
@@ -61,23 +67,24 @@ class userActions extends sfActions
 					$tweet->setGeolocationId(new TweetGeoLocation());
 				}
 			}
-			
+				
 			// Tweet is a reply
 			if(isset($result->in_reply_to_status_id)) {
 				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
 				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
 			}
-			
-			// TODO: Check if timestamp is correct
-			$tweet->setTweetCreatedAt($result->created_at);
-			
+
+			$parsedDate = date_parse($result->created_at);
+			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+			$tweet->setTweetCreatedAt($createdAt);
+				
 			$tweet->setTweetTwitterId($result->id);
 			$tweet->setText($result->text);
-			
+				
 			$tweet->save();
 		}
-		
-		
+
+
 		curl_close($curl);
 
 	}
