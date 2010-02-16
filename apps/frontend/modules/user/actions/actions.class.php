@@ -25,43 +25,27 @@ class userActions extends sfActions
 		$this->results = $results;
 
 		$result = $results[0];
-		
-		$userCount = Doctrine_Core::getTable('TweetUser')->findOneByTwitterUserId($result->user->id);
 
-		// Just store new users
-		if($userCount == 0) {
-			$user = new TweetUser();
-			$user->setName($result->user->name);
-			$user->setScreenName($result->user->screen_name);
-			$user->setTwitterUserId($result->user->id);
-			$user->setDescription($result->user->description);
-			$user->setFollowersCount($result->user->followers_count);
-			$user->setUrl($result->user->url);
-			$user->setFriendsCount($result->user->friends_count);
-			$user->setGeoEnabled($result->user->geo_enabled);
-				
-			$parsedDate = date_parse($result->user->created_at);
-			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-			$user->setTwitterCreatedAt($createdAt);
-			$user->setTimeZone($result->user->time_zone);
-			$user->setLocation($result->user->location);
-			$user->setLang($result->user->lang);
-			$user->setUtcOffset($result->user->utc_offset);
-			$user->setProfileImageUrl($result->user->profile_image_url);
-		} else {
-			$q = Doctrine_Query::create()
-			->from('TweetUser u')
-			->where('u.twitter_user_id = ?', $result->user->id);
-				
-			$user = $q->fetchOne();
-		}
-		
+
+		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
+
+		// If user doesn't exist, create new one with the new values
+		if(!$user)
+			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
+
 		$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
 
 		foreach ($results as $result) {
-				
-			// Just store tweet if it has not already been stored
-			if(!in_array($result->id, $tweetTwitterIds)) {
+			$break = false;
+			foreach ($tweetTwitterIds as $id) {
+				if ($result->id == $id['tweet_twitter_id']) {
+					$break = true;
+					break;
+				}
+			}
+			if($break) {
+				break;
+			} else {
 
 				// Create new TweetSource
 				$source = new TweetSource();
