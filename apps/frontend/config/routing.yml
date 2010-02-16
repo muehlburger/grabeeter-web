@@ -24,7 +24,7 @@ user_search_tweets:
 # default rules
 homepage:
   url:   /
-  param: { module: user, action: searchTweets }
+  param: { module: tweet, action: index }
 
 default_indecurlx:
   url:   /:module
