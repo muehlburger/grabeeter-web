@@ -20,6 +20,10 @@ Tweet:
       type: integer
       notnull: true
       default: 0
+    statuses_count:
+      type: integer
+      notnull: true
+      default: 0
     text:                 
       type: string(140)
       notnull: true

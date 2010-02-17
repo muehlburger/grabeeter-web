@@ -28,6 +28,7 @@ class userActions extends sfActions
 			// Create new Tweet and populate its values
 			$tweet = new Tweet();
 			$tweet->setTweetUser($user);
+			$tweet->setStatusesCount($result->user->statuses_count);
 			$tweet->setTweetSource($source);
 
 
@@ -95,9 +96,15 @@ class userActions extends sfActions
 			$numberOfStoredTweets = $user->getStatusesCount();
 			$pages = ceil(($statusesCount - $numberOfStoredTweets) / $count);
 
-			$sinceId = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $sinceId .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
+			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
 		}
+		
+//		var_dump($pages);
+//		var_dump($statusesCount);
+//		var_dump($numberOfStoredTweets);
+//		var_dump($url);
+//		exit;
 
 		for($i = 1; $i <= $pages; $i++) {
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
@@ -115,7 +122,10 @@ class userActions extends sfActions
 
 		}
 		curl_close($curl);
+		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
+		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 	}
+	
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')
