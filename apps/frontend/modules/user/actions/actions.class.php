@@ -21,25 +21,22 @@ class userActions extends sfActions
 
 		foreach($results as $result) {
 			if(!array_key_exists($result->source, $sources)) {
-//				var_dump($result->source);
-//				var_dump(array_unique(array_keys($sources)));
-//				exit;
 				$source = new TweetSource();
 				// TODO: Parse url and label correctly here
 				$source->setLabel($result->source);
 				$source->setUrl($result->source);
 				$source->save();
 				$sources[$source->getLabel()] = $source->getId();
+				$sourceId = $source->getId();
 			} else {
 				$sourceId = $sources[$result->source];
-				$source = Doctrine_Core::getTable('TweetSource')->findOneBy('id', $sourceId);
 			}
 				
 			// Create new Tweet and populate its values
 			$tweet = new Tweet();
-			$tweet->setUserId($user->getId());
+			$tweet->setTweetUser($user);
 			$tweet->setStatusesCount($result->user->statuses_count);
-			$tweet->setSourceId($source->getId());
+			$tweet->setSourceId($sourceId);
 
 
 			// Add geo information if it is enabled
@@ -67,7 +64,7 @@ class userActions extends sfActions
 		}
 	}
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "behi_at";
+		$twitterUser = "hmuehlburger";
 		$count = 200;
 		$this->emptyTweets = 0;
 
@@ -109,12 +106,6 @@ class userActions extends sfActions
 			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
 			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
 		}
-		
-//		var_dump($pages);
-//		var_dump($statusesCount);
-//		var_dump($numberOfStoredTweets);
-//		var_dump($url);
-//		exit;
 
 		for($i = 1; $i <= $pages; $i++) {
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
