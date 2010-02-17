@@ -3,3 +3,5 @@
 
 # default values
 #all:
+all:
+  twitter_count: 200
