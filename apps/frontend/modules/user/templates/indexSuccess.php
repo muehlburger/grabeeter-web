@@ -4,7 +4,6 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Image</th>
       <th>Name</th>
       <th>Screen name</th>
       <th>Twitter user</th>
@@ -26,8 +25,7 @@
   <tbody>
     <?php foreach ($tweet_users as $tweet_user): ?>
     <tr>
-      <td><a href="<?php echo url_for('user/show?id='.$tweet_user->getId()) ?>"><?php echo $tweet_user->getId() ?></a></td>
-      <td><img src="<?php echo $tweet_user->getProfileImageUrl() ?>" /></td>
+      <td><a href="<?php echo url_for('user/show?id='.$tweet_user->getId()) ?>"><img src="<?php echo $tweet_user->getProfileImageUrl() ?>" /></a></td>
       <td><?php echo $tweet_user->getName() ?></td>
       <td><?php echo $tweet_user->getScreenName() ?></td>
       <td><?php echo $tweet_user->getTwitterUserId() ?></td>

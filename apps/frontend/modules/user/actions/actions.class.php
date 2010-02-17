@@ -10,30 +10,32 @@
  */
 class userActions extends sfActions
 {
+
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "hmuehlburger";
+		$twitterUser = "behi_at";
 		$count = 200;
+		$this->emptyTweets = 0;
 
 		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name='.$twitterUser;
 
 		// initialize curl
 		$curl = curl_init($url);
-		
+
 		$this->forward404Unless($curl, "Curl could not be initialized!");
-		
+
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($curl, CURLOPT_TIMEOUT, 900);
- 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
 
 		//make the request
 		$results = json_decode(curl_exec($curl));
-		
+
 		$this->forward404Unless($results, "No results for this request!");
 		$statusesCount = $results[0]->user->statuses_count;
 		$pages = ceil($statusesCount / $count);
 
 		if($pages < 0)
-			$pages = 1;
+		$pages = 1;
 			
 		for($i = 1; $i <= $pages; $i++) {
 			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&page='.$i.'&screen_name='.$twitterUser;
@@ -41,13 +43,15 @@ class userActions extends sfActions
 
 			//make the request
 			$results = json_decode(curl_exec($curl));
-				
+
 			$this->results = $results;
 			$result = $results[0];
 
-			if(!$result) 
+			if(!$result) {
+				$this->emptyTweets++;
 				continue;
-				
+			}
+
 			$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
 
 			// If user doesn't exist, create new one with the new values
@@ -103,12 +107,11 @@ class userActions extends sfActions
 
 					$tweet->save();
 				}
-				
+
 			}
 		}
 		curl_close($curl);
 	}
-
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')
