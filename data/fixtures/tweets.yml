@@ -13,7 +13,7 @@ Tweet:
 
   tweet2:
     TweetUser: behi_at
-    TweetSource: tweetdeck
+    TweetSource: seesmic
     TweetGeoLocation: location3
     in_reply_to_user_id: 15284045
     in_reply_to_status_id: 1558468493

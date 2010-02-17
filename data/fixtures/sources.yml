@@ -2,6 +2,6 @@
 
 TweetSource:
   twitter:
-  tweetdeck:
-    label: Tweetdeck
-    url: http://www.tweetdeck.com
+  seesmic:
+    label: <a href="http://www.seesmic.com/" rel="nofollow">Seesmic</a>
+    url: <a href="http://www.seesmic.com/" rel="nofollow">Seesmic</a>
