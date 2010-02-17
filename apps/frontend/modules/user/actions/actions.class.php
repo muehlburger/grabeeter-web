@@ -9,14 +9,13 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class userActions extends sfActions
-{
-
+{	
 	public function executeSearchTweets(sfWebRequest $request) {
 		$twitterUser = "behi_at";
 		$count = 200;
 		$this->emptyTweets = 0;
 
-		$url = 'http://twitter.com/statuses/user_timeline.json?count=200&screen_name='.$twitterUser;
+		$url = 'http://twitter.com/users/show.json?screen_name=' . $twitterUser;
 
 		// initialize curl
 		$curl = curl_init($url);
@@ -28,89 +27,95 @@ class userActions extends sfActions
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
 
 		//make the request
-		$results = json_decode(curl_exec($curl));
+		$result = json_decode(curl_exec($curl));
 
-		$this->forward404Unless($results, "No results for this request!");
-		$statusesCount = $results[0]->user->statuses_count;
-		$pages = ceil($statusesCount / $count);
+		$this->forward404Unless($result, "No results for this request!");
 
-		if($pages < 0)
-		$pages = 1;
+		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
+		$statusesCount = $result->statuses_count;
+		
+		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
+		
+		$sources = array();
+		foreach($allTweetSources as $source) {
+			$sources[$source['label']]= $source['id']; 
+		}
+		
+		// If user doesn't exist, create new one with the new values
+		if(!$user) {
+			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
+			var_dump($user);
+			exit;
 			
+			$pages = ceil($statusesCount / $count);	
+			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$twitterUser.'&page=';
+		} else {
+			// TODO: count tweets in db for this user
+			$numberOfStoredTweets = 500;
+			$pages = ceil(($statusesCount - $numberOfStoredTweets) / $count);
+			
+			// TODO: read most recent tweet id (die letzte tweet id aus db)
+			$sinceId = 234234;
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $sinceId .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
+		}
+					
 		for($i = 1; $i <= $pages; $i++) {
-			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&page='.$i.'&screen_name='.$twitterUser;
-			curl_setopt($curl, CURLOPT_URL, $url);
+			
+			curl_setopt($curl, CURLOPT_URL, $url.$i);
 
 			//make the request
 			$results = json_decode(curl_exec($curl));
 
 			$this->results = $results;
-			$result = $results[0];
 
-			if(!$result)
+			if(!$results) {
+				$this->forward404Unless($results, "Response was empty for page: " . $i);
 				continue;
+			}
 
-			$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
-
-			// If user doesn't exist, create new one with the new values
-			if(!$user) {
-				$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
-				// TODO: Here create the new tweet
-				$tweet = Doctrine_Core::getTable('Tweet')->createNewTweet($result);
+			
+			// TODO: the next if has to be moved to tweet model and return a sources object
+			if(!array_key_exists($result->source, $sources)) {
+				// TODO: Store tweet source
+				//		$source = new TweetSource();
+				//		$source->setLabel($result->source);
+				//		$source->setUrl($result->source);
+				// TODO: get source ID from database call
+				$sourceId = 4343434;
 			} else {
-				// TODO: Here update the user's tweets
+				$sourceId = $sources[$result->source];
+			}
+			
+			
+			// Create new Tweet and populate its values
+			$tweet = new Tweet();
+			$tweet->setTweetUser($user);
+			$tweet->setTweetSource($source);
+
+
+			// Add geo information if it is enabled
+			if($result->user->geo_enabled == 1) {
+				if(isset($result->geo)) {
+					// TODO: Parse and update correct geolocation
+					$tweet->setGeolocationId(new TweetGeoLocation());
+				}
 			}
 
-			$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();
-
-			foreach ($results as $result) {
-				$break = false;
-				foreach ($tweetTwitterIds as $id) {
-					if ($result->id == $id['tweet_twitter_id']) {
-						$break = true;
-						break;
-					}
-				}
-				if($break) {
-					break;
-				} else {
-
-					// Create new TweetSource
-					$source = new TweetSource();
-					$source->setLabel($result->source);
-					$source->setUrl($result->source);
-
-					// Create new Tweet and populate its values
-					$tweet = new Tweet();
-					$tweet->setTweetUser($user);
-					$tweet->setTweetSource($source);
-
-
-					// Add geo information if it is enabled
-					if($result->user->geo_enabled == 1) {
-						if(isset($result->geo)) {
-							// TODO: Parse and update correct geolocation
-							$tweet->setGeolocationId(new TweetGeoLocation());
-						}
-					}
-
-					// Tweet is a reply
-					if(isset($result->in_reply_to_status_id)) {
-						$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-						$tweet->setInReplyToUserId($result->in_reply_to_user_id);
-					}
-
-					$parsedDate = date_parse($result->created_at);
-					$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-					$tweet->setTweetCreatedAt($createdAt);
-
-					$tweet->setTweetTwitterId($result->id);
-					$tweet->setText($result->text);
-
-					$tweet->save();
-				}
-
+			// Tweet is a reply
+			if(isset($result->in_reply_to_status_id)) {
+				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
+				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
 			}
+
+			$parsedDate = date_parse($result->created_at);
+			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+			$tweet->setTweetCreatedAt($createdAt);
+
+			$tweet->setTweetTwitterId($result->id);
+			$tweet->setText($result->text);
+
+			$tweet->save();
+
 		}
 		curl_close($curl);
 	}

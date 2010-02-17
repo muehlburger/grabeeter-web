@@ -1,5 +1,8 @@
-<h1>Tweets List</h1>
-
+<div class="entry" id="1">
+	 <h3 class="storytitle"><a href="#" rel="bookmark">List of Tweets</a></h3>
+<!--      <p class="date">10.02.2010</p>
+	<ul class="meta nospace"><li>Category 1, Category 2</li><li>&#8212;Herbert Mühlburger <small>(10.02.2010)</small></li></ul>
+	 -->
 <table>
   <thead>
     <tr>
@@ -36,3 +39,5 @@
 </table>
 
   <a href="<?php echo url_for('tweet/new') ?>">New</a>
+
+</div>

@@ -25,6 +25,10 @@
       <td><?php echo $tweet_user->getFollowersCount() ?></td>
     </tr>
     <tr>
+      <th>Statuses count:</th>
+      <td><?php echo $tweet_user->getStatusesCount() ?></td>
+    </tr>
+    <tr>
       <th>Url:</th>
       <td><?php echo $tweet_user->getUrl() ?></td>
     </tr>

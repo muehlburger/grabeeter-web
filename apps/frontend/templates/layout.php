@@ -39,16 +39,45 @@
       </div>
     <div id="body">
       <div id="content">
+        
         <?php echo $sf_content ?>
       </div>
-      <div id="sidebar">
-        <div class="section about"></div>
-        <div class="section">
-		  <div class="column"></div>
-		  <div class="column"></div>
-        </div>
-        <div class="section"></div>
+      <!-- <div id="sidebar">
+        <div class="section about">
+        	<h3>About</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
+            	incididunt ut labore et dolore magna aliqua. Sed do eiusmod.  
+            	<br /><a href="#" class="more">Find out more</a>
+            </p>
+     	</div>
+     	<div class="section">
+                    <div class="column">
+                        <h3>Browse <em>by Topic</em></h3>
+                        <ul class="tag">
+                    		<li><a href="#">Design</a></li>
+                    		<li><a href="#">JavaFX</a></li>
+                    		<li><a href="#">JavaScript</a></li>
+                    		<li><a href="#">e-Learning</a></li>
+                    		<li><a href="#">Twitter</a></li>
+                            <li class="lastchild"><a href="#">Layout</a></li>
+                        </ul>
+                    </div>
+                    <div class="column">
+                        <h3>Browse <em>by Date</em></h3>
+                        <ul class="date">
+                        	<li><a href="#">November 2010</a></li>
+                        	<li><a href="#">December 2010</a></li>
+                    		<li><a href="#">Januray 2010</a></li>
+                    		<li><a href="#">February 2010</a></li>
+                    		<li><a href="#">March 2010</a></li> 
+                        </ul>
+                    </div>
+		</div>
+		<div class="section">
+                    <img src="images/dummy_googleads.gif" alt="Placeholder Image" />
+		</div>
       </div>
+       -->
     </div>
     <div id="footer"></div>
     </div>

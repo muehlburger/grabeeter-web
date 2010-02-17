@@ -1,5 +1,8 @@
-<h1>Tweet users List</h1>
-
+<div class="entry" id="1">
+	 <h3 class="storytitle"><a href="#" rel="bookmark">List of Users</a></h3>
+<!--      <p class="date">10.02.2010</p>
+	<ul class="meta nospace"><li>Category 1, Category 2</li><li>&#8212;Herbert Mühlburger <small>(10.02.2010)</small></li></ul>
+	 -->
 <table>
   <thead>
     <tr>
@@ -13,6 +16,7 @@
       <th>Friends count</th>
       <th>Geo enabled</th>
       <th>Twitter created at</th>
+      <th>Statuses Count</th>
       <th>Time zone</th>
       <th>Location</th>
       <th>Lang</th>
@@ -35,6 +39,7 @@
       <td><?php echo $tweet_user->getFriendsCount() ?></td>
       <td><?php echo $tweet_user->getGeoEnabled() ?></td>
       <td><?php echo $tweet_user->getTwitterCreatedAt() ?></td>
+      <td><?php echo $tweet_user->getStatusesCount() ?></td>
       <td><?php echo $tweet_user->getTimeZone() ?></td>
       <td><?php echo $tweet_user->getLocation() ?></td>
       <td><?php echo $tweet_user->getLang() ?></td>
@@ -48,3 +53,4 @@
 </table>
 
   <a href="<?php echo url_for('user/new') ?>">New</a>
+</div>

@@ -9,6 +9,10 @@ body {
   font: small/150% Helvetica, Arial, Verdana, sans-serif;
 }
 
+html {
+	/** background: #fff url("/images/bg_main.gif") repeat-x 0 0 ; **/
+}
+
 /** Main positioning */
 #wrapper {
   min-width: 905px;
@@ -31,13 +35,32 @@ body {
   padding-left: 145px;
 }
 
+#content .entry .note {
+    position: absolute;
+    left: 15px;
+    width: 140px;
+}
+
 #content .entry .note strong {
-  position: absolute;
-  left: 15px;
-  width: 130px;
+    background: transparent url("/images/icon_note.gif") no-repeat 0 50%;
+    display: block;
+    padding-left: 20px;
+    text-transform: uppercase;
 }
 
 #sidebar {
   float: right;
   width: 34%;
+  padding: 10px 0;
+}
+
+#sidebar .section {
+	clear: both;
+	margin-bottom: 20px;
+	padding: 10px 20px;
+}
+
+#sidebar .column {
+	float: left;
+	width: 50%;	
 }
