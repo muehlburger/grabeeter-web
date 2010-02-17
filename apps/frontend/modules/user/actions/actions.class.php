@@ -9,7 +9,52 @@
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
  */
 class userActions extends sfActions
-{	
+{
+
+	private function saveTweets(&$results, $sources, &$user) {
+
+		foreach($results as $result) {
+			if(!array_key_exists($result->source, $sources)) {
+				$source = new TweetSource();
+				// TODO: Parse url and label correctly here
+				$source->setLabel($result->source);
+				$source->setUrl($result->source);
+				$source->save();
+			} else {
+				$sourceId = $sources[$result->source];
+				$source = Doctrine_Core::getTable('TweetSource')->findOneBy('id', $sourceId);
+			}
+				
+			// Create new Tweet and populate its values
+			$tweet = new Tweet();
+			$tweet->setTweetUser($user);
+			$tweet->setTweetSource($source);
+
+
+			// Add geo information if it is enabled
+			if($result->user->geo_enabled == 1) {
+				if(isset($result->user->geo)) {
+					// TODO: Parse and update correct geolocation
+					$tweet->setGeolocationId(new TweetGeoLocation());
+				}
+			}
+
+			// Tweet is a reply
+			if(isset($result->in_reply_to_status_id)) {
+				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
+				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
+			}
+
+			$parsedDate = date_parse($result->created_at);
+			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
+			$tweet->setTweetCreatedAt($createdAt);
+
+			$tweet->setTweetTwitterId($result->id);
+			$tweet->setText($result->text);
+
+			$tweet->save();
+		}
+	}
 	public function executeSearchTweets(sfWebRequest $request) {
 		$twitterUser = "behi_at";
 		$count = 200;
@@ -33,88 +78,40 @@ class userActions extends sfActions
 
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
 		$statusesCount = $result->statuses_count;
-		
+
 		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
-		
+
 		$sources = array();
 		foreach($allTweetSources as $source) {
-			$sources[$source['label']]= $source['id']; 
+			$sources[$source['label']]= $source['id'];
 		}
-		
-		// If user doesn't exist, create new one with the new values
+
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
-			var_dump($user);
-			exit;
-			
-			$pages = ceil($statusesCount / $count);	
+
+			$pages = ceil($statusesCount / $count);
 			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$twitterUser.'&page=';
 		} else {
-			// TODO: count tweets in db for this user
-			$numberOfStoredTweets = 500;
+			$numberOfStoredTweets = $user->getStatusesCount();
 			$pages = ceil(($statusesCount - $numberOfStoredTweets) / $count);
-			
-			// TODO: read most recent tweet id (die letzte tweet id aus db)
-			$sinceId = 234234;
+
+			$sinceId = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
 			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $sinceId .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
 		}
-					
+
 		for($i = 1; $i <= $pages; $i++) {
-			
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
 
 			//make the request
 			$results = json_decode(curl_exec($curl));
-
 			$this->results = $results;
 
 			if(!$results) {
 				$this->forward404Unless($results, "Response was empty for page: " . $i);
 				continue;
 			}
-
 			
-			// TODO: the next if has to be moved to tweet model and return a sources object
-			if(!array_key_exists($result->source, $sources)) {
-				// TODO: Store tweet source
-				//		$source = new TweetSource();
-				//		$source->setLabel($result->source);
-				//		$source->setUrl($result->source);
-				// TODO: get source ID from database call
-				$sourceId = 4343434;
-			} else {
-				$sourceId = $sources[$result->source];
-			}
-			
-			
-			// Create new Tweet and populate its values
-			$tweet = new Tweet();
-			$tweet->setTweetUser($user);
-			$tweet->setTweetSource($source);
-
-
-			// Add geo information if it is enabled
-			if($result->user->geo_enabled == 1) {
-				if(isset($result->geo)) {
-					// TODO: Parse and update correct geolocation
-					$tweet->setGeolocationId(new TweetGeoLocation());
-				}
-			}
-
-			// Tweet is a reply
-			if(isset($result->in_reply_to_status_id)) {
-				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
-			}
-
-			$parsedDate = date_parse($result->created_at);
-			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-			$tweet->setTweetCreatedAt($createdAt);
-
-			$tweet->setTweetTwitterId($result->id);
-			$tweet->setText($result->text);
-
-			$tweet->save();
+			$this->saveTweets($results, $sources, $user);
 
 		}
 		curl_close($curl);
