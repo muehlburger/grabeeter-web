@@ -45,6 +45,10 @@ TweetUser:
       type: integer
       notnull: true
       default: 0
+    statuses_count:
+      type: integer
+      notnull: true
+      default: 0
     screen_name:
       type: string(15)
       notnull: true

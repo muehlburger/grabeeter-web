@@ -47,16 +47,18 @@ class userActions extends sfActions
 			$this->results = $results;
 			$result = $results[0];
 
-			if(!$result) {
-				$this->emptyTweets++;
+			if(!$result)
 				continue;
-			}
 
 			$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->user->id);
 
 			// If user doesn't exist, create new one with the new values
 			if(!$user) {
 				$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
+				// TODO: Here create the new tweet
+				$tweet = Doctrine_Core::getTable('Tweet')->createNewTweet($result);
+			} else {
+				// TODO: Here update the user's tweets
 			}
 
 			$tweetTwitterIds = Doctrine_Core::getTable('TweetUser')->getTweetTwitterIds();

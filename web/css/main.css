@@ -27,6 +27,14 @@ body {
 #content {
   float: left;
   width: 48%;
+  padding: 10px 0;
+  padding-left: 145px;
+}
+
+#content .entry .note strong {
+  position: absolute;
+  left: 15px;
+  width: 130px;
 }
 
 #sidebar {

@@ -7,6 +7,7 @@ TweetUser:
     twitter_user_id: 73705954
     description: I'm a Software Developer and Internet Marketer who developing a unique set of Online Internet Marketing. Tools at mywebwork.com.
     followers_count: 157
+    statuses_count: 1044
     url: http://blog.muehlburger.at
     friends_count: 158
     geo_enabled: false
@@ -23,7 +24,8 @@ TweetUser:
     twitter_user_id: 15284045
     description: Nothing to say.
     followers_count: 165
-    url: http://flo.cx
+    statuses_count: 1293
+    url: http://tugll.tugraz.at
     friends_count: 18
     geo_enabled: true
     twitter_created_at: Sun Apr 19 18:52:00 +0000 2009
@@ -39,6 +41,7 @@ TweetUser:
     twitter_user_id: 15284045
     description: Nothing to say.
     followers_count: 165
+    statuses_count: 150
     url: http://flo.cx
     friends_count: 18
     geo_enabled: true
@@ -47,4 +50,4 @@ TweetUser:
     location: Graz, Austria
     lang: en
     utc_offset: 3600
-    profile_image_url:
+    profile_image_url: http://a3.twimg.com/profile_images/643780923/06flowolf_normal.jpg

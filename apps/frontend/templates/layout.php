@@ -27,7 +27,7 @@
                     </p>
                 </form>
 		</div>
-		<h1 id="headline"><a href="#">Twitarch</a></h1>
+		<h1 id="headline"><a href="<?php echo url_for('@homepage') ?>">Twitarch</a></h1>
         <div id="navigation">
         <ul>
           <li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
