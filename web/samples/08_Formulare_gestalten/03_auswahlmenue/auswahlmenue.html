@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+     <head>
+          <title>Auswahlmenü: Beispiel</title>
+          <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+          <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+     </head>
+<body>
+
+<form action="processing.php" method="post">
+	<div class="leftbar">
+		<label for="mySelect1">Auswahlmenü: </label>
+	</div>
+	<div class="rightbar">
+		<select size="1" id="mySelect1" name="selection">
+			<option selected="selected" value="1. Option">1. Option</option>
+			<option value="2. Option">2. Option</option>
+			<option value="Noch eine option">Noch eine Option</option>
+		</select>
+	</div>
+	<div class="leftbar">
+		<label for="option1">Optionsfelder: </label>
+	</div>
+	<div class="rightbar">
+		<input name="radioSet" id="option1" value="3. Option" type="radio" /><label for="option1">3. Option</label><br />
+		<input name="radioSet" id="option2" value="4. Option" type="radio" /><label for="option2">4. Option</label><br />
+		<input name="radioSet" id="option3" value="5. Option" type="radio" /><label for="option3">5. Option</label>
+	</div>
+	<div class="leftbar">
+		Kontrollkästchen:
+	</div>
+	<div class="rightbar">
+		<input name="checkSet" id="check1" value="6. Option" type="checkbox" /><label for="check1">6. Option</label><br />
+		<input name="checkSet2" id="check2" value="7. Option" type="checkbox" /><label for="check2">7. Option</label><br />
+		<input name="checkSet3" id="check3" value="Letzte Option" type="checkbox" /><label for="check3">Letzte Option</label><br />
+	</div>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+/*	-------------------------------------------------------------
+	Beispiel: float: left + float: right
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         float-left-right.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+
+body {
+background-color: #244fad;
+font: 24px Delicious, Helvetica, Arial, sans-serif;
+color: #fff;
+}
+
+#container {
+background-color: #679ef1;
+margin: 0 auto;
+width: 600px;
+border: 3px solid #fff;
+padding: 0.9em;
+}
+
+span.floated {
+background-color: #aadd22;
+border: 1px solid #ffffff;
+float: left;
+width: 300px;
+padding: 10px;
+margin: 0.5em;
+}
+span.rightfloated, span.leftfloated {
+background-color: #aadd22;
+border: 1px solid #fff;
+width: 140px;
+padding: 10px;
+margin: 0.5em;
+}
+span.rightfloated {
+float: right;
+}
+span.leftfloated {
+float: left;
+}

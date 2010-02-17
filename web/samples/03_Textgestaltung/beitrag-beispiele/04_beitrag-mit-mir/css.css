@@ -1,0 +1,145 @@
+/*	-------------------------------------------------------------
+	Beispiel der typografischen Gestaltung eines Blocks
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         typografie-mit-mir.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+                    * {
+                         margin: 0;
+                         padding: 0;
+                    }
+
+/*	-------------------------------------------------------------
+	BODY + container
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+	
+		body {
+			background-color: #fff;
+			color: #000;
+			font-family:  Verdana, Arial, Helvetica, sans-serif;
+			font-size: 62.5%;
+			margin: 0;
+			padding: 0;
+			}
+			
+		#container {
+			margin: 0 auto;
+			width: 50em;
+			font-size: 1.2em;
+			}
+
+/*	-------------------------------------------------------------
+	ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+                    p {
+			margin: 6px 0px 8px 0px;
+			line-height: 1.7em;
+			}
+
+		em {
+		          font-style: italic;
+		          }
+
+		strong {
+		          font-weight: bold;
+		          } 
+
+/*	-------------------------------------------------------------
+	LINKS
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+		a img {
+                              border: 0px;
+			}
+                    a { 
+                              background: url(icon-continue.gif) no-repeat 100% 50%;
+                              color: #344D8C;
+                              text-decoration: underline;
+                              padding: 2px 12px 2px 2px;
+                              font-weight: bold;
+                              border: 1px dashed #fff;
+                              }
+                    a:visited {
+                              color: #848484;
+                              text-decoration: underline;
+                               }
+                    a:visited:hover,
+                    a:visited:focus {
+                              background-color: #F5FAFA;
+                              border: 1px dashed #DAF1F1;
+                              background-color: #E9F6F6;
+                              color: #333;
+                              }
+                    a:hover, a:active, a:focus {
+                              border: 1px dashed #D2EFEF;
+                              }
+                    a:hover, a:focus {
+                              background-color: #E9F6F6;
+                              }
+                    a:active, a:visited:active {
+                              background-color: #C5E8E8;
+                              color: #000;
+                              }
+
+/*	-------------------------------------------------------------
+	content
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+		#content {
+			float: left;
+			font-family: Verdana, "Lucida Sans Unicode", "Lucida Grande", Arial, Helvetica, sans-serif;
+			width: 90%;
+			line-height: 161%;
+			padding: 10px 10px 10px 0px;
+			clear: both;
+			}
+
+		#content h1 {
+			color: #222;
+			font-family: Georgia, "Times New Roman", Times, serif;
+			font-weight: normal;
+			font-style: italic;
+			line-height: 100%;
+			letter-spacing: -1px;
+			font-size: 40px;
+			}
+
+		#content .subheader {
+			font-size: 0.9em;
+			border-top: solid 2px #CC3366;
+			border-bottom: solid 1px #cccccc;
+			padding: 5px 0px 5px 0px;
+			margin: 15px 0px 0px 0px;
+			}
+
+                    #content p.summary {
+                              background-color: #ffffde;
+                              padding: 7px;
+                              border: 1px dotted #ccc;
+                              }
+
+                    #content .visual {
+                    	float: left;
+                    	border: 1px solid #333;
+                    	margin: 10px 10px 1px 0px;
+                    	}
+
+/*	-------------------------------------------------------------
+	MALARKEY IMAGE-REPLACEMENT
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+                    h2 {
+                              background: url(ueberschrift.gif); /* Ersatzbild */
+                              height: 41px;			   /* Höhe */
+                              width: 398px;			   /* Länge */
+                              letter-spacing: -999em;
+                              margin: 20px 0;
+                              border-bottom: 2px solid #2266bb;
+                              }
+
+                    h2:hover {
+                              cursor: pointer;
+                              border-bottom: 2px solid #99BBEE;
+                    }

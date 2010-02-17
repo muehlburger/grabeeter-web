@@ -1,0 +1,42 @@
+/*	-------------------------------------------------------------
+	Beispiel: z-index
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         z-index.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+               html {
+                    height: 150%;
+               }
+               
+               body {
+                    background-color: #244fad;
+                    font: 24px Delicious, Helvetica, Arial, sans-serif;
+                    color: #fff;
+               }
+               
+               #container {
+                    background-color: #679ef1;
+                    margin: 0 auto;
+                    width: 600px;
+                    border: 3px solid #fff;
+                    padding: 0.9em;
+               }
+               
+               p {
+                    margin: 0 0 1em 0;
+               }
+               
+               p.positioned {
+                    background-color: #a5d622;
+                    border: 1px solid #fff;
+                    position: absolute; 
+                    margin: 0;
+                    padding: 10px;
+                    top: 20%;
+                    left: 30%;
+                    width: 600px;
+               }
+               
+               p.positioned2 {
+                    background-color: #244FAD;
+               }

@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+     <head>
+          <title>Ajax: Beispiel</title>
+          <meta http-equiv="content-type" content="text/html; charset=iso-8859-1" />
+          <link rel="stylesheet" href="css.css" type="text/css" media="screen" />
+          <script type="text/javascript" src="script.js"></script>
+     </head>
+<body>
+
+<form action="processing.php" method="post">
+	<div id="wrapper">
+		<div id="content" class="narrowcolumn">
+			<h2>Katalog (Dummy)</h2>
+			<div class="contactform">
+				<div class="contactleft">
+					<label for="ISBN">ISBN: </label>
+				</div>
+				<div class="contactright">
+					<input name="ISBN" id="ISBN" onchange="getCompleteInput();" class="passive" onkeydown="getFetchedInput();" size="30" maxlength="50" value="" type="text" /><span class="required">*</span>
+				</div>
+				<div id="separatorTop">
+				</div>
+				<div id="info" class="invisible">
+					<table summary="Daten zu einer ISBN-Nummer" id="details">
+					<caption>Vorschau des Buches zu einer ISBN-Nummer</caption>
+					<thead>
+          				<tr>
+          					<th>
+          						ISBN
+          					</th>
+          					<th>
+          						Autor
+          					</th>
+          					<th>
+          						Buchtitel
+          					</th>
+          					<th>
+          						Preis (EUR)
+          					</th>
+          				</tr>
+					</thead>
+					<tbody>
+					<tr>
+						<td id="isbnnum">
+						</td>
+						<td id="autor">
+						</td>
+						<td id="buchtitel">
+						</td>
+						<td id="preis">
+						</td>
+					</tr>
+					</tbody>
+					</table>
+					<div id="vorschau">
+						<p class="previewLeft">
+							<img src="http://ec1.images-amazon.com/images/I/716Q6DM6ZAL._BO2,204,203,200_PIlitb-dp-500-arrow,TopRight,45,-64_OU01_AA240_SH20_.gif" alt="Amazon image" style="padding: 0 0 5px 0;" />
+						</p>
+						<div class="buying">
+							<b class="sans">The Elements of Typographic Style (Paperback) </b><br />
+							by <a href="http://www.amazon.de/s/field-keywords=Robert+Bringhurst">Robert Bringhurst</a> (Author)
+						</div>
+						<span class="tiny">
+						     <img src="http://ec1.images-amazon.com/images/G/01/x-locale/common/customer-reviews/stars-4-5._V47081564_.gif" width="64" height="12" alt="Start 4/5" />(<a href="http://www.amazon.com/s/n=283155&amp;s=books#customerReviews">74 customer reviews</a>)
+						</span>
+						<div class="bucket" id="productDescription">
+							<br />
+							<h4>Editorial Reviews</h4>
+							<br />
+							<div class="content">
+								<b>From Library Journal</b><br />
+								 In a discussion embracing five and a half centuries, poet and designer Bringhurst covers the design of individual characters of type and entire alphabets, as well as the layout of pages, including such items as footnotes, margins, and tables. A glossary defines terms such as kern, fore-edge, and pica, and there are annotated lists of type designers, from the 1400s until now, and of type foundries, mostly contemporary. [<a href="http://www.dot.com">More...</a>]
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="separatorBottom">
+				</div>
+				<div class="contactleft">
+					<label for="Feedback">Rückmeldung: </label>
+				</div>
+				<div class="contactright">
+					<textarea name="Feedback" id="Feedback" cols="35" rows="8"></textarea>
+				</div>
+				<div class="contactleft">
+					<label for="Email">Email:</label>
+				</div>
+				<div class="contactright">
+					<input name="Email" id="Email" size="30" maxlength="50" value="" type="text" /><span class="required">*</span>
+				</div>
+				<div class="contactright">
+					<input name="submit" value="Absenden!" id="subm" type="submit" />
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+
+</body>
+</html>

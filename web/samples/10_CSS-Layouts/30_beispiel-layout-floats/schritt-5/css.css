@@ -1,0 +1,68 @@
+/*	-------------------------------------------------------------
+	Beispiel: float-basiertes zweispaltiges Layout
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET + STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               * {
+                    margin: 0;
+                    padding: 0;
+               }
+               
+               body
+               {
+                    background-color: #eeeeee;
+                    font: 1.1em/1.3em Delicious, Georgia, Times, "Times New Roman", serif; 
+               }
+
+               #container
+               {
+                    margin: 1em 6%;
+                    background-color: #ffffff;
+                    border: 1px solid #1166cc;
+               }
+
+/*	-------------------------------------------------------------
+	2. ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               h1, h2, h3 {
+                    padding: 0.7em 0;
+               }
+               
+               p {
+                    padding: 0.3em 0;
+               }
+
+/*	-------------------------------------------------------------
+	3. HEADER
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #header {
+                    background-color: #5599dd;
+               }
+               #header h1 {
+                    color: #ffffff;
+                    float: left;
+                    width: 65%;
+                    padding: 0.5em 2%;
+               }
+               #header form {
+                    padding: 0.4em 1%;
+                    float: right;
+                    background-color: #77aadd;
+                    width: 20%;
+                    margin: 0.5em;
+               }
+               #header input {
+                    padding: 5px;
+                    background-color: #ffffff;
+                    border: 2px solid #f6f6f6;
+                    font-size: 1em;
+                    color: #999999;
+                    width: 70%; /* 70% des Elternelements form */
+               }

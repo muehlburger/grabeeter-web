@@ -1,0 +1,48 @@
+/*	-------------------------------------------------------------
+	Beispiel: Eine Tabelle
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       6
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+               	margin: 0;
+               	padding: 0;
+               }
+               
+               body {
+                    /* Zwecks besserer Lesbarkeit */
+                    margin: 2em;
+               }
+
+/*	-------------------------------------------------------------
+	2. TABELLE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               table {
+                    font: normal 0.8em "Lucida Sans Unicode", "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+                    margin: 1em 0;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+               }
+               caption {
+                    font: italic 0.9em "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+                    text-align: right;
+                    caption-side: bottom;
+               }
+               th, td {
+                    padding: 0.4em 0.4em 0.4em 0.8em;
+               }
+               th {
+                    font: bold 0.85em Arial, "Trebuchet MS", Verdana,
+                    Arial, Helvetica, sans-serif;
+                    color: #116688;
+                    letter-spacing: 2px;
+                    text-transform: uppercase;
+                    text-align: center;
+                    background-color: #cceeff;
+                    border: 1px solid #bbdddd;
+               }

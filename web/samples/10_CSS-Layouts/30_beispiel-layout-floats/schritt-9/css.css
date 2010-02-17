@@ -1,0 +1,130 @@
+/*	-------------------------------------------------------------
+	Beispiel: float-basiertes zweispaltiges Layout
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. RESET + STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               * {
+                    margin: 0;
+                    padding: 0;
+               }
+               
+               body
+               {
+                    background-color: #eeeeee;
+                    font: 1.1em/1.3em Delicious, Georgia, Times, "Times New Roman", serif; 
+               }
+               
+               h1, h2, h3 {
+                    padding: 0.7em 0;
+               }
+               
+               p {
+                    padding: 0.3em 0;
+               }
+
+               #container
+               {
+                    margin: 1em 6%;
+                    background-color: #ffffff;
+                    border: 1px solid #1166cc;
+               }
+
+/*	-------------------------------------------------------------
+	2. HEADER
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #header {
+                    background-color: #5599DD;
+               }
+               #header h1 {
+                    color: #ffffff;
+                    float: left;
+                    width: 65%;
+                    padding: 0.5em 2%;
+               }
+               #header form {
+                    padding: 0.4em 1%;
+                    float: right;
+                    background-color: #77aadd;
+                    width: 20%;
+                    margin: 0.5em;
+               }
+               #header input {
+                    padding: 5px;
+                    background-color: #ffffff;
+                    border: 2px solid #f6f6f6;
+                    font-size: 1em;
+                    color: #999999;
+                    width: 70%; /* 70% des Elternelements form */
+               }
+
+/*	-------------------------------------------------------------
+	3. NAVIGATIONSMENÜ
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #navbar {
+                    clear: both;
+                    background-color: #77aadd;
+                    padding: 0.1em;
+               }
+               
+               #navbar ul {
+                    padding: 0.6em;
+               }
+               
+               #navbar li {
+                    display: inline;
+                    list-style: none;
+               }
+               
+               #navbar li a {
+                    padding: 0.3em;
+                    color: #fafafa;
+               }
+               #content {
+                    float: left;
+                    width: 65%;
+                    padding: 0.5em 3%;
+               }
+
+/*	-------------------------------------------------------------
+	5. SIDEBAR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #sidebar {
+                    float: right;
+                    padding: 0.5em 3%;
+                    font-size: 0.95em;
+                    background-color: #cceeff;
+
+                   /* 100% - 65% (#content)- 6% (#content padding, 3%+3%) -
+                   6% (#sidebar padding, 3% + 3%) = 23% */
+                    width: 23%;
+               }
+
+/*	-------------------------------------------------------------
+	6. FOOTER
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #footer {
+                    clear: both;
+                    background-color: #5599dd;
+                    text-align: right;
+                    color: #fff;
+               }
+               #footer p {
+                    padding: 0.5em;
+               }
+
+
+/*	-------------------------------------------------------------
+	7. HACKS (IE 5.x Win)
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * html #container #content {
+                    width: 65%;
+                    w\idth: 69%; 
+                    /* IE 5.x Win interpretiert diese Prozentangabe anders: sie bezieht sich auf die Breite Box, in der das Element sich befindet, und nicht
+                    auf die Breite des Containers. 3% von 65% ist ungefähr 2% des Containers, links und rechts – 65+2+2 = 69%. */
+               }

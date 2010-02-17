@@ -1,0 +1,27 @@
+/*	-------------------------------------------------------------
+	Beispiel: position: static
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         position-static.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+               body {
+                    background-color: #244fad;
+                    font: 24px Delicious, Helvetica, Arial, sans-serif;
+                    color: #fff;
+               }
+               
+               #container {
+                    background-color: #679ef1;
+                    margin: 0 auto;
+                    width: 600px;
+                    border: 3px solid #fff;
+                    padding: 0.9em;
+               }
+               
+               p.positioned {
+                    background-color: #a5d622;
+                    border: 1px solid #fff;
+                    margin: 0;
+                    position: static;
+                    padding: 10px;
+               }

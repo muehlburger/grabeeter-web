@@ -1,0 +1,53 @@
+/*	-------------------------------------------------------------
+	Beispiel: Navigationsmenü, navbar.css
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       5
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	3. NAVIGATIONSMENÜ
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #navbar {
+                    background-color: #1188bb;
+                    border-top: 4px solid #007799;
+                    float: left;
+                    width: 100%;
+               }
+               #navbar ul {
+                    margin: 5px;
+                    list-style: none;
+               }
+               #navbar li {
+                    float: left;
+                    margin: 2px 1px 2px 1px;
+                    display: inline;
+                    width: auto;
+               }
+               #navbar a {
+                    display: block;
+                    padding: 10px 15px;
+                    font: bold 0.8em/1.6em Verdana, "Lucida Sans Unicode", "Lucida Grande", Verdana, Arial, sans-serif;
+                    text-transform: lowercase;
+                    background-color: #1199cc;
+                    color: #ddd;
+                    border-top: 1px solid #11aadd;
+                    
+                    border-left: 1px solid #11aadd;
+               }
+
+               #navbar li:last-child a {
+                    border-right: 1px solid #11aadd;
+               }
+
+               #navbar a:hover, #navbar a:focus {
+                    background-color: #33bbee;
+                    color: #fff;
+               }
+               #navbar li.current a {
+                    background-color: #007799;
+                    color: #fff;
+                    border-bottom: none;
+                    text-decoration: none;
+                    padding-bottom: 20px;
+               }

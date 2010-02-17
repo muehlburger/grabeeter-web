@@ -1,0 +1,15 @@
+/*	-------------------------------------------------------------
+	Beispiel eines Navigationsmenüs mit mehreren Ebenen:
+	IE 5 - Hacks
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         index.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+               body {
+                    text-align: center;
+               }
+		
+               #wrapper {
+                    text-align: left;
+               }

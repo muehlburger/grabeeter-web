@@ -1,0 +1,77 @@
+/*	-------------------------------------------------------------
+	Beispiel: Textgestaltung und Gestaltung von Überschriften
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         index.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+                    * {
+                         margin: 0;
+                         padding: 0;
+                    }
+
+/*	-------------------------------------------------------------
+	2. ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               body {
+                    background-color: #fff;
+                    color: #000;
+                    font-family: Arial, Verdana, "Lucida Sans Unicode", "Lucida Grande", "Times New Roman", serif;
+                    font-size: 0.9em;
+               }
+               
+               em {
+                    font-style: italic;
+               }
+               
+               strong {
+                    font-weight: bold;
+               }
+               
+               p {
+                    margin: 0.6em 0 0 0;
+               }
+
+
+/*	-------------------------------------------------------------
+	3. STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #container {
+                    /* Allgemeines Container für das Seitenlayout. Dieses kann
+                    neben #content auch weitere Blöcke enthalten, etwa #sidebar */
+                    margin: 10px auto;
+                    width: 70%;
+                    padding-bottom: 0.4em;
+               }			
+               
+               #content {
+                    /* Spezielles Container für den content. Wird extra eingeführt,
+                    damit ggf. ein weiterer Block eingefügt werden kann */
+                    float: left;
+                    width: 60%;
+                    padding: 0.4em 0.4em 0.4em 0;
+                    line-height: 2em;
+               }
+
+               #content .subheader {
+                    font-size: 0.85em;
+                    /* 85% der Content-Schriftgröße = by Default 100% der
+                    Body-Schriftgröße, also 85% der Body-Schriftgröße */
+                    border-top: solid 2px #c36;
+                    border-bottom: solid 1px #ccc;
+                    padding: 5px 0 5px 0;
+                    margin: 8px 0 0 0;
+               }
+               #content h1 {
+                    font: italic normal 2.9em/1.2em Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
+                    letter-spacing: -1px;
+               }
+
+               a:visited {
+                    color: #848484;
+               }
+               

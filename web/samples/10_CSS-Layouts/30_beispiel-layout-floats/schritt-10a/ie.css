@@ -1,0 +1,15 @@
+/*	-------------------------------------------------------------
+	7. HACKS
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               
+               #sidebar {
+                    /* Standardangabe sollte sein: */
+/*
+                    margin: 0 71% 0 0 ;
+*/
+                    margin: 0 66% 0 0 ;
+                    
+                    /* IE interpretiert diese Prozentangabe anders: sie bezieht sich auf die Breite Box, in der das Element sich befindet, und nicht
+                    auf die Breite des Containers. 3% von 65% ist ungefähr 2% des Containers, links und rechts – 65+2+2 = 69%. */
+                    /* Laut IE verfügt content nicht über 71%, sondern mehr */
+               }

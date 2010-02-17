@@ -1,0 +1,277 @@
+/*	-------------------------------------------------------------
+	Beispiel: Katalog mit Ajax
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       12
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. RESET + STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               *
+               {
+                    margin: 0;
+                    padding: 0;
+               }
+
+               body
+               {
+                    background-color: #5EA4D7;
+                    font: 12px "Trebuchet MS",Arial, Helvetica, sans-serif;
+                    font-family: Helvetica;
+               }
+               
+               .contactleft {
+                    width: 25%;
+                    clear: both;
+                    float: left;
+                    display: inline;
+                    padding: 4px;
+                    margin: 10px 0;
+                    text-align: right;
+               }
+               
+               .contactright {
+                    width: 70%;
+                    text-align: left;
+                    float: right;
+                    display: inline;
+                    padding: 4px;
+                    margin: 5px 0;
+               }
+               
+               div#wrapper
+               {
+                    margin: 0 auto;
+                    width: 770px;
+               }
+               div#content
+               {
+                    float: right;
+                    padding: 0px 0px 0px 0px;
+                    padding: 0px 5px 0px 0px;
+                    text-align: left;
+                    width: 750px;
+               }
+               
+/*	-------------------------------------------------------------
+	2. TYPOGRAFIE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               h2 {
+                    font-family: "Trebuchet MS", Calibri, Georgia,serif;
+                    font-weight: normal;
+                    font-size: 4em;
+                    color: #fff; 
+                    padding: 0.25em 0 0 0;
+               }
+               h4 {
+                    font-size: 1.6em;
+               }
+               span.required {
+                    color: #fff;
+                    font-size: 2em;
+               }
+               .content {
+                    font-size: 1.2em;
+                    margin: 0 2em 1em 2em;
+               }             
+               label {
+                    border: 1px solid #387EB1;
+                    font-size: 1.8em;
+                    font-family: "Calibri";
+                    color: #fff;
+                    padding: 3px 10px 3px 10px;
+                    background-color: #5FA3D8;
+                    -moz-border-radius: 3px;
+                    height: auto;
+                    margin: auto 0;
+               }
+               
+               label:hover {
+                    background-color: #387EB1;
+               }
+               
+/*	-------------------------------------------------------------
+	3. FORMULAR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               .contactform #ISBN,
+               .contactform #Email,
+               .contactform #Site
+               {
+                    width: 80%;
+                    padding: 5px 5px 5px 5px; 
+                    /*
+                    border: 1px solid #5ea4d7;  
+                    */
+                    border: 4px solid #387eb1;  
+                    -moz-border-radius: 3px;
+                    color: #C3DFF8;
+                    font: 1.8em/1.6em Delicious, Arial, "Trebuchet MS", Verdana, sans-serif; 
+               }
+               
+               input#subm {
+                    font: 1.1em/1.6em "Trebuchet MS", Verdana, sans-serif; 
+                    width: 310px;
+                    border: 2px solid #5EA4D7;
+                    padding: 4px 5px 4px 5px;
+                    color: #fff;
+                    background-color: #285A80;
+                    /*
+                    2C628B;
+                    */
+                    font-weight: bold;
+                    -moz-border-radius: 3px;
+               }
+               
+               #separatorTop, #separatorBottom {
+                    background-color: #8CBBDC;
+                    width: 100%;
+                    height: 3px;
+                    clear: both;
+               }
+               
+               #info {
+                    background-color: #fff;
+                    /*
+                    background-color: #5EA4D7;
+                    */
+                    padding: 10px 20px;
+               }
+               
+               #info table th {
+                    font-family: Delicious, Helvetica, Verdana, sans-serif;
+                    background-color: #9FBDEA;
+                    padding: 5px;
+                    color: #fff;
+                    font-size: 1.5em;
+                    text-align: center;
+               }
+               
+               #info table td {
+                    padding: 6px 7px;
+                    background-color: #D4E3F7;
+                    font-size: 1.5em;
+                    text-align: center;
+               }
+               
+               #info table {
+                    width: 100%;
+                    margin: 0 0 15px 0;
+               }
+               caption { 
+                    font-size: 0.8em;
+                    caption-side: top;
+                    text-align: right;
+                    padding: 3px 0;
+                    }
+               
+               .buying { 
+                    font-size: 1.5em;
+               }
+               
+               .contactform {
+                    background-color: #4C95C9;
+                    -moz-border-radius: 6px;
+                    overflow: hidden;
+                    margin: auto;
+               }
+               
+               #vorschau {
+                    background-color: #fff;
+                    overflow: hidden;
+               }
+               
+               p.previewLeft {
+                    float: left; 
+               }
+               
+               .contactform #Email {
+                    background: #387EB1 left no-repeat;
+               }
+               .contactform #Site {
+                    background: #387EB1 left no-repeat;
+               }
+               .contactform #Feedback {
+                    -moz-border-radius: 3px;
+                    color: #C3DFF8;
+                    background: #387EB1 bottom right no-repeat;
+                    width: 86%;
+                    padding: 5px 5px 20px 5px;
+                    border: 1px solid #387EB1;
+                    font-family: Geneva, Arial, Helvetica, sans-serif;
+                    font-size: 12px;
+                    border: 4px solid #387EB1;
+                }
+               
+/*	-------------------------------------------------------------
+	4. CSS-STYLING FUER DIE INTERAKTION
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               .passive {
+                    background: #387EB1 left no-repeat;
+               }
+               
+               .contactform #ISBN.mistake	{
+                    background: #a10000 left no-repeat; 
+                    color: #fff;
+               }
+               
+               .contactform #ISBN.verified {
+                    background-color: #BFEE96;
+                    color: #333;
+               }
+               
+               .contactform #ISBN:focus,
+               .contactform #Email:focus,
+               .contactform #Site:focus,
+               .contactform #Feedback:focus
+               {
+                    border: 4px solid #7AB4D7;
+                    color: #fff;
+                    background-color: #316E9B;
+               }
+               
+               .contactform #ISBN:hover,
+               .contactform #Email:hover,
+               .contactform #Site:hover,
+               .contactform #Feedback:hover {
+                    background-color: #fff;
+                    border: 4px solid #5EA4D7;
+                    color: #333;
+               }
+               
+               .contactform #ISBN.mistake:focus,
+               .contactform #ISBN.mistake:hover {
+                    background-color: #a10000;
+                    border: 4px solid #5EA4D7;
+                    color: #fff;
+               }
+               
+               .contactform #ISBN.verified:focus,
+               .contactform #ISBN.verified:hover {
+                    background-color: #BFEE96;
+                    /*
+                    border: 4px solid #A1E25F;
+                    */
+                    color: #333;
+               }
+               
+               .contacterror {
+                    background-color: #F7F7F7;
+               }
+               
+               input#subm:hover {
+                    background-color: #23486B;
+                    border: 2px solid #5EA4D7;
+                    color: #fff;
+                    cursor: pointer; 
+                    font-weight: bold;
+                    -moz-border-radius: 3px;
+               }
+               
+               .invisible {
+                    display: none;
+               }
+               
+               .visible {
+                    display: visible;
+               }

@@ -1,0 +1,12 @@
+/*	-------------------------------------------------------------
+	Beispiel eines schlichten Layouts: IE6 Hack
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         index.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+#container {
+                    /* IE 6 kennt min-width nicht, IE 7 interpretiert sie falsch, demzufolge muss eine proprietäre
+                    IE-Expression extra von IE 6 benutzt werden */
+                    width:expression((document.documentElement.offsetWidth < 600)? "600px": "auto" );
+}

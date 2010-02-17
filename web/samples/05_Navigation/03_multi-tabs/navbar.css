@@ -1,0 +1,211 @@
+/*	-------------------------------------------------------------
+	Beispiel eines Navigationsmenüs mit mehreren Ebenen
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       5
+	-------------------------------------------------------------	*/
+
+/* 
+          Inhalt: 
+     
+          	1. Global Reset
+          	2. Struktur
+          	3. Links und Navigation (1. Ebene)
+          	4. Fonts
+          	5. Bilder
+          	6. Subnavigation (Navigation 2. Ebene)
+*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+                    /* Margin und Padding werden auf 0 gesetzt*/
+                    margin: 0;
+                    padding: 0;
+               }
+
+/*	-------------------------------------------------------------
+	2. STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               body {
+               	/* Hintergrundfarbe wird auf #404040 gesetzt */
+               	background: #404040 url(assets/page-background.jpg) repeat-x;
+               	padding-bottom: 30px;
+               }
+               #wrapper {
+               	/* Container für die Seiteninhalte */
+               	width: 860px;
+               	margin: 0 auto;
+               	background: transparent;
+               	border: 1px solid #555555;
+               	border-top: 0px;
+               }
+               #masthead {
+               	/* Ein Rahmen für den Titel angeben */
+               	margin-top: 4px;
+               	border-top: 4px solid #a10000;
+               	border-bottom: 2px solid #eee;
+               	background: transparent;
+               }
+               #logo {
+               	/* Container fürs Logo */
+               	float: left;
+               	height: 132px;
+               	width: 100%;
+               	border-bottom: 4px solid #a10000;
+               	background-color: #DD1337;
+               }
+               h3 {
+               	color: #fff;
+               	font-family: Arial;
+               	font-size: 11em;
+               	font-weight: normal;
+               }
+               #navContainer {
+               	/* Container für die Navigation */
+               	clear: left;
+               }
+               #content {
+               	/* Container für den Inhalt */
+               	background: #ffffff;
+               	padding: 10px;
+               }
+
+/*	-------------------------------------------------------------
+	3. LINKS UND NAVIGATION
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #skipNav {
+               	/* Zugänglichkeit: Navigation überspringen */
+               	position: absolute;
+               	top: 2px;
+               	left: 5px;
+               	width: 60px;
+               	text-align: center;
+               }
+               #skipNav a {
+               	font: 1.0em Arial,sans-serif;
+               	display: block;
+               	color: #000000;
+               	width: 60px;
+               	padding-bottom: 10px;
+               }
+               #skipNav a:hover {
+               	color: #898989;
+               	background: url(assets/skip-nav.gif) 50% 100% no-repeat;
+               }
+               /* -- Hauptnavigation -- */
+               #mainNavigation {
+               	background: #3377AA;
+               	border-top: 1px solid #555555;
+               	padding: 10px 0 6px 0;
+               }
+               #mainNavigation ul {
+               	text-align: center;
+               }
+               #mainNavigation li {
+               	display: inline;
+               }
+               #mainNavigation a {
+               	font: bold 1.2em Arial,Helvetica,sans-serif;
+               	color: #99CCEE;
+               	text-decoration: none;
+               	padding: 6px 10px 5px 10px;
+               	border-right: 2px solid #3377AA;
+               	border-left: 2px solid #3377AA;
+               	-moz-border-radius: 2px;
+               }
+               #mainNavigation ul li a:hover {
+               	color: #ee2244;
+               	background-color: #fff;
+               	border-left: 2px solid #88BBEE;
+               	border-right: 2px solid #88BBEE;
+               	border-top: 2px solid #88BBEE;
+               }
+               .sectionBlogs #mainNavigation #blogsTab a,.sectionWikis #mainNavigation #wikisTab a,.sectionSocialsoftware #mainNavigation #socialsoftwareTab a,.sectionDesign #mainNavigation #designTab a,.sectionAjax #mainNavigation #ajaxTab a,.sectionPodcasting #mainNavigation #podcastingTab a, .sectionRSS #mainNavigation #rssTab a {
+               	/* Der aktuelle Seitenbereich wird 'automatisch' hervorgehoben */
+               	color: #fff;
+               	background: #55aadd url(asssets/active-tab-background.jpg) 0 100% repeat-x;
+               	border-top: 2px solid #81BBE6;
+               	border-left: 2px solid #81BBE6;
+               	border-right: 2px solid #81BBE6;
+               	border-bottom: 1px solid #55AADD;
+               }
+               .sectionBlogs #mainNavigation #blogsTab a:hover,.sectionWikis #mainNavigation #wikisTab a:hover,.sectionSocialsoftware #mainNavigation #socialsoftwareTab a:hover,.sectionDesign #mainNavigation #designTab a:hover,.sectionAJax #mainNavigation #ajaxTab a:hover, .sectionPodcasting #mainNavigation #podcastingTab a:hover, .sectionRSS #mainNavigation #rssTab a:hover {
+               	/* Hover-Zustand für den aktuellen Bereich */
+               	text-decoration: underline;
+               }
+
+/*	-------------------------------------------------------------
+	4. FONTS
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               html {
+               	font-size: 100%;
+               }
+               body {
+               	font-size: 62.5%;
+               }
+               h1 {
+               	/* Hauptüberschrift */
+               	font: bold normal 3em/1.4em Helvetica,Arial,sans-serif;
+               	margin-bottom: 5px;
+               }
+               h2 {
+               	/* Überschriften für den Inhalt */
+               	font: bold 1.6em/1.0em Helvetica,"Lucida Grande","Lucida Sans Unicode",Verdana,Arial,sans-serif;
+               	margin-top: 1.3em;
+               	margin-bottom: 2px;
+               	margin-left: 3em;
+               	color: #EE3556;
+               }
+               p {
+               	font: 1.4em/1.5em Helvetica,"Lucida Grande","Lucida Sans Unicode",Verdana,Arial,sans-serif;
+               	margin: 1em 0 0 6em;
+               }
+
+/*	-------------------------------------------------------------
+	5. BILDER
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               a img {
+               	/* Entferne Rahmen von verlinkten Bildern */
+               	border: 0;
+               }
+               #logo img {
+               	margin-top: 30px;
+               	margin-left: 10px;
+               }
+
+/*	-------------------------------------------------------------
+	6. SUBNAVIGATION (NAVIGATION 2. EBENE)
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #subNavigation {
+               	margin-top: -1px;
+               	background-color: #55AADD;
+               	border-bottom: 1px solid #fff;
+               	border-top: 1px solid #88bbee;
+               	padding: 8px 0 10px 0;
+               }
+               #subNavigation ul {
+               	text-align: center;
+               }
+               #subNavigation li {
+               	display: inline;
+               }
+               #subNavigation a {
+               	font: bold 1.1em Arial,sans-serif;
+               	color: #fff;
+               	text-decoration: underline;
+               	padding: 3px 7px;
+               	border: 1px solid #55AADD;
+               }
+               #subNavigation li.current a {
+               	color: #fff;
+               	background-color: #EE3556;
+               	border: 1px solid #ccc;
+               }
+               #subNavigation a:hover {
+               	color: #fff;
+               	background-color: #EE3556;
+               	-moz-border-radius: 3px;
+               	border: 1px solid #ccc;
+               }

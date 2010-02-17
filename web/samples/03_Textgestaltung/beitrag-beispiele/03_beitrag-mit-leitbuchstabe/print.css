@@ -1,0 +1,106 @@
+/*	-------------------------------------------------------------
+	Beispiel eines Drucklayouts
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         beitrag-mit-leitbuchstabe.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+                    /* Weiße Hintergrundfarbe */
+                    background-color: #ffffff !important;
+                    
+                    /* Schriftarten mit Serifen */
+                    font-family: Cambria, Constantia, "Times New Roman", Times, serif;
+                    
+                    /* ggf. Blocksatz */
+                    text-align:justify;
+               }
+
+               body, #container, #primary_content, #secondary_content, #footer {
+                    width: auto !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+               }
+
+/*	-------------------------------------------------------------
+	2. IRRELEVEANTE ELEMENTE AUSBLENDEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               #navbar, #sidebar, #commentarea, .intro {
+                    display: none;
+               }
+
+/*	-------------------------------------------------------------
+	2. AUSGABE DER LINKS IN KLAMMERN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               a:not([href^= '#']):after {
+                    content: " ("attr(href)")";
+                    color: #cccccc;
+                    font-style: italic;
+                    font-size: 0.85em;
+               }
+
+/*	-------------------------------------------------------------
+	3. TITLE-ATTRIBUTE AUSGEBEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               *[title]:after {
+                    content:" ("attr(title)")";
+                    color:#eeeeee;
+                    font-style:italic;
+                    font-size:0.85em;
+               }
+
+/*	-------------------------------------------------------------
+	4. ALTERNATIVE BESCHREIBUNG AUSGEBEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               img[alt]:after {
+                    content:"\A ("attr(alt)")";
+               }
+
+/*	-------------------------------------------------------------
+	5. ANFÜHRUNGSZEICHEN IN DER DEUTSCHEN SPRACHE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               body {
+                    /* in der deutschen Sprache */
+                    quotes:"\201E" "\201C" "\201A" "\2018";
+                    /*
+                    in der englischen.
+                    quotes:"\201C" "\201D" "\2018" "\2019";
+                    */
+               }
+
+/*	-------------------------------------------------------------
+	6. ÖFFNENDE UND ABSCHLIEßENDE ANFÜHRUNGSZEICHEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               q:before, blockquote:before {
+                    content:open-quote;
+               }
+               q:after, blockquote:after {
+                    content:close-quote;
+               }
+
+/*	-------------------------------------------------------------
+	7. QUELLENVERWEISE SETZEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               hr {
+                    page-break-before:always;
+                    color:#fff;
+                    margin-bottom:3em;
+                    text-align:left; }
+                    hr:after {
+                    content: "Original:\www.muster.de/muster.php.";
+               }
+
+/*	-------------------------------------------------------------
+	8. ZUSÄTZLICHE INFORMATIONEN EINFÜGEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #container:after {
+                    content: "\Alle Rechte vorbehalten. &copy; 2008 www.
+                    muster.de";
+                    color:#666666;
+                    font-size: 0.85em;
+               }

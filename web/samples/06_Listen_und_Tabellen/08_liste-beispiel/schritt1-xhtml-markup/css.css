@@ -1,0 +1,45 @@
+/*	-------------------------------------------------------------
+	Beispiel: Eine Liste
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       6
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+                    margin: 0;
+                    padding: 0;
+               }
+
+/*	-------------------------------------------------------------
+	2. ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               body {
+                    font: 0.8em/1.5em "Trebuchet MS", Georgia, Verdana, sans-serif;
+               }
+               a {
+                    color: #a10000;
+                    font-weight: bold;
+                    text-decoration: none;
+                    border-bottom: 1px dotted #a10000;
+               }
+
+/*	-------------------------------------------------------------
+	3. LISTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #liste {
+                    /* Horizontaler ‰uﬂerer Abstand links und rechts */
+                    margin: 0 25%;
+               }
+               #liste ul li ul {
+                    /* Die Unterliste besitzt eine kleinere Schriftgrˆﬂe */
+                    font-size: 90%;
+                    margin: 1em;
+               }
+               #liste ul li {
+                    /* Listenpunkte weisen einen ‰uﬂeren Abstand voneinander auf*/
+                    margin-bottom: 0.6em;
+               }
+

@@ -1,0 +1,29 @@
+/*	-------------------------------------------------------------
+	Beispiel: positioning-basiertes zweispaltiges Layout
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. RESET + STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               * {
+                    margin: 0;
+                    padding: 0;
+               }
+
+               body
+               {
+                    background-color: #eeeeee;
+                    font: 1.1em/1.3em Delicious, Georgia, Times, "Times New Roman", serif; 
+               }
+
+               h1, h2, h3 {
+                    padding: 0.7em 0;
+               }
+               
+               p {
+                    padding: 0.3em 0;
+               }

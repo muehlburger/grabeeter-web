@@ -1,0 +1,35 @@
+/*	-------------------------------------------------------------
+	.htaccess für SIIR
+	-------------------------------------------------------------	*/
+
+               IndexIgnore *
+                    /* blockiert die Anzeige von Verzeichnissen aus anonymen
+                    FTP-Servern */
+               
+               RewriteEngine on
+                    /* startet RewriteEngine, falls es nicht bereits eingeschaltet
+                    wurde */
+               
+               RewriteCond %{HTTP_REFERER} ^$ [OR]
+                    /* sollte ein Referer leer sein...
+                    (RewriteCond vergleicht zwei Werte,
+                    %{HTTP_REFERER} nimmt die Variable HTTP_REFERER,
+                    ^ steht für den Anfang des Strings, $ für das Ende
+                    des Strings, der verglichen werden soll)
+                    */
+               
+               RewriteCond %{HTTP_REFERER}
+               !^(www\.)?beispiel\.de.*$ [NC]
+                    /* Vergleich nach dem Domainnamen; sollte vor einer
+                    URL-Adresse ein www stehen oder nicht, sollte nach de
+                    etwas kommen oder nicht. NC sorgt dafür, dass
+                    zwischen Groß- und Kleinbuchstaben nicht unterschieden wird. */
+               
+               RewriteRule .*
+               www.beispiel.de/hotlinking.html [R,L]
+                    /* Ist die Regel erfüllt, so wird auf die Seite hotlinking.
+                    html weitergeleitet. [R, L] sagt aus, dass
+                    es sich um ein "Permanent Redirect" handelt (absolute
+                    Pfade sind nicht notwendig) (R) und dass dies
+                    die letzte Anweisung vor der Ausführung des Skripts
+                    ist (L) */

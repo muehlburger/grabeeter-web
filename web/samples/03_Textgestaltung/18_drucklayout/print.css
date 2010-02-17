@@ -1,0 +1,116 @@
+/*	-------------------------------------------------------------
+	Beispiel eines Drucklayouts
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         index.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+                    /* Weiße Hintergrundfarbe */
+                    background-color: #ffffff !important;
+                    
+                    /* Schriftarten mit Serifen */
+                    font-family: Cambria, Constantia, "Times New Roman", Times, serif;
+                   
+                    /* ggf. Blocksatz */
+                    text-align:justify;
+               }
+
+               body {
+                    /* .pt-Einheiten: für Screendesign unpraktisch, für Drucklayouts hilfreich */
+                    /* 12pt ist der Standardwert, der in der Regel für optimale Lesbarkeit sorgt */
+                    font-size: 12pt;
+               }
+
+               body, #container, #primary_content, #footer {
+                    width: 100%  !important;
+                    margin: 0 !important;
+                    padding: 0 !important;
+                    font-size: 1em;
+               }
+
+/*	-------------------------------------------------------------
+	2. IRRELEVEANTE ELEMENTE AUSBLENDEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               #navbar, #sidebar, #commentarea, .intro, #footer {
+                    display: none;
+               }
+
+/*	-------------------------------------------------------------
+	2. AUSGABE DER LINKS IN KLAMMERN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               /* Zwecks besserer Lesbarkeit können Unterstriche entfernt werden */
+/*             a {
+                    text-decoration: none;
+               }
+*/
+               a:not([href^= '#']):after {
+                    content: " ("attr(href)")";
+                    color: #cccccc;
+                    font-style: italic;
+                    font-size: 0.85em;
+                    text-decoration: none;
+               }
+/*	-------------------------------------------------------------
+	3. TITLE-ATTRIBUTE AUSGEBEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               *[title]:after {
+                    content:" ("attr(title)")";
+                    color:#eeeeee;
+                    font-style:italic;
+                    font-size:0.85em;
+               }
+
+/*	-------------------------------------------------------------
+	4. ALTERNATIVE BESCHREIBUNG AUSGEBEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               img[alt]:after {
+                    content:"\A ("attr(alt)")";
+               }
+
+/*	-------------------------------------------------------------
+	5. ANFÜHRUNGSZEICHEN IN DER DEUTSCHEN SPRACHE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               body {
+                    /* in der deutschen Sprache */
+                    quotes:"\201E" "\201C" "\201A" "\2018";
+                    /*
+                    in der englischen Sprache:
+                    quotes:"\201C" "\201D" "\2018" "\2019";
+                    */
+               }
+
+/*	-------------------------------------------------------------
+	6. ÖFFNENDE UND ABSCHLIEßENDE ANFÜHRUNGSZEICHEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               q:before, blockquote:before {
+                    content:open-quote;
+               }
+               q:after, blockquote:after {
+                    content:close-quote;
+               }
+
+/*	-------------------------------------------------------------
+	7. QUELLENVERWEISE SETZEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               hr {
+                    page-break-before:always;
+                    color:#fff;
+                    margin-bottom:3em;
+                    text-align:left; }
+                    hr:after {
+                    content: "Original:\www.muster.de/muster.php.";
+               }
+
+/*	-------------------------------------------------------------
+	8. ZUSÄTZLICHE INFORMATIONEN EINFÜGEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #container:after {
+                    content: "Alle Rechte vorbehalten. © 2008 www.muster.de";
+                    color:#666666;
+                    font-size: 0.85em;
+               }

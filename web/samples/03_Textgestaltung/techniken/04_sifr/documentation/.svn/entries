@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="2"
+   name=""
+   committed-date="2006-05-11T19:59:45.065433Z"
+   url="file:///Users/mark/Repositories/sIFR/trunk/documentation"
+   last-author="mark"
+   kind="dir"
+   revision="2"/>
+<entry
+   committed-rev="2"
+   name="Examples.html"
+   text-time="2005-05-31T18:55:18.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="caace5bf4b7ec63b449403788d737248"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="How+to+use.html"
+   text-time="2005-05-31T18:55:28.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="600d5813ace170100d46994fd388739a"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="style.css"
+   text-time="2005-04-06T18:03:24.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="ee434407c8bec9cfa67e67e12e1f225d"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Add-ons.html"
+   text-time="2005-05-31T18:55:16.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="92df1a8e3149bf063e3a4d5587f4e044"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Changelog.html"
+   text-time="2005-05-31T18:55:18.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="deb8a9e74603b71aad83c95a8e6397a3"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="FAQ.html"
+   text-time="2005-05-31T18:55:20.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="b8bed912681053b50926f1bc3eb61388"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="index.html"
+   text-time="2005-05-31T18:54:32.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="54a4e8fac4258096dbb21e96b0cc1d97"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Javascript+Implementation.html"
+   text-time="2005-05-31T18:55:06.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="c097d7b150977333f7f4fdf2745989a1"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="What+is+sIFR.html"
+   text-time="2005-05-31T18:55:14.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="f1adedb10199f93b7b2ecd2d470c67c6"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Firefox+Greasemonkey+Scripts.html"
+   text-time="2005-05-31T18:57:54.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="21232eec1ef8ff7d35a570d739e67eea"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Fragment+Identifier+Bug.html"
+   text-time="2005-05-31T18:55:26.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="af3a7c0263f3752ad40ba0db15f2b282"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Protecting+Commercial+Fonts.html"
+   text-time="2005-05-31T18:55:08.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="15119c52bc0323254e20849145b60be8"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="Resources.html"
+   text-time="2005-05-31T18:55:10.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="150fff594757878556b5143160791906"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+</wc-entries>

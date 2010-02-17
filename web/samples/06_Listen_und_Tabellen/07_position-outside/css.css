@@ -1,0 +1,11 @@
+/*	-------------------------------------------------------------
+	Beispiel: Geschachtelte Unterliste, mit list-style-position: inside
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         position-outside.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+                    ul {
+                         width: 300px;
+                         list-style-position: outside;
+                    }

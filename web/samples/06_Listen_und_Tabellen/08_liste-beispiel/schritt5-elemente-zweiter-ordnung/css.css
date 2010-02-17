@@ -1,0 +1,82 @@
+/*	-------------------------------------------------------------
+	Beispiel: Eine Liste
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       6
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               * {
+                    margin: 0;
+                    padding: 0;
+               }
+
+/*	-------------------------------------------------------------
+	2. ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               body {
+                    font: 0.8em/1.5em "Trebuchet MS", Georgia, Verdana, sans-serif;
+               }
+               a {
+                    color: #a10000;
+                    font-weight: bold;
+                    text-decoration: none;
+                    border-bottom: 1px dotted #a10000;
+               }
+
+/*	-------------------------------------------------------------
+	3. LISTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #liste {
+                    /* Horizontaler äußerer Abstand links und rechts */
+                    margin: 0 25%;
+               }
+               #liste ul li ul {
+                    /* Die Unterliste besitzt eine kleinere Schriftgröße */
+                    font-size: 90%;
+                    margin: 1em;
+
+                    /* Listenmarker der Unterliste werden eingerückt */
+                    list-style: inside;
+               }
+               #liste ul li {
+                    /* Listenpunkte weisen einen äußeren Abstand voneinander auf*/
+                    margin-bottom: 0.6em;
+               }
+               ul#root_list {
+                    /* Listenelemente der ungeordnete Liste haben zwar keine Marker...*/
+                    list-style-type: none;
+               }
+               ul#root_list li {
+                    /* ...dafür aber ein Hintergrundbild. */
+                    background-image: url(bullet-1.gif);
+                    
+                    /* Hintergrundbild darf sich nicht wiederholen */
+                    background-repeat: no-repeat;
+
+                    /* Der innere Abstand in .em-Einheiten sorgt dafür, dass auch bei der Skalierung
+                    des Textes Marker links vom Inhaltsblock dargestellt wird. */
+                    padding-left: 2em;
+               }
+
+               #liste li ul li {
+                    /* Gestaltung der Unterliste, Liste zweiter Ordnung
+                    Als Listenmarker wird ein Bild gesetzt und ins Inneres eines
+                    Listenelements eingerückt. */
+                    list-style: url(bullet-2.gif) inside;
+
+                    /* Rand für das Listenelement */
+                    border-right: 1px solid #ccc;
+                    border-bottom: 1px solid #ccc;
+                    border-top: 1px solid #ccc;
+                    border-left: 5px solid #ddd;
+
+                    /* Innere und äußere Abstände*/
+                    padding: 1em 0 1em 1em;
+                    margin: 5px 0 5px 2.5em;
+
+                    /* Das Hintergrundbild der oberen Listenelemente soll nicht vereerbt werden */
+                    background-image: none;
+               }

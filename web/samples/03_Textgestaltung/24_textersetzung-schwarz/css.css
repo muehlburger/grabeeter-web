@@ -1,0 +1,128 @@
+/*	-------------------------------------------------------------
+	Beispiel der Bildersetzung
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	.datei         bildersetzung.html
+	.kapitel       3
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	1. GLOBAL RESET + STRUKTUR
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               html {
+                    height: 100%;
+                    width: 100%;
+               }
+               body {
+                    margin: 0;
+                    padding: 0;
+                    background-color: #000;
+                    color: #fafafa;
+                    font-family: Verdana, "Lucida Sans Unicode", "Lucida Grande", "Times New Roman", serif;
+                    font-size: 0.81em;
+               }
+
+               #container {
+                    margin-left: auto;
+                    margin-right: auto;
+                    margin-bottom: 10px;
+                    width: 70%;
+                    padding: 0px 0px 0.4em 0px;
+               }			
+               
+               #content {
+                    float: left;
+                    width: 60%;
+                    padding: 0.4em 0.4em 0.4em 0;
+                    line-height: 1.6em;
+               }
+
+/*	-------------------------------------------------------------
+	2. ALLGEMEINE ATTRIBUTE
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               em {
+                    font-style: italic;
+               }
+               strong {
+                    font-weight: bold;
+               }
+               p {
+                    margin: 0.45em 0 0 0;
+                    padding: 0 0 0 0;
+               }
+
+/*	-------------------------------------------------------------
+	3. ÜBERSCHRIFTEN
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               h1 {
+                    padding: 0px;
+                    margin: 0px;
+               }
+
+               #content h1 {
+                    font: italic normal 2.9em/1.2em Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
+                    letter-spacing: -1px;
+               }
+
+               #content .subheader {
+                    font-size: 0.85em;
+                    border-top: solid 2px #CC3366;
+                    border-bottom: solid 1px #cccccc;
+                    padding: 5px 0px 5px 0px;
+                    margin: 15px 0px 0px 0px;
+               }
+
+/*	-------------------------------------------------------------
+	4. BILDERSERSERTZUNG (Phark-Methode)
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               h2 {
+                    background: url(h2.gif); /* Ersatzbild */
+                    height: 41px;			   /* Höhe */
+                    width: 398px;			   /* Länge */
+                    text-indent: -999em;
+               }
+
+/*	-------------------------------------------------------------
+	5. VERWEISE
+	Reihenfolge: Link - Visited - Focus - Hover - Active (Link Specificity),
+	http://www.d.umn.edu/itss/support/Training/Online/csstips/lovehate.html
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+
+               #content a:link { 
+                    background:url(icon-continue.gif) no-repeat 100% 50%;
+                    color: #344D8C;
+                    text-decoration: underline;
+                    padding: 2px 12px 2px 0;
+                    font-weight: bold;
+                    border: 1px dashed #fff;
+               }
+               
+               #content a:visited {
+                    color: #848484;
+                    border: 1px solid #fff;
+                    font-weight: bold;
+                    text-decoration: underline;
+                }
+               
+               #content a:visited:focus,
+               #content a:visited:hover {
+                    background-color: #F5FAFA;
+                    border: 1px dashed #DAF1F1;
+                    background-color: #E9F6F6;
+                    color: #333;
+               }
+               
+               #content a:focus,
+               #content a:hover,
+               #content a:active
+               {
+                    color: #000;
+                    background-color: #E9F6F6;
+                    border: 1px dashed #D2EFEF;
+               }
+               #content a:active,
+               #content a:visited:active {
+                    background-color: #C5E8E8;
+                    color: #000;
+               }

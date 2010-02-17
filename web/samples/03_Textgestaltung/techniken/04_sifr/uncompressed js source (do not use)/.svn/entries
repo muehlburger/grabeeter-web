@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wc-entries
+   xmlns="svn:">
+<entry
+   committed-rev="2"
+   name=""
+   committed-date="2006-05-11T19:59:45.065433Z"
+   url="file:///Users/mark/Repositories/sIFR/trunk/uncompressed%20js%20source%20(do%20not%20use)"
+   last-author="mark"
+   kind="dir"
+   revision="2"/>
+<entry
+   committed-rev="2"
+   name="sifr-addons.js"
+   text-time="2005-05-17T12:58:20.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="1f7cd85ffe6ff41b0eae30a9e0eb4f93"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+<entry
+   committed-rev="2"
+   name="sifr.js"
+   text-time="2006-05-11T19:25:05.000000Z"
+   committed-date="2006-05-11T19:59:45.065433Z"
+   checksum="017f288e042b0c7d235ccafca399e739"
+   last-author="mark"
+   kind="file"
+   prop-time="2006-05-11T19:59:44.000000Z"/>
+</wc-entries>

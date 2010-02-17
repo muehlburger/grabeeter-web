@@ -1,0 +1,17 @@
+/*	-------------------------------------------------------------
+	Beispiel: Grundgerüst der Anmeldung
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         grundgeruest.html
+          .kapitel       8
+	-------------------------------------------------------------	*/
+               label {
+                    float: left;
+                    margin: 5px;
+                    padding-right: 10px;
+                    width: 100px;
+                    display: block;
+                    text-align: right;
+               }
+               dt { 
+                    clear: left;
+               }

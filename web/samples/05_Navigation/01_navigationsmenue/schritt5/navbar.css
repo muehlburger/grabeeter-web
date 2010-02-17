@@ -1,0 +1,28 @@
+/*	-------------------------------------------------------------
+	Beispiel: Navigationsmenü, navbar.css
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         index.html
+          .kapitel       5
+	-------------------------------------------------------------	*/
+
+/*	-------------------------------------------------------------
+	3. NAVIGATIONSMENÜ
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+               #navbar {
+                    background-color: #fafafa;
+                    border: 1px dashed #ddd;
+                    float: left;
+                    width: 100%;
+               }
+               #navbar ul {
+                    list-style: none;
+               }
+               #navbar li {
+                    float: left;
+                    width: auto;
+               }
+               #navbar a {
+                    display: block;
+                    padding: 7px;
+                    margin: 5px;
+               }

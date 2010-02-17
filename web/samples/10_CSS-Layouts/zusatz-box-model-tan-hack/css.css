@@ -1,0 +1,40 @@
+/*	-------------------------------------------------------------
+	Beispiel: Box Model Tan Hack
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         tan-hack.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+
+               body {
+                    background-color: #244fad;
+                    font: 24px Delicious, Helvetica, Arial, sans-serif;
+                    color: #fff;
+               }
+               
+               #container {
+                    background-color: #679ef1;
+                    margin: 0 auto;
+                    width: 600px;
+                    border: 3px solid #fff;
+                    padding: 0.9em;
+               }
+               
+                div.FixedWidthBar {
+               	border:1px solid #000000;
+               	width:300px;
+               	background-color:#1166cc;
+               	color:#FFFFFF;
+               }
+               div.MarginContentArea {
+               	border:1px solid #000000;
+               	width:300px;
+               }
+               div.ContentArea {
+               	border:10px;
+               	padding:10px solid;
+               	width:300px;
+               }
+               * html div.ContentArea {
+               	width:340px;
+               	w\idth: 300px;
+               }

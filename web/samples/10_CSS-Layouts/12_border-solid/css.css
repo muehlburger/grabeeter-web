@@ -1,0 +1,30 @@
+/*	-------------------------------------------------------------
+	Beispiel: border: solid
+	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+          .datei         border-solid.html
+          .kapitel       10
+	-------------------------------------------------------------	*/
+               body {
+                    background-color: #244fad;
+                    font: 24px Delicious, Helvetica, Arial, sans-serif;
+                    color: #fff;
+               }
+               
+               #container {
+                    background-color: #679ef1;
+                    margin: 0 auto;
+                    width: 600px;
+                    padding: 0.9em;
+               }
+               
+               div {
+                    margin: 50px auto;
+                    background-color: #6699ee;
+                    width: 600px;
+                    padding: 10px;
+                    border: 3px solid #ffffff;
+               }
+               
+               p {
+                    margin: 1em 0 1em 0;
+               }
