@@ -10,16 +10,26 @@
  */
 class userActions extends sfActions
 {
-
-	private function saveTweets(&$results, $sources, &$user) {
+	/**
+	 * 
+	 * @param CONST $results
+	 * @param VAR $sources
+	 * @param CONST $user
+	 * @return void
+	 */
+	private function saveTweets(&$results, &$sources, &$user) {
 
 		foreach($results as $result) {
 			if(!array_key_exists($result->source, $sources)) {
+//				var_dump($result->source);
+//				var_dump(array_unique(array_keys($sources)));
+//				exit;
 				$source = new TweetSource();
 				// TODO: Parse url and label correctly here
 				$source->setLabel($result->source);
 				$source->setUrl($result->source);
 				$source->save();
+				$sources[$source->getLabel()] = $source->getId();
 			} else {
 				$sourceId = $sources[$result->source];
 				$source = Doctrine_Core::getTable('TweetSource')->findOneBy('id', $sourceId);
@@ -27,9 +37,9 @@ class userActions extends sfActions
 				
 			// Create new Tweet and populate its values
 			$tweet = new Tweet();
-			$tweet->setTweetUser($user);
+			$tweet->setUserId($user->getId());
 			$tweet->setStatusesCount($result->user->statuses_count);
-			$tweet->setTweetSource($source);
+			$tweet->setSourceId($source->getId());
 
 
 			// Add geo information if it is enabled

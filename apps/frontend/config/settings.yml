@@ -13,6 +13,7 @@ dev:
     cache:                  false
     no_script_name:         false
     etag:                   false
+    logging_enabled:        false
 
 test:
   .settings:
