@@ -10,61 +10,8 @@
  */
 class userActions extends sfActions
 {
-	/**
-	 * 
-	 * @param CONST $results
-	 * @param VAR $sources
-	 * @param CONST $user
-	 * @return void
-	 */
-	private function saveTweets(&$results, &$sources, &$user) {
-
-		foreach($results as $result) {
-			if(!array_key_exists($result->source, $sources)) {
-				$source = new TweetSource();
-				// TODO: Parse url and label correctly here
-				$source->setLabel($result->source);
-				$source->setUrl($result->source);
-				$source->save();
-				$sources[$source->getLabel()] = $source->getId();
-				$sourceId = $source->getId();
-			} else {
-				$sourceId = $sources[$result->source];
-			}
-				
-			// Create new Tweet and populate its values
-			$tweet = new Tweet();
-			$tweet->setTweetUser($user);
-			$tweet->setStatusesCount($result->user->statuses_count);
-			$tweet->setSourceId($sourceId);
-
-
-			// Add geo information if it is enabled
-			if($result->user->geo_enabled == 1) {
-				if(isset($result->user->geo)) {
-					// TODO: Parse and update correct geolocation
-					$tweet->setGeolocationId(new TweetGeoLocation());
-				}
-			}
-
-			// Tweet is a reply
-			if(isset($result->in_reply_to_status_id)) {
-				$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-				$tweet->setInReplyToUserId($result->in_reply_to_user_id);
-			}
-
-			$parsedDate = date_parse($result->created_at);
-			$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
-			$tweet->setTweetCreatedAt($createdAt);
-
-			$tweet->setTweetTwitterId($result->id);
-			$tweet->setText($result->text);
-
-			$tweet->save();
-		}
-	}
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "mebner";
+		$twitterUser = "behi_at";
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;
 
@@ -95,8 +42,7 @@ class userActions extends sfActions
 		}
 
 		if(!$user) {
-			$user = Doctrine_Core::getTable('TweetUser')->createNewTwitterUser($result);
-
+			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
 			$pages = ceil($statusesCount / $count);
 			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$twitterUser.'&page=';
 		} else {
@@ -115,11 +61,11 @@ class userActions extends sfActions
 			$this->results = $results;
 
 			if(!$results) {
-				$this->forward404Unless($results, "Response was empty for page: " . $i);
+//				$this->forward404Unless($results, "Response was empty for page: " . $i);
 				continue;
 			}
 			
-			$this->saveTweets($results, $sources, $user);
+			Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
 		curl_close($curl);
