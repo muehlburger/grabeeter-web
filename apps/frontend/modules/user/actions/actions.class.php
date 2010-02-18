@@ -11,11 +11,12 @@
 class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "behi_at";
+		$this->twitterUser = "flowolf";
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;
+		$this->numberOfStoredTweets = 0;
 
-		$url = 'http://twitter.com/users/show.json?screen_name=' . $twitterUser;
+		$url = 'http://twitter.com/users/show.json?screen_name=' . $this->twitterUser;
 
 		// initialize curl
 		$curl = curl_init($url);
@@ -44,13 +45,13 @@ class userActions extends sfActions
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
 			$pages = ceil($statusesCount / $count);
-			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$twitterUser.'&page=';
+			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		} else {
-			$numberOfStoredTweets = $user->getStatusesCount();
-			$pages = ceil(($statusesCount - $numberOfStoredTweets) / $count);
+			$savedStatusesCount = $user->getStatusesCount();
+			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
 
 			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$twitterUser.'&page=';
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
 
 		for($i = 1; $i <= $pages; $i++) {
@@ -65,7 +66,7 @@ class userActions extends sfActions
 				continue;
 			}
 			
-			Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
+			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
 		curl_close($curl);

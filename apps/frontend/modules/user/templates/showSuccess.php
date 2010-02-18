@@ -2,8 +2,8 @@
 <table>
   <tbody>
     <tr>
-      <th>Id:</th>
-      <td><?php echo $tweet_user->getId() ?></td>
+      <th>&nbsp;</th>
+      <td><img src="<?php echo $tweet_user->getProfileImageUrl() ?>" alt="<?php echo $tweet_user->getName() ?>" title="<?php echo $tweet_user->getName() ?>" /></td>
     </tr>
     <tr>
       <th>Name:</th>
