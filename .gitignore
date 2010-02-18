@@ -2,3 +2,4 @@
 /log
 /cache
 /config/database.yml
+/data/sql/twitarch-db-model.mwb
