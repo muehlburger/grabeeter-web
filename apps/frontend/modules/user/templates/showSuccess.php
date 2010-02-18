@@ -1,3 +1,4 @@
+<?php slot('title', sprintf('%s\'s User Profile on Twitter', $tweet_user->getName()))?>
 <table>
   <tbody>
     <tr>

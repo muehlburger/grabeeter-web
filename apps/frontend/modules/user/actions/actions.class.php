@@ -64,7 +64,7 @@ class userActions extends sfActions
 		}
 	}
 	public function executeSearchTweets(sfWebRequest $request) {
-		$twitterUser = "hmuehlburger";
+		$twitterUser = "mebner";
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;
 

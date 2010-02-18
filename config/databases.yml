@@ -2,6 +2,6 @@ all:
   doctrine:
     class: sfDoctrineDatabase
     param:
-      dsn: 'mysql:host=localhost;dbname=twitarch'
-      username: twitarch
-      password: twitarch
+      dsn: 'mysql:host=localhost;dbname='
+      username: 
+      password: 

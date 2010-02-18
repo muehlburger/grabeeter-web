@@ -2,7 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title>Twitarch - Export and save your tweets</title>
+    <title><?php include_slot('title', 'Twitarch - save and export your tweets') ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
@@ -39,10 +39,21 @@
       </div>
     <div id="body">
       <div id="content">
+      <?php if ($sf_user->hasFlash('notice')): ?>
+          <div class="flash_notice">
+            <?php echo $sf_user->getFlash('notice') ?>
+          </div>
+        <?php endif; ?>
+ 
+        <?php if ($sf_user->hasFlash('error')): ?>
+          <div class="flash_error">
+            <?php echo $sf_user->getFlash('error') ?>
+          </div>
+        <?php endif; ?>
         
         <?php echo $sf_content ?>
       </div>
-      <!-- <div id="sidebar">
+      <div id="sidebar">
         <div class="section about">
         	<h3>About</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
@@ -74,10 +85,9 @@
                     </div>
 		</div>
 		<div class="section">
-                    <img src="images/dummy_googleads.gif" alt="Placeholder Image" />
+			<img src="images/dummy_googleads.gif" alt="Placeholder Image" />
 		</div>
       </div>
-       -->
     </div>
     <div id="footer"></div>
     </div>
