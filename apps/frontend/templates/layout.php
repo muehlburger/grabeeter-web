@@ -19,11 +19,11 @@
              </dl>
 		</div>
         <div id="search">
-        	<form action="#">
+        	<form action="<?php echo url_for('user/searchTweets')?>" method="get">
                     <p>
                         <label for="twitterUsername">Twitter Username:</label>
                         <input type="text" name="twitterUsername" id="s" size="15"/>
-                        <button type="submit">Download Tweets</button>
+                        <button type="submit">Download</button>
                     </p>
                 </form>
 		</div>
@@ -32,7 +32,7 @@
         <ul>
           <li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
           <li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a></li>
-          <li><a href="<?php echo url_for('user/index') ?>">Users</a></li>
+          <li class="current_page_item"><a href="<?php echo url_for('user/index') ?>">Users</a></li>
           <li><a href="<?php echo url_for('geolocation/index') ?>">Geo Locations</a></li>
           <li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li>
         </ul>
