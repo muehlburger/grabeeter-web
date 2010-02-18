@@ -10,7 +10,7 @@ body {
 }
 
 html {
-	/** background: #fff url("/images/bg_main.gif") repeat-x 0 0 ; **/
+	background: #fff url("/images/bg_main.gif") repeat-x 0 0 ;
 }
 
 /** Main positioning */
@@ -26,6 +26,74 @@ html {
   float: left;
   position: relavive;
   width: 100%;
+}
+
+#header {
+  /* background: transparent url("/images/bg_header.jpg") no-repeat 50% 6px; */
+  padding-top: 35px;
+}
+
+#header h1 {
+  padding-left: 160px;
+}
+
+#header h1 a {
+  /* background: transparent url("/images/logo.gif") no-repeat 0 0; */
+  color: #25313b;
+  display: block;
+  line-height: 400px;
+  overflow: hidden;
+  height: 120px;
+  width: 225px;	
+}
+
+#search {
+  height: 53px;
+  position: absolute;
+}
+
+#skip {
+  /* background: transparent url("/images/badge.jpg") no-repeat 0 0; */
+  left: 0;
+  position: absolute;
+  height: 160px;
+  top: 0;
+  width: 152px;
+}
+
+#header #skip a {/*hide from visual browsers */
+	visibility: hidden;
+}
+
+#rss {
+  background: transparent url("/images/darkbg-rss.gif") no-repeat 0 100%;
+  color: #00bbee;
+  font-size: 88%;
+  padding: 0.3em 15px 0.5em 15px;
+  position: absolute;
+  right: 30px;
+  text-transform: uppercase;
+  top: 6px;
+  width: 270px; 
+}
+
+#rss * {
+  float: left;
+}
+
+#rss dt {
+	padding-right: 1em;
+}
+
+#rss a {
+  background: transparent url("/images/icon_rss.gif") no-repeat 0 50%;
+  color: #fff;
+  margin-right: 15px;
+  padding-left: 20px;
+}
+
+#rss a:hover {
+  text-decoration: underline;
 }
 
 #content {

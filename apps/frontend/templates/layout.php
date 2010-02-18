@@ -14,8 +14,8 @@
         <div id="rss">
         	 <dl>
 			 <dt>RSS Feeds:</dt>
-               <dd><a href="#" title="Syndicate this site using RSS">Tweets</a></dd>
-               <dd><a href="#"  title="The latest comments to all posts in RSS">Users</a></dd>
+               <dd><a href="#" title="Syndicate your tweets using RSS">Tweets</a></dd>
+               <dd><a href="#" title="The latest added users in RSS">Users</a></dd>
              </dl>
 		</div>
         <div id="search">
@@ -88,8 +88,8 @@
 		<div class="section">
 			<img src="images/dummy_googleads.gif" alt="Placeholder Image" />
 		</div>
+		-->
       </div>
-       -->
     </div>
     <div id="footer"></div>
     </div>
