@@ -86,69 +86,78 @@ html {
     font-weight: bold;
     text-decoration: none;
 }
+               
+#search {
+    background: transparent url("/images/bg_search.gif") no-repeat 100% 0;
+    height: 53px;
+    padding: 13px 50px 0 65px;
+    position: absolute;
+    right: 0;
+    top: 155px;
+}
+#search * {
+    float: left;
+}
+#search label { /* hide from visual browsers */
+    position: absolute;
+    visibility: hidden;
+}
+#search input {
+    border: 1px solid #40cff5;
+    font-size: 110%;
+    margin-right: 10px;
+    width: 160px;
+}
+#search button {
+    background: transparent url("/images/button_search.gif") no-repeat 0 0;
+    border: none;
+    height: 26px;
+    margin-top: -1px;
+    line-height: 100px;
+    padding: 0;
+    overflow: hidden;
+    width: 90px;
+}
+#search > form button {
+    text-indent: 100px; /* be nice to Firefox */
+}
+#search button:hover {
+    background-position: 0 -26px;
+}
+#search button:active {
+    background-position: 0 -52px;
+}
 
-/*	-------------------------------------------------------------
-               	7. SEARCH
-               	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
+form input {
+    background: #fff url("/images/bg_input.gif") repeat-x 0 0;
+    border: 1px solid #c0c3c6;
+    padding: 0.2em 5px;
+}
+form button {
+    background: #fdab08;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    padding: 0.2em 0.7em;
+}
                
-               #search {
-                   background: transparent url("/images/bg_search.gif") no-repeat 100% 0;
-                   height: 53px;
-                   padding: 13px 50px 0 65px;
-                   position: absolute;
-                   right: 0;
-                   top: 155px;
-               }
-               #search * {
-                   float: left;
-               }
-               #search label { /* hide from visual browsers */
-                   position: absolute;
-                   visibility: hidden;
-               }
-               #search input {
-                   border: 1px solid #40cff5;
-                   font-size: 110%;
-                   margin-right: 10px;
-                   width: 160px;
-               }
-               #search button {
-                   background: transparent url("/images/button_search.gif") no-repeat 0 0;
-                   border: none;
-                   height: 26px;
-                   margin-top: -1px;
-                   line-height: 100px;
-                   padding: 0;
-                   overflow: hidden;
-                   width: 90px;
-               }
-               #search > form button {
-                   text-indent: 100px; /* be nice to Firefox */
-               }
-               #search button:hover {
-                   background-position: 0 -26px;
-               }
-               #search button:active {
-                   background-position: 0 -52px;
-               }
-               
-               /*	-------------------------------------------------------------
-               	8. FORM
-               	- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -	*/
-               
-               form input {
-                   background: #fff url("/images/bg_input.gif") repeat-x 0 0;
-                   border: 1px solid #c0c3c6;
-                   padding: 0.2em 5px;
-               }
-               form button {
-                   background: #fdab08;
-                   border: none;
-                   color: #fff;
-                   cursor: pointer;
-                   font-weight: bold;
-                   padding: 0.2em 0.7em;
-               }
+#footer {
+    background: #2c2c2c url("/images/bg_footer.gif") no-repeat 100% 0;
+    color: #fff;
+    padding: 2em 0;
+}
+
+#footer ul {
+  position: absolute;
+  right: 20px;
+  top: 2em;
+}
+
+#footer ul,
+#footer ul * {
+  float: left;
+}
 
 #skip {
   background: transparent url("/images/badge.jpg") no-repeat 0 0;

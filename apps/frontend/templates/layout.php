@@ -34,6 +34,7 @@
           <li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a></li>
           <li class="current_page_item"><a href="<?php echo url_for('user/index') ?>">Users</a></li>
           <li><a href="<?php echo url_for('geolocation/index') ?>">Geo Locations</a></li>
+          <li><a href="<?php echo url_for('source/index') ?>">Tweet Sources</a></li>
           <!-- <li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li> -->
         </ul>
         </div>
@@ -54,8 +55,9 @@
         
         <?php echo $sf_content ?>
       </div>
+      <!-- 
       <div id="sidebar">
-       <!-- <div class="section about">
+       <div class="section about">
         	<h3>About</h3>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
             	incididunt ut labore et dolore magna aliqua. Sed do eiusmod.  
@@ -88,10 +90,18 @@
 		<div class="section">
 			<img src="images/dummy_googleads.gif" alt="Placeholder Image" />
 		</div>
-		-->
-      </div>
+		
+      </div>-->
+    <div id="footer">
+            <p>Copyright 2010 <a href="#">VL</a>. <em>All rights reserved.</em></p>
+               <p><small>Created by Herbert Mühlburger, Behnam Taraghi </small></p>
+            <ul>
+                <li><a href="http://www.w3c.org?validate=#">XHTML</a></li>
+                <li><a href="http://www.w3c.org?validate=#">CSS</a></li>
+                <li><a href="http://www.w3c.org?validate=#">508</a></li>
+            </ul>
     </div>
-    <div id="footer"></div>
+    </div>
     </div>
   </body>
 </html>
