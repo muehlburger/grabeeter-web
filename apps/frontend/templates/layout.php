@@ -34,7 +34,7 @@
           <li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a></li>
           <li class="current_page_item"><a href="<?php echo url_for('user/index') ?>">Users</a></li>
           <li><a href="<?php echo url_for('geolocation/index') ?>">Geo Locations</a></li>
-          <li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li>
+          <!-- <li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li> -->
         </ul>
         </div>
       </div>
