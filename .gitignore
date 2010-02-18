@@ -1,5 +1,5 @@
 /lib
 /log
 /cache
-/config/database.yml
+/config/databases.yml
 /data/sql/twitarch-db-model.mwb
