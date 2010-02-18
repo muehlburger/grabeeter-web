@@ -11,7 +11,7 @@
 class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
-		$this->twitterUser = "flowolf";
+		$this->twitterUser = "mebner";
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;
 		$this->numberOfStoredTweets = 0;
@@ -62,18 +62,20 @@ class userActions extends sfActions
 			$this->results = $results;
 
 			if(!$results) {
-//				$this->forward404Unless($results, "Response was empty for page: " . $i);
+				//				$this->forward404Unless($results, "Response was empty for page: " . $i);
 				continue;
 			}
-			
+				
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
 		curl_close($curl);
 		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
+
+		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
 	}
-	
+
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')
