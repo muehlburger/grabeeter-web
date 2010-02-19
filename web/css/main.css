@@ -19,10 +19,6 @@ html {
   max-width: 80em;
 }
 
-a {
-  color: #40cff5;
-}
-
 #header,
 #body,
 #footer {
@@ -114,39 +110,13 @@ a {
     margin-right: 10px;
     width: 160px;
 }
-#search button {
-    background: transparent url("/images/button_search.gif") no-repeat 0 0;
-    border: none;
-    height: 26px;
-    margin-top: -1px;
-    line-height: 100px;
-    padding: 0;
-    overflow: hidden;
-    width: 90px;
-}
-#search > form button {
-    text-indent: 100px; /* be nice to Firefox */
-}
-#search button:hover {
-    background-position: 0 -26px;
-}
-#search button:active {
-    background-position: 0 -52px;
-}
+
 
 form input {
-    background: #fff url("/images/bg_input.gif") repeat-x 0 0;
     border: 1px solid #c0c3c6;
     padding: 0.2em 5px;
 }
-form button {
-    background: #fdab08;
-    border: none;
-    color: #fff;
-    cursor: pointer;
-    font-weight: bold;
-    padding: 0.2em 0.7em;
-}
+
                
 #footer {
     background: #2c2c2c url("/images/bg_footer.gif") no-repeat 100% 0;
@@ -248,6 +218,48 @@ form button {
 
 ul{border:0; margin:0; padding:0;}
 
+#pagination-clean li{
+border:0; margin:0; padding:0;
+font-size:11px;
+list-style:none;
+}
+#pagination-clean li, #pagination-clean a{
+border:solid 1px #DEDEDE
+margin-right:2px;
+}
+#pagination-clean .previous-off,
+#pagination-clean .next-off {
+color:#888888
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-clean .next a,
+#pagination-clean .previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+} 
+#pagination-clean .active{
+color:#00000
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-clean a:link,
+#pagination-clean a:visited {
+color:#0033CC
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-clean a:hover{
+text-decoration:none;
+}
+
+
 #pagination-digg li{
 border:0; margin:0; padding:0;
 font-size:11px;
@@ -290,4 +302,46 @@ text-decoration:none;
 }
 #pagination-digg a:hover{
 border:solid 1px #0e509e
+}
+
+
+#pagination-flickr li{
+border:0; margin:0; padding:0;
+font-size:11px;
+list-style:none;
+}
+#pagination-flickr a{
+border:solid 1px #DDDDDD;
+margin-right:2px;
+}
+#pagination-flickr .previous-off,
+#pagination-flickr .next-off {
+color:#666666;
+display:block;
+float:left;
+font-weight:bold;
+padding:3px 4px;
+}
+#pagination-flickr .next a,
+#pagination-flickr .previous a {
+font-weight:bold;
+border:solid 1px #FFFFFF;
+} 
+#pagination-flickr .active{
+color:#ff0084;
+font-weight:bold;
+display:block;
+float:left;
+padding:4px 6px;
+}
+#pagination-flickr a:link,
+#pagination-flickr a:visited {
+color:#0063e3;
+display:block;
+float:left;
+padding:3px 6px;
+text-decoration:none;
+}
+#pagination-flickr a:hover{
+border:solid 1px #666666;
 }

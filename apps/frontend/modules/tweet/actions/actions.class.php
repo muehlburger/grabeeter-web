@@ -12,7 +12,6 @@ class tweetActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    
      $this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 	 $this->pager->setQuery(Doctrine::getTable('Tweet')->createQuery('a'));
 	 $this->pager->setPage($request->getParameter('page'), 1);

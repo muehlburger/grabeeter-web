@@ -23,7 +23,7 @@
                     <p>
                         <label for="twitterUsername">Twitter Username:</label>
                         <input type="text" name="twitterUsername" id="s" size="15"/>
-                        <button type="submit">Download</button>
+                        <button type="submit">Export your Tweets</button>
                     </p>
                 </form>
 		</div>
@@ -32,7 +32,7 @@
         <ul>
           <li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
           <li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a></li>
-          <li class="current"><a href="<?php echo url_for('user/index') ?>">Users</a></li>
+          <li><a href="<?php echo url_for('user/index') ?>">Users</a></li>
           <li><a href="<?php echo url_for('geolocation/index') ?>">Geo Locations</a></li>
           <li><a href="<?php echo url_for('source/index') ?>">Tweet Sources</a></li>
           <!-- <li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li> -->
