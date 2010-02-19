@@ -89,7 +89,7 @@ TweetUser:
     Tweet: { local: id, foreign: source_id, type: many }
   indexes:
     mainUserIndex:
-      fields: [name, screen_name, description]
+      fields: [name, description]
     additionalUserIndex:
       fields: [url, time_zone, location, lang]
 
