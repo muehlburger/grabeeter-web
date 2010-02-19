@@ -1,8 +1,10 @@
-<div class="entry" id="1">
-	 <h3 class="storytitle"><a href="#" rel="bookmark">List of Tweets</a></h3>
-<!--      <p class="date">10.02.2010</p>
-	<ul class="meta nospace"><li>Category 1, Category 2</li><li>&#8212;Herbert Mühlburger <small>(10.02.2010)</small></li></ul>
-	 -->
+<h3>List of Tweets</h3>
+<p>
+<strong><?php echo count($pager) ?></strong> available tweets
+  <?php if ($pager->haveToPaginate()): ?>
+    - currently watching at page <strong><?php echo $pager->getPage() ?></strong> (out of <?php echo $pager->getLastPage() ?> pages)
+  <?php endif; ?>
+</p>
 <table>
   <thead>
     <tr>
@@ -63,5 +65,4 @@
   <?php endif; ?>
 </ul>
 <?php endif; ?>
-
 </div>
