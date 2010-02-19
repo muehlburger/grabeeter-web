@@ -5,5 +5,5 @@
 #all:
 all:
   twitter_count: 200
-  max_tweets_on_page: 5
-  max_sources_on_page: 5
+  max_tweets_on_page: 10
+  max_sources_on_page: 10
