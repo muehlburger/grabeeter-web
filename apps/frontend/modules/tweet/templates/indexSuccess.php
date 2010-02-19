@@ -5,6 +5,13 @@
     - currently watching at page <strong><?php echo $pager->getPage() ?></strong> (out of <?php echo $pager->getLastPage() ?> pages)
   <?php endif; ?>
 </p>
+
+<?php foreach ($pager->getResults() as $tweet): ?>
+<p><strong><?php echo $tweet->getTweetUser() ?></strong>:
+<a target="_blank" href="http://www.twitter.com/<?php echo $tweet->getTweetUser() ?>/statuses/<?php echo $tweet->getTweetTwitterId() ?>"><?php echo $tweet->getText() ?></a></p>
+<?php endforeach; ?>
+
+<!-- 
 <table>
   <thead>
     <tr>
@@ -39,6 +46,8 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+ -->
+
 
 <?php if ($pager->haveToPaginate()): ?>
 <ul id="pagination-flickr">
@@ -65,4 +74,3 @@
   <?php endif; ?>
 </ul>
 <?php endif; ?>
-</div>

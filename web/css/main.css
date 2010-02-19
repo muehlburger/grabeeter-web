@@ -8,6 +8,10 @@ body {
   font: small/150% Helvetica, Arial, Verdana, sans-serif;
 }
 
+p {
+  margin: 10px;
+}
+
 html {
 	/* background: #fff url("/images/bg_main.gif") repeat-x 0 0 ; */
 	border-top: 6px solid #000;
@@ -15,8 +19,7 @@ html {
 
 /** Main positioning */
 #wrapper {
-  min-width: 905px;
-  max-width: 80em;
+  width: 100%;
 }
 
 #header,
@@ -181,7 +184,7 @@ form input {
 
 #content {
   float: left;
-  width: 48%;
+  width: 100%;
   padding: 10px 0;
   padding-left: 145px;
 }
