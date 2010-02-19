@@ -2,7 +2,6 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  text-decoration: none;
 }
 
 body {
@@ -10,13 +9,18 @@ body {
 }
 
 html {
-	background: #fff url("/images/bg_main.gif") repeat-x 0 0 ;
+	/* background: #fff url("/images/bg_main.gif") repeat-x 0 0 ; */
+	border-top: 6px solid #000;
 }
 
 /** Main positioning */
 #wrapper {
   min-width: 905px;
   max-width: 80em;
+}
+
+a {
+  color: #40cff5;
 }
 
 #header,
@@ -29,7 +33,7 @@ html {
 }
 
 #header {
-  background: transparent url("/images/bg_header.jpg") no-repeat 50% 6px; 
+  /* background: transparent url("/images/bg_header.jpg") no-repeat 50% 6px; */ 
   padding-top: 35px;
 }
 
@@ -44,51 +48,52 @@ html {
   line-height: 400px;
   overflow: hidden;
   height: 120px;
-  width: 225px;	
-}
-
-#navigation,
-#navigation * {
-  float: left;
+  width: 225px;
 }
 
 #navigation {
-  background: transparent url("/images/bg_navigation.gif") repeat-x 0 0;
-  display: inline;
-  height: 53px;
-  line-height: 51px;
-  margin-bottom: 1em;
-  margin-left: -1em;
-  text-transform: uppercase;
+  background-color: #ddd;
+  border-bottom: 1px solid #2c2c2c;
+  border-top: 1px solid #2c2c2c;
+  border-right: 1px solid #2c2c2c;
+  float: left;
   width: 100%;
+  font-size: 120%;
+    text-transform: lowercase;
 }
 
 #navigation ul {
-  padding-left: 170px;
-}
-#navigation li {
-  margin-right: 0.5em;
-}
-#navigation a {
-  color: #fff;
-  padding: 0 1em;
+  list-style: none;
 }
 
-#navigation a:hover {
-  background: transparent url("/images/bg_navigation_hover.gif") no-repeat 50% 25px;
+#navigation li {
+  float: left;
+  width: auto;
 }
-#navigation .current-cat a,
-#navigation .current-cat a:hover,
-#navigation .current_page_item a,
-#navigation .current_page_item a:hover {
-    background: #fff url("/images/bg_navigation_selected.gif") repeat-x 0 0;
-    color: #1f1a11;
-    font-weight: bold;
-    text-decoration: none;
+
+
+#navigation a {
+  display: block;
+  padding: 7px;
+  margin: 0px;
+  color: #2c2c2c;
+  text-decoration: none;
+}
+
+
+#navigation li.current a {
+  background-color: #777;
+  text-decoration: underline;
+  color: #fff;
+}
+
+#navigation a:hover, #navigation a:focus {
+  background-color: #777;
+  color: #fff;
+  text-decoration: underline;
 }
                
 #search {
-    background: transparent url("/images/bg_search.gif") no-repeat 100% 0;
     height: 53px;
     padding: 13px 50px 0 65px;
     position: absolute;
@@ -160,7 +165,7 @@ form button {
 }
 
 #skip {
-  background: transparent url("/images/badge.jpg") no-repeat 0 0;
+  /* background: transparent url("/images/badge.jpg") no-repeat 0 0; */
   left: 0;
   position: absolute;
   height: 160px;
