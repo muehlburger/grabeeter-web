@@ -3,7 +3,7 @@
 /**
  * TweetGeoLocation filter form base class.
  *
- * @package    twitarch
+ * @package    tweetex
  * @subpackage filter
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $

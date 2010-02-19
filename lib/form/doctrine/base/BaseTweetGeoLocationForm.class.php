@@ -5,7 +5,7 @@
  *
  * @method TweetGeoLocation getObject() Returns the current form's model object
  *
- * @package    twitarch
+ * @package    tweetex
  * @subpackage form
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $

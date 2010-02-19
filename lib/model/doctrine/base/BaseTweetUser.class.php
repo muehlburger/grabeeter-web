@@ -55,7 +55,7 @@
  * @method TweetUser           setProfileImageUrl()    Sets the current record's "profile_image_url" value
  * @method TweetUser           setTweets()             Sets the current record's "Tweets" collection
  * 
- * @package    twitarch
+ * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
@@ -72,6 +72,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
         $this->hasColumn('screen_name', 'string', 15, array(
              'type' => 'string',
              'notnull' => true,
+             'unique' => true,
              'length' => '15',
              ));
         $this->hasColumn('twitter_user_id', 'integer', null, array(
@@ -90,7 +91,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
         $this->hasColumn('statuses_count', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'default' => 0,
+             'default' => 1,
              ));
         $this->hasColumn('url', 'string', 255, array(
              'type' => 'string',
@@ -130,6 +131,27 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              'notnull' => true,
              'length' => '255',
              ));
+
+
+        $this->index('mainUserIndex', array(
+             'fields' => 
+             array(
+              0 => 'name',
+              1 => 'screen_name',
+              2 => 'description',
+             ),
+             ));
+        $this->index('additionalUserIndex', array(
+             'fields' => 
+             array(
+              0 => 'url',
+              1 => 'time_zone',
+              2 => 'location',
+              3 => 'lang',
+             ),
+             ));
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

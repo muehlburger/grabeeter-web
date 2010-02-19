@@ -16,7 +16,7 @@
  * @method TweetGeoLocation    setLongitude() Sets the current record's "longitude" value
  * @method TweetGeoLocation    setTweets()    Sets the current record's "Tweets" collection
  * 
- * @package    twitarch
+ * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
@@ -40,6 +40,9 @@ abstract class BaseTweetGeoLocation extends sfDoctrineRecord
              'length' => '9',
              'scale' => '6',
              ));
+
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

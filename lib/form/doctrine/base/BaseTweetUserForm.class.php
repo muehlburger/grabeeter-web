@@ -5,7 +5,7 @@
  *
  * @method TweetUser getObject() Returns the current form's model object
  *
- * @package    twitarch
+ * @package    tweetex
  * @subpackage form
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
@@ -55,6 +55,10 @@ abstract class BaseTweetUserForm extends BaseFormDoctrine
       'created_at'         => new sfValidatorDateTime(),
       'updated_at'         => new sfValidatorDateTime(),
     ));
+
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'TweetUser', 'column' => array('screen_name')))
+    );
 
     $this->widgetSchema->setNameFormat('tweet_user[%s]');
 

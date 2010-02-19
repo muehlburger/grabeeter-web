@@ -5,7 +5,7 @@
  *
  * @method Tweet getObject() Returns the current form's model object
  *
- * @package    twitarch
+ * @package    tweetex
  * @subpackage form
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 24171 2009-11-19 16:37:50Z Kris.Wallsmith $
@@ -37,8 +37,8 @@ abstract class BaseTweetForm extends BaseFormDoctrine
       'in_reply_to_user_id'   => new sfValidatorInteger(array('required' => false)),
       'in_reply_to_status_id' => new sfValidatorInteger(array('required' => false)),
       'tweet_created_at'      => new sfValidatorDateTime(),
-      'tweet_twitter_id'      => new sfValidatorInteger(array('required' => false)),
-      'statuses_count'        => new sfValidatorInteger(array('required' => false)),
+      'tweet_twitter_id'      => new sfValidatorInteger(),
+      'statuses_count'        => new sfValidatorInteger(),
       'text'                  => new sfValidatorString(array('max_length' => 140)),
       'created_at'            => new sfValidatorDateTime(),
       'updated_at'            => new sfValidatorDateTime(),

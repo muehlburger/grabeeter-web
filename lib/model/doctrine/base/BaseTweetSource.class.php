@@ -16,7 +16,7 @@
  * @method TweetSource         setUrl()    Sets the current record's "url" value
  * @method TweetSource         setTweets() Sets the current record's "Tweets" collection
  * 
- * @package    twitarch
+ * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
@@ -36,6 +36,17 @@ abstract class BaseTweetSource extends sfDoctrineRecord
              'type' => 'string',
              'length' => '255',
              ));
+
+
+        $this->index('sourceIndex', array(
+             'fields' => 
+             array(
+              0 => 'label',
+              1 => 'url',
+             ),
+             ));
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()

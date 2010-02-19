@@ -43,7 +43,7 @@
  * @method Tweet            setTweetSource()           Sets the current record's "TweetSource" value
  * @method Tweet            setTweetGeoLocation()      Sets the current record's "TweetGeoLocation" value
  * 
- * @package    twitarch
+ * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
@@ -79,18 +79,26 @@ abstract class BaseTweet extends sfDoctrineRecord
         $this->hasColumn('tweet_twitter_id', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'default' => 0,
              ));
         $this->hasColumn('statuses_count', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
-             'default' => 0,
              ));
         $this->hasColumn('text', 'string', 140, array(
              'type' => 'string',
              'notnull' => true,
              'length' => '140',
              ));
+
+
+        $this->index('tweetIndex', array(
+             'fields' => 
+             array(
+              0 => 'text',
+             ),
+             ));
+        $this->option('collate', 'utf8_unicode_ci');
+        $this->option('charset', 'utf8');
     }
 
     public function setUp()
