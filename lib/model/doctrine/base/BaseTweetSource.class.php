@@ -7,14 +7,14 @@
  * 
  * @property string $label
  * @property string $url
- * @property Doctrine_Collection $Tweets
+ * @property Doctrine_Collection $Tweet
  * 
- * @method string              getLabel()  Returns the current record's "label" value
- * @method string              getUrl()    Returns the current record's "url" value
- * @method Doctrine_Collection getTweets() Returns the current record's "Tweets" collection
- * @method TweetSource         setLabel()  Sets the current record's "label" value
- * @method TweetSource         setUrl()    Sets the current record's "url" value
- * @method TweetSource         setTweets() Sets the current record's "Tweets" collection
+ * @method string              getLabel() Returns the current record's "label" value
+ * @method string              getUrl()   Returns the current record's "url" value
+ * @method Doctrine_Collection getTweet() Returns the current record's "Tweet" collection
+ * @method TweetSource         setLabel() Sets the current record's "label" value
+ * @method TweetSource         setUrl()   Sets the current record's "url" value
+ * @method TweetSource         setTweet() Sets the current record's "Tweet" collection
  * 
  * @package    tweetex
  * @subpackage model
@@ -52,7 +52,7 @@ abstract class BaseTweetSource extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Tweet as Tweets', array(
+        $this->hasMany('Tweet', array(
              'local' => 'id',
              'foreign' => 'source_id'));
 

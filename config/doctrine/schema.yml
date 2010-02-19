@@ -32,9 +32,9 @@ Tweet:
     tweetIndex:
       fields: [text]
   relations:
-    TweetUser:  { onDelete: CASCADE, local: user_id, foreign: id, foreignAlias: Tweets }
-    TweetSource:  { onDelete: CASCADE, local: source_id, foreign: id, foreignAlias: Tweets } 
-    TweetGeoLocation:  { onDelete: CASCADE, local: geolocation_id, foreign: id, foreignAlias: Tweets }
+    TweetUser:  { onDelete: CASCADE, local: user_id, foreign: id, type: one, foreignAlias: Tweets }
+    TweetSource:  { onDelete: CASCADE, local: source_id, foreign: id, type: one, foreignAlias: Tweets } 
+    TweetGeoLocation:  { onDelete: CASCADE, local: geolocation_id, foreign: id, type: one, foreignAlias: Tweets }
 
 TweetUser:
   actAs: { Timestampable: ~ }
@@ -85,6 +85,8 @@ TweetUser:
   options:
     collate: utf8_unicode_ci
     charset: utf8
+  relations:
+    Tweet: { local: id, foreign: source_id, type: many }
   indexes:
     mainUserIndex:
       fields: [name, screen_name, description]
@@ -106,6 +108,8 @@ TweetSource:
   indexes:
     sourceIndex:
       fields: [label, url]
+  relations:
+    Tweet: { local: id, foreign: source_id, type: many }
 
 TweetGeoLocation:
   actAs: { Timestampable: ~ }
@@ -121,3 +125,5 @@ TweetGeoLocation:
   options:
     collate: utf8_unicode_ci
     charset: utf8
+  relations:
+    Tweet: { local: id, foreign: geolocation_id, type: many }

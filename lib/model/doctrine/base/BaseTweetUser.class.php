@@ -20,6 +20,7 @@
  * @property string $lang
  * @property integer $utc_offset
  * @property string $profile_image_url
+ * @property Doctrine_Collection $Tweet
  * @property Doctrine_Collection $Tweets
  * 
  * @method string              getName()               Returns the current record's "name" value
@@ -37,6 +38,7 @@
  * @method string              getLang()               Returns the current record's "lang" value
  * @method integer             getUtcOffset()          Returns the current record's "utc_offset" value
  * @method string              getProfileImageUrl()    Returns the current record's "profile_image_url" value
+ * @method Doctrine_Collection getTweet()              Returns the current record's "Tweet" collection
  * @method Doctrine_Collection getTweets()             Returns the current record's "Tweets" collection
  * @method TweetUser           setName()               Sets the current record's "name" value
  * @method TweetUser           setScreenName()         Sets the current record's "screen_name" value
@@ -53,6 +55,7 @@
  * @method TweetUser           setLang()               Sets the current record's "lang" value
  * @method TweetUser           setUtcOffset()          Sets the current record's "utc_offset" value
  * @method TweetUser           setProfileImageUrl()    Sets the current record's "profile_image_url" value
+ * @method TweetUser           setTweet()              Sets the current record's "Tweet" collection
  * @method TweetUser           setTweets()             Sets the current record's "Tweets" collection
  * 
  * @package    tweetex
@@ -157,6 +160,10 @@ abstract class BaseTweetUser extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
+        $this->hasMany('Tweet', array(
+             'local' => 'id',
+             'foreign' => 'source_id'));
+
         $this->hasMany('Tweet as Tweets', array(
              'local' => 'id',
              'foreign' => 'user_id'));

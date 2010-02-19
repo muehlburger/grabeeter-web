@@ -13,11 +13,15 @@
 		<h1 id="headline"><a href="<?php echo url_for('@homepage') ?>">TweetEx - Export your Tweets</a></h1>
             <ul id="nav"> 
 				<li class="current"><a href="<?php echo url_for('@homepage') ?>">Home</a></li> 
-				<li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a></li> 
+				<li><a href="<?php echo url_for('tweet/index') ?>">Tweets</a>
+					<ul>
+						<li><a href="<?php echo url_for('user/searchTweets') ?>">Search Tweets</a></li>
+					</ul>
+				</li> 
 			    <li><a href="<?php echo url_for('user/index') ?>">User</a></li>
 				<li><a href="<?php echo url_for('source/index') ?>">Sources</a></li>
 				<li><a href="<?php echo url_for('geolocation/index') ?>">Geo Locations</a></li> 
-			
+				
 				<!--  
 				<li><a href="#">Multi-Levels</a> 
 					<ul> 

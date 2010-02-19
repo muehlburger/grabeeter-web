@@ -7,14 +7,14 @@
  * 
  * @property float $latitude
  * @property float $longitude
- * @property Doctrine_Collection $Tweets
+ * @property Doctrine_Collection $Tweet
  * 
  * @method float               getLatitude()  Returns the current record's "latitude" value
  * @method float               getLongitude() Returns the current record's "longitude" value
- * @method Doctrine_Collection getTweets()    Returns the current record's "Tweets" collection
+ * @method Doctrine_Collection getTweet()     Returns the current record's "Tweet" collection
  * @method TweetGeoLocation    setLatitude()  Sets the current record's "latitude" value
  * @method TweetGeoLocation    setLongitude() Sets the current record's "longitude" value
- * @method TweetGeoLocation    setTweets()    Sets the current record's "Tweets" collection
+ * @method TweetGeoLocation    setTweet()     Sets the current record's "Tweet" collection
  * 
  * @package    tweetex
  * @subpackage model
@@ -48,7 +48,7 @@ abstract class BaseTweetGeoLocation extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        $this->hasMany('Tweet as Tweets', array(
+        $this->hasMany('Tweet', array(
              'local' => 'id',
              'foreign' => 'geolocation_id'));
 
