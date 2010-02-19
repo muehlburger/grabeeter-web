@@ -85,6 +85,7 @@ a {
   background-color: #777;
   text-decoration: underline;
   color: #fff;
+  padding-top: 10px;
 }
 
 #navigation a:hover, #navigation a:focus {
@@ -97,7 +98,7 @@ a {
     height: 53px;
     padding: 13px 50px 0 65px;
     position: absolute;
-    right: 0;
+    right: 200px;
     top: 155px;
 }
 #search * {
