@@ -20,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($tweets as $tweet): ?>
+    <?php foreach ($pager->getResults() as $tweet): ?>
     <tr>
       <td><a href="<?php echo url_for('tweet/show?id='.$tweet->getId()) ?>"><?php echo $tweet->getId() ?></a></td>
       <td><?php echo $tweet->getUserId() ?></td>
@@ -38,6 +38,32 @@
   </tbody>
 </table>
 
-  <a href="<?php echo url_for('tweet/new') ?>">New</a>
+<?php if ($pager->haveToPaginate()): ?>
+<ul id="pagination-digg">
+  <?php if($pager->getPage() == 1): ?>
+  	<li class="previous-off">&lt; Previous</li>
+  <?php else: ?>
+ 	 <li class="previous"><a href="<?php echo url_for('tweet/index') ?>?page=<?php echo $pager->getFirstPage() ?>">&laquo; First page</a></li>
+ 	 <li class="previous"><a href="<?php echo url_for('tweet/index') ?>?page=<?php echo $pager->getPreviousPage() ?>">&lt; Previous</a></li>
+  <?php endif; ?>
+ 
+  <?php foreach ($pager->getLinks() as $page): ?>
+	<?php if ($page == $pager->getPage()): ?>
+      <li class="active"><?php echo $page ?></li>
+	<?php else: ?>
+	  <li><a href="<?php echo url_for('tweet/index') ?>?page=<?php echo $page ?>"><?php echo $page ?></a></li>
+	<?php endif; ?>
+<?php endforeach; ?>
+
+  <?php if($pager->getPage() == $pager->getLastPage()): ?>
+  	<li class="next-off">Next &gt;</li>
+  <?php else: ?>
+  <li class="next"><a href="<?php echo url_for('tweet/index') ?>?page=<?php echo $pager->getNextPage() ?>">Next &gt;</a></li>
+  <li class="next"><a href="<?php echo url_for('tweet/index') ?>?page=<?php echo $pager->getLastPage() ?>">Last page &raquo;</a></li>
+  <?php endif; ?>
+
+
+</ul>
+<?php endif; ?>
 
 </div>
