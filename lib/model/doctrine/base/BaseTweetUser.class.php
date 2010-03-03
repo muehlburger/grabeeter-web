@@ -140,8 +140,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              'fields' => 
              array(
               0 => 'name',
-              1 => 'screen_name',
-              2 => 'description',
+              1 => 'description',
              ),
              ));
         $this->index('additionalUserIndex', array(

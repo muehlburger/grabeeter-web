@@ -12,7 +12,8 @@ class userActions extends sfActions
 {
 	public function executeSearchTweets(sfWebRequest $request) {
 		
-		$this->twitterUser = $request->getParameter("twitterUsername", 'mebner');
+		$screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
+		$this->twitterUser = $screenName;
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;
 		$this->numberOfStoredTweets = 0;
@@ -52,7 +53,10 @@ class userActions extends sfActions
 			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
 
 			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+			if($tweet == false)
+				$tweet = new Tweet();
+				
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId().'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
 
 		for($i = 1; $i <= $pages; $i++) {
@@ -63,7 +67,6 @@ class userActions extends sfActions
 			$this->results = $results;
 
 			if(!$results) {
-				//				$this->forward404Unless($results, "Response was empty for page: " . $i);
 				continue;
 			}
 				
@@ -72,6 +75,9 @@ class userActions extends sfActions
 		}
 		curl_close($curl);
 		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
+		if($tweet == false)
+			$tweet = new Tweet();
+		$tweet->setStatusesCount(0);
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 
 		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;

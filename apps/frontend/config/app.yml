@@ -7,3 +7,4 @@ all:
   twitter_count: 200
   max_tweets_on_page: 10
   max_sources_on_page: 10
+  default_username: flowolf

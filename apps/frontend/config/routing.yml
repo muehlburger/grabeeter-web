@@ -1,6 +1,22 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+source:
+  class:   sfDoctrineRouteCollection
+  options: { model: TweetSouce }
+
+tweet:
+  class:   sfDoctrineRouteCollection
+  options: { model: Tweet }
+  
+tweet_show:
+  url:     /tweet/:id/:text_slug
+  class:    sfDoctrineRoute
+  options: { model: Tweet, type: object }
+  params:  { module: tweet, action: show, sf_format: html }
+  requires:
+    sf_method: get
+
 # default rules
 homepage:
   url:   /
