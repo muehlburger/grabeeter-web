@@ -47,16 +47,14 @@ class userActions extends sfActions
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
 			$pages = ceil($statusesCount / $count);
-			$sinceId = 0;
+			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		} else {
 			$savedStatusesCount = $user->getStatusesCount();
 			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
 
 			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$sinceId = $tweet->getTweetTwitterId();
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
-		
-		$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $sinceId .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 
 		for($i = 1; $i <= $pages; $i++) {
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
