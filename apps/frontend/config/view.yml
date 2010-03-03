@@ -6,11 +6,11 @@ default:
     content-type: text/html
  
   metas:
-    #title:        symfony project
-    #description:  symfony project
-    #keywords:     symfony, project
-    #language:     en
-    #robots:       index, follow
+    title:        TweetEx - Export your Tweets
+    description:  Tweet Export Service
+    keywords:     tweet, twitter, export, save, backup, service
+    language:     en
+    robots:       index, follow
  
   stylesheets:    [main.css]
  

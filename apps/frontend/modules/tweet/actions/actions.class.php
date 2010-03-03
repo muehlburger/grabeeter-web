@@ -13,7 +13,7 @@ class tweetActions extends sfActions
   public function executeIndex(sfWebRequest $request)
   {
   	 $screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
-  	 $q = Doctrine::getTable('Tweet')->createQuery('t')->leftJoin('t.TweetUser u')->where('u.screen_name = ?', $screenName)
+  	 $q = Doctrine::getTable('Tweet')->createQuery('t')->leftJoin('t.TweetUser u')//->where('u.screen_name = ?', $screenName)
   	 ->orderBy('tweet_created_at DESC');
      $this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 	 $this->pager->setQuery($q);
