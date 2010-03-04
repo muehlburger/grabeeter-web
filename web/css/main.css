@@ -330,6 +330,7 @@ border:solid 1px #666666;
 .tweet a {
   display: block;
   color: blue;
+  text-decoration: none;
 }
 
 .tweet img {
@@ -340,17 +341,22 @@ border:solid 1px #666666;
 
 .tweet p {
   margin-top: 0;
-  margin-left: 50px;  
+  margin-left: 53px;  
 }
 
 .tweet span.description {
   clear: both;
   float: left;
-  color: #ccc;
+  color: #aaa;
 }
 
 .description a {
   color: #aaa;
+  text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
 }
 
 .tweet p a{
