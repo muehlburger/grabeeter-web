@@ -314,3 +314,39 @@ text-decoration:none;
 #pagination-flickr a:hover{
 border:solid 1px #666666;
 }
+
+.tweet {
+  clear: both;
+  border-top: 1px solid #eee;
+  margin: 10px;	
+}
+
+.tweet a {
+  display: block;
+  color: blue;
+}
+
+.tweet img {
+  width: 48px;
+  float: left;
+}
+
+.tweet p {
+  margin-top: 0;
+  margin-left: 50px;  
+}
+
+.tweet span.description {
+  float: right;
+  color: #ccc;
+}
+
+.tweet p a{
+  font-weight: bold;
+  float: left;
+  
+}
+
+.tweet :hover {
+  background-color: #eee;
+}
