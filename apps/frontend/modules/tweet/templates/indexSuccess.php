@@ -6,11 +6,7 @@
   <?php endif; ?>
 </p>
 
-<?php foreach ($pager->getResults() as $tweet): ?>
-<p><strong><?php echo $tweet->getTweetUser() ?></strong> <a href="<?php echo url_for('tweet_show', $tweet) ?>"><?php echo $tweet->getId() ?></a>:
-<a target="_blank" href="http://www.twitter.com/<?php echo $tweet->getTweetUser() ?>/statuses/<?php echo $tweet->getTweetTwitterId() ?>"><?php echo $tweet->getText() ?></a></p>
-<?php endforeach; ?>
-
+<?php include_partial('tweet/list', array('tweets' => $pager->getResults())) ?>
 <!-- 
 <table>
   <thead>
@@ -29,7 +25,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($pager->getResults() as $tweet): ?>
+	<?php foreach ($pager->getResults() as $tweet): ?>
     <tr>
       <td><a href="<?php echo url_for('tweet_show', $tweet) ?>"><?php echo $tweet->getId() ?></a></td>
       <td><?php echo $tweet->getUserId() ?></td>

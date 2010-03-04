@@ -10,6 +10,10 @@
  */
 class tweetActions extends sfActions
 {
+  public function executeSearch(sfWebRequest $request) {
+  		
+  }
+  
   public function executeIndex(sfWebRequest $request)
   {
   	 $screenName = $request->getParameter('n', sfConfig::get('app_default_username'));

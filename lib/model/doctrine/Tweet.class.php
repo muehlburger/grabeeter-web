@@ -16,7 +16,6 @@ class Tweet extends BaseTweet
 		$ret = parent::save($conn);
 
 		$this->updateLuceneIndex();
-
 		return $ret;
 	}
 

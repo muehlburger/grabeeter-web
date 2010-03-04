@@ -17,6 +17,10 @@ tweet_show:
   requires:
     sf_method: get
 
+tweet_search:
+  url:    /search
+  param:  { module: tweet, action: search }
+
 # default rules
 homepage:
   url:   /
