@@ -316,9 +316,15 @@ border:solid 1px #666666;
 }
 
 .tweet {
+  color: #000;
   clear: both;
-  border-top: 1px solid #eee;
-  margin: 10px;	
+  height: 70px;
+  border-top: 1px solid #ccc;	
+}
+
+.tweet:hover {
+  background-color: #ddd;
+  border-top: 1px solid #ccc;
 }
 
 .tweet a {
@@ -327,6 +333,7 @@ border:solid 1px #666666;
 }
 
 .tweet img {
+  display: inline;
   width: 48px;
   float: left;
 }
@@ -337,16 +344,12 @@ border:solid 1px #666666;
 }
 
 .tweet span.description {
+  clear: both;
   float: right;
   color: #ccc;
 }
 
 .tweet p a{
   font-weight: bold;
-  float: left;
-  
-}
-
-.tweet :hover {
-  background-color: #eee;
+  float: left; 
 }
