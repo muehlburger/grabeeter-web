@@ -345,8 +345,12 @@ border:solid 1px #666666;
 
 .tweet span.description {
   clear: both;
-  float: right;
+  float: left;
   color: #ccc;
+}
+
+.description a {
+  color: #aaa;
 }
 
 .tweet p a{
