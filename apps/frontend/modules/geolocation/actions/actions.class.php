@@ -19,8 +19,7 @@ class geolocationActions extends sfActions
 
   public function executeShow(sfWebRequest $request)
   {
-    $this->tweet_geo_location = Doctrine::getTable('TweetGeoLocation')->find(array($request->getParameter('id')));
-    $this->forward404Unless($this->tweet_geo_location);
+  	$this->tweet_geo_location = $this->getRoute()->getObject();
   }
 
   public function executeNew(sfWebRequest $request)

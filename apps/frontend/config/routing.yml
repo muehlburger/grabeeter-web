@@ -9,7 +9,7 @@ user:
   options: { model: TweetUser }
 
 saveTweets:
-  url:     /tweets/update
+  url:     /tweets/update/:screen_name
   param:   { module: user, action: updateTweets }
 
 #########################################
@@ -17,7 +17,7 @@ saveTweets:
 ##
 source:
   class:   sfDoctrineRouteCollection
-  options: { model: TweetSouce }
+  options: { model: TweetSource }
 
 #########################################
 # Tweet Routes

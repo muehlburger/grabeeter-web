@@ -12,7 +12,7 @@ class userActions extends sfActions
 {
 	public function executeUpdateTweets(sfWebRequest $request) {
 		
-		$screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
+		$screenName = $request->getParameter('screen_name', sfConfig::get('app_default_username'));
 		$this->twitterUser = $screenName;
 		$count = sfConfig::get('app_twitter_count');
 		$this->emptyTweets = 0;

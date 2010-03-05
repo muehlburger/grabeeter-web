@@ -19,7 +19,7 @@
 			    <li>
 			    	<a href="<?php echo url_for('user') ?>">User</a>
 			    	<ul>
-						<li><a href="<?php echo url_for('saveTweets') ?>">Search Tweets</a></li>
+						<li><a href="<?php echo url_for(array('sf_route' => 'saveTweets', 'screen_name' => 'hmuehlburger')) ?>">Search Tweets</a></li>
 					</ul>
 			    </li>
 				<li><a href="<?php echo url_for('source') ?>">Sources</a></li>
