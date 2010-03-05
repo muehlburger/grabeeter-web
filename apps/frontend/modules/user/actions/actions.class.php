@@ -10,7 +10,7 @@
  */
 class userActions extends sfActions
 {
-	public function executeSearchTweets(sfWebRequest $request) {
+	public function executeUpdateTweets(sfWebRequest $request) {
 		
 		$screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
 		$this->twitterUser = $screenName;

@@ -1,10 +1,27 @@
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
+#########################################
+# User Routes
+##
+user:
+  class:   sfDoctrineRouteCollection
+  options: { model: TweetUser }
+
+saveTweets:
+  url:     /tweets/update
+  param:   { module: user, action: updateTweets }
+
+#########################################
+# Source Routes
+##
 source:
   class:   sfDoctrineRouteCollection
   options: { model: TweetSouce }
 
+#########################################
+# Tweet Routes
+##
 tweet:
   class:   sfDoctrineRouteCollection
   options: { model: Tweet }
@@ -21,14 +38,21 @@ tweet_search:
   url:    /search
   param:  { module: tweet, action: search }
 
+#########################################
+# Geolocation Routes
+##
+geolocation:
+  class:   sfDoctrineRouteCollection
+  options: { model: TweetGeoLocation }
+
 # default rules
 homepage:
   url:   /
   param: { module: tweet, action: index }
 
-default_indecurlx:
-  url:   /:module
-  param: { action: index }
- 
-default:
-  url:   /:module/:action/*
+#default_index:
+#  url:   /:module
+#  param: { action: index }
+# 
+#default:
+#  url:   /:module/:action/*
