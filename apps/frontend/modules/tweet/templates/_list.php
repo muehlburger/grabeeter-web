@@ -5,7 +5,7 @@
         <p>
           <a href="<?php echo url_for('user/show?id='.$tweet->getTweetUser()->getId()) ?>"><?php echo $tweet->getTweetUser() ?></a>
           &nbsp;<?php echo $tweet->getText() ?>
-        <span class="description"><a href="<?php echo url_for('tweet_show', $tweet) ?>">created at</a> &nbsp;<?php echo $tweet->getTweetCreatedAt() ?></span>
+        <span class="description"><a href="<?php echo url_for('tweet_show', $tweet) ?>">created at </a> &nbsp;<?php echo $tweet->getDateTimeObject('tweet_created_at')->format('jS, F Y (H:i:s T)') ?></span>
         </p>
     </div>
   <?php endforeach; ?>

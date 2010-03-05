@@ -185,6 +185,22 @@ form input {
     padding: 0.2em 5px;
 }
 
+#pagination {
+  width: 100%;
+  clear: both;
+  float: left;
+  text-align: center;
+  padding: 10px;
+}
+
+#pagination ul {
+	margin: auto;
+}
+
+#pagination a img {
+	border: none;
+}
+
 ul{border:0; margin:0; padding:0;}
 
 #pagination-clean li{
@@ -337,6 +353,7 @@ border:solid 1px #666666;
   display: inline;
   width: 48px;
   float: left;
+  border: none;
 }
 
 .tweet p {
