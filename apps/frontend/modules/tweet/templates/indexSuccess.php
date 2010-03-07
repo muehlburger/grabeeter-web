@@ -7,4 +7,4 @@
 </p>
 <?php include_partial('tweet/pagination', array('pager' => $pager, 'urlFor' => 'tweet'))?>
 <?php include_partial('tweet/list', array('tweets' => $pager->getResults())) ?>
-<?php include_partial('tweet/pagination', array('pager' => $pager))?>
+<?php include_partial('tweet/pagination', array('pager' => $pager, 'urlFor' => 'tweet'))?>
