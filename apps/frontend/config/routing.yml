@@ -8,7 +8,7 @@ user:
   class:   sfDoctrineRouteCollection
   options: { model: TweetUser }
 
-saveTweets:
+update_tweets:
   url:     /tweets/update/:screen_name
   param:   { module: user, action: updateTweets }
 
