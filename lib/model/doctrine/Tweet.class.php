@@ -30,7 +30,6 @@ class Tweet extends BaseTweet
 
 		$doc = new Zend_Search_Lucene_Document();
 		$doc->addField(Zend_Search_Lucene_Field::Keyword('pk', $this->getId()));
-
 		$doc->addField(Zend_Search_Lucene_Field::UnStored('text', $this->getText(), 'utf-8'));
 
 		// add tweet to the index
