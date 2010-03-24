@@ -3,6 +3,36 @@
 class TweetTable extends Doctrine_Table
 {
 	
+	public function getMatchingTweets(Doctrine_Query $q = null) {
+		if(is_null($q)) {
+			$q = Doctrine_Query::create()->from('Tweet t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
+		}
+		
+		return $q;		
+	}
+	
+	public function getForLuceneQuery($query) {
+	  $hits = $this->getLuceneIndex()->find($query);
+	  
+	  $pks = array();
+	  foreach ($hits as $hit) {
+	  	$pks[] = $hit->pk;
+	  }
+	  
+	  if(empty($pks))
+	  {
+	  	return array();
+	  }
+	  
+	  $q = $this->createQuery('t')
+	  	->whereIn('t.id', $pks);
+//	  	->limit(50);
+	  	
+	  $q = $this->getMatchingTweets($q);
+	  
+	  return $q->execute();
+	}
+	
 	static public function getLuceneIndex() {
 		ProjectConfiguration::registerZend();
 
@@ -88,7 +118,4 @@ class TweetTable extends Doctrine_Table
 		return $q->fetchOne();
 	}
 
-	public function createNewTweet($result) {
-
-	}
 }

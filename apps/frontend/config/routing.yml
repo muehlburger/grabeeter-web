@@ -48,7 +48,7 @@ geolocation:
 # default rules
 homepage:
   url:   /
-  param: { module: tweet, action: index }
+  param: { module: tweet, action: search }
 
 #default_index:
 #  url:   /:module

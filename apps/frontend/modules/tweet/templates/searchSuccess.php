@@ -4,3 +4,6 @@
   <input type="submit" value="search" />
   <div class="help">Enter some keywords (eg. web, eLearning, ...)</div>
 </form>
+
+<h3>List of Tweets</h3>
+<?php include_partial('tweet/list', array('tweets' => $tweets))?>

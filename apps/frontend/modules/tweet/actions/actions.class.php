@@ -11,13 +11,17 @@
 class tweetActions extends sfActions
 {
   public function executeSearch(sfWebRequest $request) {
-  		
+	if(!$query = $request->getParameter('query')) {
+		$query = "";
+	}
+	
+	$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query);
   }
   
   public function executeIndex(sfWebRequest $request)
   {
   	 $screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
-  	 $q = Doctrine::getTable('Tweet')->createQuery('t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
+  	 $q = Doctrine::getTable('Tweet')->getMatchingTweets();
 
   	 $this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 	 $this->pager->setQuery($q);
