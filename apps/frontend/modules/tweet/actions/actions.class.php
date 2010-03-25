@@ -10,81 +10,93 @@
  */
 class tweetActions extends sfActions
 {
-  public function executeSearch(sfWebRequest $request) {
-	if(!$query = $request->getParameter('query')) {
-		$query = "";
-	}
-	
-	$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query);
-  }
-  
-  public function executeIndex(sfWebRequest $request)
-  {
-  	 $screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
-  	 $q = Doctrine::getTable('Tweet')->getMatchingTweets();
+	public function executeSearch(sfWebRequest $request) {
+		if(!$query = $request->getParameter('query')) {
+			$query = "";
+		}
 
-  	 $this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
+		$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query);
+
+		if ($request->isXmlHttpRequest())
+		{
+			if ('*' == $query || !$this->tweets)
+			{
+				return $this->renderText('No results.');
+			}
+			else
+			{
+				return $this->renderPartial('tweet/list', array('tweets' => $this->tweets));
+			}
+		}
+	}
+
+	public function executeIndex(sfWebRequest $request)
+	{
+		$screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
+		$q = Doctrine::getTable('Tweet')->getMatchingTweets();
+
+		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 	 $this->pager->setQuery($q);
 	 $this->pager->setPage($request->getParameter('page'), 1);
 	 $this->pager->init();
-  }
+	}
 
-  public function executeShow(sfWebRequest $request)
-  {
-  	$this->tweet = $this->getRoute()->getObject();
-  }
+	public function executeShow(sfWebRequest $request)
+	{
+		$this->tweet = $this->getRoute()->getObject();
+	}
 
-  public function executeNew(sfWebRequest $request)
-  {
-    $this->form = new TweetForm();
-  }
+	public function executeNew(sfWebRequest $request)
+	{
+		$this->form = new TweetForm();
+	}
 
-  public function executeCreate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST));
+	public function executeCreate(sfWebRequest $request)
+	{
+		$this->forward404Unless($request->isMethod(sfRequest::POST));
 
-    $this->form = new TweetForm();
+		$this->form = new TweetForm();
 
-    $this->processForm($request, $this->form);
+		$this->processForm($request, $this->form);
 
-    $this->setTemplate('new');
-  }
+		$this->setTemplate('new');
+	}
 
-  public function executeEdit(sfWebRequest $request)
-  {
-    $this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
-    $this->form = new TweetForm($tweet);
-  }
+	public function executeEdit(sfWebRequest $request)
+	{
+		$this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TweetForm($tweet);
+	}
 
-  public function executeUpdate(sfWebRequest $request)
-  {
-    $this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
-    $this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
-    $this->form = new TweetForm($tweet);
+	public function executeUpdate(sfWebRequest $request)
+	{
+		$this->forward404Unless($request->isMethod(sfRequest::POST) || $request->isMethod(sfRequest::PUT));
+		$this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
+		$this->form = new TweetForm($tweet);
 
-    $this->processForm($request, $this->form);
+		$this->processForm($request, $this->form);
 
-    $this->setTemplate('edit');
-  }
+		$this->setTemplate('edit');
+	}
 
-  public function executeDelete(sfWebRequest $request)
-  {
-    $request->checkCSRFProtection();
+	public function executeDelete(sfWebRequest $request)
+	{
+		$request->checkCSRFProtection();
 
-    $this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
-    $tweet->delete();
+		$this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
+		$tweet->delete();
 
-    $this->redirect('tweet/index');
-  }
+		$this->redirect('tweet/index');
+	}
 
-  protected function processForm(sfWebRequest $request, sfForm $form)
-  {
-    $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
-    if ($form->isValid())
-    {
-      $tweet = $form->save();
+	protected function processForm(sfWebRequest $request, sfForm $form)
+	{
+		$form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+		if ($form->isValid())
+		{
+			$tweet = $form->save();
 
-      $this->redirect('tweet/edit?id='.$tweet->getId());
-    }
-  }
+			$this->redirect('tweet/edit?id='.$tweet->getId());
+		}
+	}
 }

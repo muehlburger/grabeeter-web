@@ -1,4 +1,4 @@
-<div class="tweets">
+<div id="tweets">
   <?php foreach ($tweets as $i => $tweet): ?>
     <div class="tweet <?php echo fmod($i, 2) ? 'even' : 'odd' ?>">
 		<a href="<?php echo url_for('user_show', $tweet->getTweetUser()) ?>">
