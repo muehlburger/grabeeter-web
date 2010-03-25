@@ -6,7 +6,7 @@ class TweetTable extends Doctrine_Table
 		$q = $this->createQuery('t')
 		->leftJoin('t.TweetUser u')
 		->where('u.screen_name = ?', $parameters['username'])
-		->limit(3)
+		//->limit(3)
 		->orderBy('tweet_created_at DESC');
 
 			
