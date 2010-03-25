@@ -2,6 +2,17 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 #########################################
+# Api Routes
+##
+apt_tweets:
+  url:     /api/:username/tweets.:sf_format
+  class:   sfDoctrineRoute
+  param:   { module: api, action: list }
+  options: { model: Tweet, type: list, method: getForUsername }
+  requirements:
+    sf_format: (?:xml|json|yaml)
+
+#########################################
 # User Routes
 ##
 user:

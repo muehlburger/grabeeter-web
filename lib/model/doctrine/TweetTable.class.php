@@ -2,10 +2,20 @@
 
 class TweetTable extends Doctrine_Table
 {
+	public function getForUsername(array $parameters) {
+		$q = $this->createQuery('t')
+		->leftJoin('t.TweetUser u')
+		->where('u.screen_name = ?', $parameters['username'])
+		->limit(3)
+		->orderBy('tweet_created_at DESC');
+
+			
+		return $q->execute();
+	}
 	
 	public function getMatchingTweets(Doctrine_Query $q = null) {
 		if(is_null($q)) {
-			$q = Doctrine_Query::create()->from('Tweet t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
+			$q = $this->createQuery('t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
 		}
 		
 		return $q;		

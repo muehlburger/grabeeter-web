@@ -12,6 +12,12 @@
  */
 class Tweet extends BaseTweet
 {
+	public function asArray() {
+		return array(
+			'text'		=>		$this->getText()
+		);	
+	}
+	
 	public function save(Doctrine_Connection $conn = null) {
 		$ret = parent::save($conn);
 
