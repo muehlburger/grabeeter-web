@@ -15,5 +15,13 @@ class apiActions extends sfActions
 		foreach ($this->getRoute()->getObjects() as $tweet) {
 			$this->tweets[$this->generateUrl('tweet_show', $tweet, true)] = $tweet->asArray();
 		}
+		
+		switch ($request->getRequestFormat())
+	    {
+	      case 'yaml':
+	        $this->setLayout(false);
+	        $this->getResponse()->setContentType('text/yaml');
+	        break;
+	    }
 	}
 }
