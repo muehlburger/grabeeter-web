@@ -3,6 +3,12 @@
 /log/*
 /web/*_dev.php
 /web/uploads/*
+.project
+.gitignore
+.buildpath
+/.settings/*
+README
+/data/tweet.dev.index
 
 # SCM files
 .arch-params
