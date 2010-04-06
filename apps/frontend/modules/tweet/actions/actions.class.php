@@ -32,13 +32,11 @@ class tweetActions extends sfActions
 
 	public function executeIndex(sfWebRequest $request)
 	{
-		$screenName = $request->getParameter('n', sfConfig::get('app_default_username'));
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets();
-
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
-	 $this->pager->setQuery($q);
-	 $this->pager->setPage($request->getParameter('page'), 1);
-	 $this->pager->init();
+	 	$this->pager->setQuery($q);
+	 	$this->pager->setPage($request->getParameter('page'), 1);
+	 	$this->pager->init();
 	}
 
 	public function executeShow(sfWebRequest $request)

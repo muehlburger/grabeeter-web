@@ -1,4 +1,4 @@
-<h2>Search in your Tweets</h2>
+<h2>What do you want to find?</h2>
 
 <div class="search">
 <form action="<?php echo url_for('@tweet_search') ?>" method="get">
@@ -9,5 +9,5 @@
 </form>
 </div>
 
-<h3>List of Tweets</h3>
+<h3>Results</h3>
 <?php include_partial('tweet/list', array('tweets' => $tweets))?>
