@@ -14,7 +14,8 @@ class Tweet extends BaseTweet
 {
 	public function asArray() {
 		return array(
-			'text'		=>		$this->getText()
+			'text'			=>		$this->getText(),
+			'screen_name'	=>		$this->getTweetUser()
 		);	
 	}
 	
