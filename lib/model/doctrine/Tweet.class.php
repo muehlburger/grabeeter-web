@@ -44,6 +44,6 @@ class Tweet extends BaseTweet
 	}
 
 	public function getTextSlug() {
-		return Twitarch::slugify($this->getText());
+		return Tweetex::slugify($this->getText());
 	}
 }
