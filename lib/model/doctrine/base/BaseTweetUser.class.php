@@ -24,7 +24,7 @@
  * @property Doctrine_Collection $Tweets
  * 
  * @method string              getName()               Returns the current record's "name" value
- * @method string              getScreenName()         Returns the current record's "screen_name" value
+ * getScreenName string              getScreenName()         Returns the current record's "screen_name" value
  * @method integer             getTwitterUserId()      Returns the current record's "twitter_user_id" value
  * @method string              getDescription()        Returns the current record's "description" value
  * @method integer             getFollowersCount()     Returns the current record's "followers_count" value
