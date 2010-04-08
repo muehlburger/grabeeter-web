@@ -5,16 +5,16 @@
 # Api Routes
 ##
 api_tweets:
-  url:     /api/:username/tweets.:sf_format
+  url:     /api/tweets/:username.:sf_format
   class:   sfDoctrineRoute
-  param:   { module: api, action: list }
+  param:   { module: api, action: list, sf_format: xml }
   options: { model: Tweet, type: list, method: getForUsername }
   requirements:
     sf_format: (?:xml|json|yaml)
     
 api_search:
-  url:    /api/:q/search.:sf_format
-  param:  { module: api, action: search }
+  url:    /api/search/:q.:sf_format
+  param:  { module: api, action: search, sf_format: xml }
   requirements:
     sf_format: (?:xml|json|yaml)
 
