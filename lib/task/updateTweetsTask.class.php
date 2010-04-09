@@ -36,9 +36,6 @@ EOF;
 		$databaseManager = new sfDatabaseManager($this->configuration);
 		$connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
-		// add your code here
-		$this->logSection('username:', $arguments['username']);
-
 		$screenName = $arguments['username'];
 		$this->twitterUser = $screenName;
 		$count = sfConfig::get('app_twitter_count');
@@ -51,7 +48,7 @@ EOF;
 		$curl = curl_init($url);
 		if(!isset($curl)) {
 			$this->logSection('error: ', 'Curl could not be initialized!');
-			exit;
+			exit(1);
 		}
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
@@ -60,19 +57,14 @@ EOF;
 
 		//make the request
 		$result = json_decode(curl_exec($curl));
-		//$this->logSection('result:', $result);
 
-		if(!isset($result)) {
-			$this->logSection('error: ', 'No results for this request!');
-			exit;
+		if(isset($result->error)) {
+			$this->logSection('error: ', $result->error);
+			exit(1);
 		}
 
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
-		$this->logSection('user: ', $user);
-
 		$statusesCount = $result->statuses_count;
-		$this->logSection('statusesCount: ', $statusesCount);
-
 		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
 
 		$sources = array();
@@ -97,12 +89,17 @@ EOF;
 
 			//make the request
 			$results = json_decode(curl_exec($curl));
-			$this->results = $results;
+			
 
-			if(!$results) {
-				continue;
+			if(isset($results->error)) {
+				$this->logSection('error: ', $results->error);
+				exit(1);
 			}
-				
+//			if(!$results) {
+//				continue;
+//			}
+
+			$this->results = $results;				
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
@@ -114,7 +111,7 @@ EOF;
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 
 		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
-		$this->logSection('url:', $url);
+		$this->logBlock('Task run successfuly for '.$arguments['username'], 'INFO');
 
 	}
 }

@@ -46,7 +46,7 @@
  * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseTweet extends sfDoctrineRecord
 {
@@ -66,11 +66,11 @@ abstract class BaseTweet extends sfDoctrineRecord
              ));
         $this->hasColumn('in_reply_to_user_id', 'integer', 12, array(
              'type' => 'integer',
-             'length' => '12',
+             'length' => 12,
              ));
         $this->hasColumn('in_reply_to_status_id', 'integer', 20, array(
              'type' => 'integer',
-             'length' => '20',
+             'length' => 20,
              ));
         $this->hasColumn('tweet_created_at', 'timestamp', null, array(
              'type' => 'timestamp',
@@ -87,7 +87,7 @@ abstract class BaseTweet extends sfDoctrineRecord
         $this->hasColumn('text', 'string', 140, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '140',
+             'length' => 140,
              ));
 
 

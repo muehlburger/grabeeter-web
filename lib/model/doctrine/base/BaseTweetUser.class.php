@@ -24,7 +24,7 @@
  * @property Doctrine_Collection $Tweets
  * 
  * @method string              getName()               Returns the current record's "name" value
- * getScreenName string              getScreenName()         Returns the current record's "screen_name" value
+ * @method string              getScreenName()         Returns the current record's "screen_name" value
  * @method integer             getTwitterUserId()      Returns the current record's "twitter_user_id" value
  * @method string              getDescription()        Returns the current record's "description" value
  * @method integer             getFollowersCount()     Returns the current record's "followers_count" value
@@ -61,7 +61,7 @@
  * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseTweetUser extends sfDoctrineRecord
 {
@@ -70,13 +70,13 @@ abstract class BaseTweetUser extends sfDoctrineRecord
         $this->setTableName('tweet_user');
         $this->hasColumn('name', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('screen_name', 'string', 15, array(
              'type' => 'string',
              'notnull' => true,
              'unique' => true,
-             'length' => '15',
+             'length' => 15,
              ));
         $this->hasColumn('twitter_user_id', 'integer', null, array(
              'type' => 'integer',
@@ -84,7 +84,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              ));
         $this->hasColumn('description', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('followers_count', 'integer', null, array(
              'type' => 'integer',
@@ -98,7 +98,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              ));
         $this->hasColumn('url', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('friends_count', 'integer', null, array(
              'type' => 'integer',
@@ -116,15 +116,15 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              ));
         $this->hasColumn('time_zone', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('location', 'string', 255, array(
              'type' => 'string',
-             'length' => '255',
+             'length' => 255,
              ));
         $this->hasColumn('lang', 'string', 10, array(
              'type' => 'string',
-             'length' => '10',
+             'length' => 10,
              ));
         $this->hasColumn('utc_offset', 'integer', null, array(
              'type' => 'integer',
@@ -132,7 +132,7 @@ abstract class BaseTweetUser extends sfDoctrineRecord
         $this->hasColumn('profile_image_url', 'string', 255, array(
              'type' => 'string',
              'notnull' => true,
-             'length' => '255',
+             'length' => 255,
              ));
 
 

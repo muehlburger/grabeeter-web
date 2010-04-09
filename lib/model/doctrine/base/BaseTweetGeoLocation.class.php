@@ -19,7 +19,7 @@
  * @package    tweetex
  * @subpackage model
  * @author     Herbert Muehlburger
- * @version    SVN: $Id: Builder.php 6820 2009-11-30 17:27:49Z jwage $
+ * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
  */
 abstract class BaseTweetGeoLocation extends sfDoctrineRecord
 {
@@ -30,14 +30,14 @@ abstract class BaseTweetGeoLocation extends sfDoctrineRecord
              'type' => 'float',
              'notnull' => true,
              'default' => 0,
-             'length' => '9',
+             'length' => 9,
              'scale' => '6',
              ));
         $this->hasColumn('longitude', 'float', 9, array(
              'type' => 'float',
              'notnull' => true,
              'default' => 0,
-             'length' => '9',
+             'length' => 9,
              'scale' => '6',
              ));
 
