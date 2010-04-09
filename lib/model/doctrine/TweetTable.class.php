@@ -63,6 +63,11 @@ class TweetTable extends Doctrine_Table
 		$conn = $this->getConnection();
 		$conn->beginTransaction();
 
+		if(!is_array($results)) {
+			var_dump($results);
+			exit(1);
+		}
+		
 		try {
 			foreach($results as $result) {
 				if(!array_key_exists($result->source, $sources)) {

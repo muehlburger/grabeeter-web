@@ -45,12 +45,20 @@ class TweetUserTable extends Doctrine_Table
 	}
 
 	public function getUserByTwitterUserId($twitterUserId) {
-		// TODO: insert find query here
 		$q = $this->createQuery('u')
 		->from('TweetUser u')
 		->where('u.twitter_user_id = ?', $twitterUserId);
 
 		return $q->fetchOne();
 	}
+	
+//	public function getStatusesCount($twitterUserId) {
+//		$q = $this->createQuery('u')
+//		->from('TweetUser u')
+//		->where('u.twitter_user_id = ?', $twitterUserId)
+//		->
+//
+//		return $q->fetchOne();
+//	}
 
 }

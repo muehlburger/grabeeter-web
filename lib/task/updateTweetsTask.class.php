@@ -36,6 +36,7 @@ EOF;
 		$databaseManager = new sfDatabaseManager($this->configuration);
 		$connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
+		$this->logBlock('Running task for '.$arguments['username'], 'INFO');
 		$screenName = $arguments['username'];
 		$this->twitterUser = $screenName;
 		$count = sfConfig::get('app_twitter_count');
@@ -56,10 +57,22 @@ EOF;
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
 
 		//make the request
-		$result = json_decode(curl_exec($curl));
+		$curlReturnValue = curl_exec($curl);
+		
+		if($curlReturnValue)
+			$result = json_decode($curlReturnValue);
+		else {
+			$result = new stdClass();
+			$result->error = "Curl failed, check your internet connection!";
+		}
 
 		if(isset($result->error)) {
-			$this->logSection('error: ', $result->error);
+			$this->logSection('Error: ', $result->error);
+			exit(1);
+		}
+		
+		if(!isset($result->id)) {
+			$this->logSection('Error: ', 'Twitter not reachable!');
 			exit(1);
 		}
 
@@ -85,19 +98,22 @@ EOF;
 		}
 		
 		for($i = 1; $i <= $pages; $i++) {
-			curl_setopt($curl, CURLOPT_URL, $url.$i);
-
-			//make the request
-			$results = json_decode(curl_exec($curl));
+			curl_setopt($curl, CURLOPT_URL, $url.$i);			
 			
-
+			//make the request
+			$curlReturnValue = curl_exec($curl);
+			
+			if($curlReturnValue)
+				$results = json_decode($curlReturnValue);
+			else {
+				$results = new stdClass();
+				$results->error = "Curl failed!";
+			}
+			
 			if(isset($results->error)) {
 				$this->logSection('error: ', $results->error);
 				exit(1);
 			}
-//			if(!$results) {
-//				continue;
-//			}
 
 			$this->results = $results;				
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
@@ -105,9 +121,10 @@ EOF;
 		}
 		curl_close($curl);
 		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-		if($tweet == false)
+		if($tweet == false) {
 			$tweet = new Tweet();
-		$tweet->setStatusesCount(0);
+			$tweet->setStatusesCount(0);
+		}
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 
 		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
