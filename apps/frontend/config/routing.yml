@@ -25,9 +25,9 @@ user:
   class:   sfDoctrineRouteCollection
   options: { model: TweetUser }
 
-update_tweets:
-  url:     /tweets/update/:screen_name
-  param:   { module: user, action: updateTweets }
+#update_tweets:
+#  url:     /tweets/update/:screen_name
+#  param:   { module: user, action: updateTweets }
 
 #########################################
 # Source Routes

@@ -19,7 +19,6 @@
 					<a href="<?php echo url_for('tweet') ?>">Tweets</a>
 					<ul>
 						<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
-						<li><a href="<?php echo url_for(array('sf_route' => 'update_tweets', 'screen_name' => 'hmuehlburger')) ?>">Update Tweets</a></li>
 					</ul>
 				</li>
 			    <li>

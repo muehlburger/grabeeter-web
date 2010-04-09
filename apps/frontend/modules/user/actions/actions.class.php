@@ -10,75 +10,75 @@
  */
 class userActions extends sfActions
 {
-	public function executeUpdateTweets(sfWebRequest $request) {
-		
-		$screenName = $request->getParameter('screen_name', sfConfig::get('app_default_username'));
-		$this->twitterUser = $screenName;
-		$count = sfConfig::get('app_twitter_count');
-		$this->emptyTweets = 0;
-		$this->numberOfStoredTweets = 0;
-
-		$url = 'http://twitter.com/users/show.json?screen_name=' . $this->twitterUser;
-
-		// initialize curl
-		$curl = curl_init($url);
-
-		$this->forward404Unless($curl, "Curl could not be initialized!");
-
-		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 900);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
-
-		//make the request
-		$result = json_decode(curl_exec($curl));
-
-		$this->forward404Unless($result, "No results for this request!");
-
-		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
-		$statusesCount = $result->statuses_count;
-
-		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
-
-		$sources = array();
-		foreach($allTweetSources as $source) {
-			$sources[$source['label']]= $source['id'];
-		}
-
-		if(!$user) {
-			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
-			$pages = ceil($statusesCount / $count);
-			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-		} else {
-			$savedStatusesCount = $user->getStatusesCount();
-			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
-
-			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-		}
-
-		for($i = 1; $i <= $pages; $i++) {
-			curl_setopt($curl, CURLOPT_URL, $url.$i);
-
-			//make the request
-			$results = json_decode(curl_exec($curl));
-			$this->results = $results;
-
-			if(!$results) {
-				continue;
-			}
-				
-			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
-
-		}
-		curl_close($curl);
-		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-		if($tweet == false)
-			$tweet = new Tweet();
-		$tweet->setStatusesCount(0);
-		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
-
-		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
-	}
+//	public function executeUpdateTweets(sfWebRequest $request) {
+//		
+//		$screenName = $request->getParameter('screen_name', sfConfig::get('app_default_username'));
+//		$this->twitterUser = $screenName;
+//		$count = sfConfig::get('app_twitter_count');
+//		$this->emptyTweets = 0;
+//		$this->numberOfStoredTweets = 0;
+//
+//		$url = 'http://twitter.com/users/show.json?screen_name=' . $this->twitterUser;
+//
+//		// initialize curl
+//		$curl = curl_init($url);
+//
+//		$this->forward404Unless($curl, "Curl could not be initialized!");
+//
+//		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+//		curl_setopt($curl, CURLOPT_TIMEOUT, 900);
+//		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
+//
+//		//make the request
+//		$result = json_decode(curl_exec($curl));
+//
+//		$this->forward404Unless($result, "No results for this request!");
+//
+//		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
+//		$statusesCount = $result->statuses_count;
+//
+//		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
+//
+//		$sources = array();
+//		foreach($allTweetSources as $source) {
+//			$sources[$source['label']]= $source['id'];
+//		}
+//
+//		if(!$user) {
+//			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
+//			$pages = ceil($statusesCount / $count);
+//			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+//		} else {
+//			$savedStatusesCount = $user->getStatusesCount();
+//			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
+//
+//			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
+//			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+//		}
+//
+//		for($i = 1; $i <= $pages; $i++) {
+//			curl_setopt($curl, CURLOPT_URL, $url.$i);
+//
+//			//make the request
+//			$results = json_decode(curl_exec($curl));
+//			$this->results = $results;
+//
+//			if(!$results) {
+//				continue;
+//			}
+//				
+//			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
+//
+//		}
+//		curl_close($curl);
+//		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
+//		if($tweet == false)
+//			$tweet = new Tweet();
+//		$tweet->setStatusesCount(0);
+//		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
+//
+//		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
+//	}
 
 	public function executeIndex(sfWebRequest $request)
 	{
