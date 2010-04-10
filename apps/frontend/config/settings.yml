@@ -5,7 +5,7 @@ prod:
   .settings:
     no_script_name:         true
     logging_enabled:        false
-    web_debug:              true
+    web_debug:              false
 
 dev:
   .settings:

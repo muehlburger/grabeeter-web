@@ -1,12 +1,13 @@
 # Project files
 /cache/*
 /log/*
+/cache/*
 /web/*_dev.php
 /web/uploads/*
 .project
 .gitignore
 .buildpath
-/.settings/*
+/.settings*
 README
 /data/tweet*
 
