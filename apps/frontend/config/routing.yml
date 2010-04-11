@@ -7,16 +7,17 @@
 api_tweets:
   url:     /api/tweets/:username.:sf_format
   class:   sfDoctrineRoute
-  param:   { module: api, action: list, sf_format: xml }
+  param:   { module: api, action: list, sf_format: json }
   options: { model: Tweet, type: list, method: getForUsername }
   requirements:
     sf_format: (?:xml|json|yaml)
     
 api_search:
   url:    /api/search/:q.:sf_format
-  param:  { module: api, action: search, sf_format: xml }
+  param:  { module: api, action: search, sf_format: json }
   requirements:
     sf_format: (?:xml|json|yaml)
+    sf_method: get
 
 #########################################
 # User Routes
@@ -47,13 +48,15 @@ tweet_show:
   url:     /tweet/:id/:text_slug
   class:    sfDoctrineRoute
   options: { model: Tweet, type: object }
-  params:  { module: tweet, action: show, sf_format: html }
+  params:  { module: tweet, action: show }
   requires:
     sf_method: get
 
 tweet_search:
   url:    /search
   param:  { module: tweet, action: search }
+  requirements:
+    sf_method: get
 
 #########################################
 # Geolocation Routes

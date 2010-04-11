@@ -1,15 +1,15 @@
 # Project files
 /cache/*
 /log/*
-/cache/*
 /web/*_dev.php
 /web/uploads/*
 .project
 .gitignore
 .buildpath
 /.settings*
+runUpdate_dev.sh
 README
-/data/tweet*
+/data/*
 
 # SCM files
 .arch-params

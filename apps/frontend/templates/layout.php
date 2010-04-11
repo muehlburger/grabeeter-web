@@ -16,7 +16,7 @@
             <ul id="nav"> 
 				<li class="current"><a href="<?php echo url_for('homepage') ?>">Home</a></li> 
 				<li>
-					<a href="<?php echo url_for('tweet') ?>">Tweets</a>
+					<a href="<?php echo url_for('@tweet') ?>">Tweets</a>
 					<ul>
 						<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
 					</ul>
