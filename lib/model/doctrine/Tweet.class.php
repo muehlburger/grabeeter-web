@@ -15,7 +15,8 @@ class Tweet extends BaseTweet
 	public function asArray() {
 		return array(
 			'text'			=>		$this->getText(),
-			'screen_name'	=>		$this->getTweetUser()
+			'screen_name'	=>		$this->getTweetUser(),
+			'created'		=>		$this->getDateTimeObject('tweet_created_at')->format('U')
 		);	
 	}
 	
