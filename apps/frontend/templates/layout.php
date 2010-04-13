@@ -2,7 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><?php include_slot('title', 'TweetEx - Export your Tweets') ?></title>
+    <title><?php include_slot('title', 'Grabeeter - Grab your Tweets') ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_javascript('jquery-1.4.2.min.js') ?>
     <?php use_javascript('search.js') ?>
@@ -12,7 +12,7 @@
   <body>
     <div id="wrapper">
       <div id="header">
-		<h1 id="headline"><a href="<?php echo url_for('homepage') ?>">TweetEx - Export your Tweets</a></h1>
+		<h1 id="headline"><a href="<?php echo url_for('homepage') ?>">Grabeeter - Grab your Tweets</a></h1>
             <ul id="nav"> 
 				<li class="current"><a href="<?php echo url_for('homepage') ?>">Home</a></li> 
 				<li>
@@ -34,38 +34,8 @@
 				<!-- <li><a href="<?php echo url_for('source') ?>">Sources</a></li>
 				<li><a href="<?php echo url_for('geolocation') ?>">Geo Locations</a></li> 
 				 -->
-				<!--  
-				<li><a href="#">Multi-Levels</a> 
-					<ul> 
-						<li><a href="#">Team</a> 
-							<ul> 
-								<li><a href="#">Sub-Level Item</a></li> 
-								<li><a href="#">Sub-Level Item</a> 
-									<ul> 
-										<li><a href="#">Sub-Level Item</a></li> 
-										<li><a href="#">Sub-Level Item</a></li> 
-										<li><a href="#">Sub-Level Item</a></li> 
-									</ul> 
-								</li> 
-								
-								<li><a href="#">Sub-Level Item</a></li> 
-							</ul> 
-						</li> 
-						<li><a href="#">Sales</a></li> 
-						<li><a href="#">Another Link</a></li> 
-						<li><a href="#">Department</a> 
-							<ul> 
-								<li><a href="#">Sub-Level Item</a></li> 
-								<li><a href="#">Sub-Level Item</a></li> 
-								<li><a href="#">Sub-Level Item</a></li> 
-							</ul> 
-						</li> 
-					</ul> 
-				</li>	
-				 
 				<li><a href="<?php echo url_for('@homepage') ?>">About</a></li> 
 				<li><a href="<?php echo url_for('@homepage') ?>">Contact Us</a></li>
-				--> 
 		  </ul>	 
 	</div>
     <div id="body">
@@ -85,7 +55,7 @@
         
         <?php echo $sf_content ?>
       </div>
-      <p>Menu by <a href="http://www.webdesignerwall.com/">WDW</a>, <a href="http://www.webdesignerwall.com/demo/css3-dropdown-menu/">E</a></p>
+      <p>&copy 2010 Graz University of Technology | Menu by <a href="http://www.webdesignerwall.com/">WDW</a>, <a href="http://www.webdesignerwall.com/demo/css3-dropdown-menu/">E</a></p>
     </div>
     </div>
   </body>

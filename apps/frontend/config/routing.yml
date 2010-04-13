@@ -7,14 +7,15 @@
 api_tweets:
   url:     /api/tweets/:username.:sf_format
   class:   sfDoctrineRoute
-  param:   { module: api, action: list, sf_format: json }
+  param:   { module: api, action: list, sf_format: xml }
   options: { model: Tweet, type: list, method: getForUsername }
   requirements:
     sf_format: (?:xml|json|yaml)
+    sf_method: get
     
 api_search:
   url:    /api/search/:q.:sf_format
-  param:  { module: api, action: search, sf_format: json }
+  param:  { module: api, action: search, sf_format: xml }
   requirements:
     sf_format: (?:xml|json|yaml)
     sf_method: get

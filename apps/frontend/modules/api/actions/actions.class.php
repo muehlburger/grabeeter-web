@@ -28,6 +28,10 @@ class apiActions extends sfActions
 	        $this->setLayout(false);
 	        $this->getResponse()->setContentType('text/yaml');
 	        break;
+	      case 'xml':
+	      	$this->setLayout(false);
+	      	$this->getResponse()->setContentType('text/xml');
+	      	break;
 	    }
 	}
 	
