@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp spec="1.0+" codebase="http://vlpc01.tugraz.at/projekte/herbert/t/dist/" href="Grabeeter_browser.jnlp">
+    <information>
+        <title>Grabeeter</title>
+        <vendor>Graz University of Technology</vendor>
+        <homepage href="http://vlpc01.tugraz.at/projekte/herbert/t/dist/"/>
+        <description>Grabeeter</description>
+        <description kind="short">Grabeeter</description>
+        <icon kind="shortcut" href="grabeeter-icon-64.png" width="16" height="16"/>
+        <icon kind="splash" href="grabeeter-icon-64.png"/>
+        <shortcut online="true">
+            <desktop/>
+            <menu submenu="Grabeeter"/>
+        </shortcut>
+        <offline-allowed/>
+    </information>
+    <security>
+        <all-permissions/>
+    </security>
+    <resources>
+        <java version="1.6+"/>
+        <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>
+        <jar href="Grabeeter.jar" main="true"/>
+        <jar href="lib/lucene-core-3.0.1.jar"/>
+        <jar href="lib/lucene-analyzers-3.0.1.jar"/>
+    </resources>
+    <applet-desc name="Grabeeter" main-class="com.sun.javafx.runtime.adapter.Applet" width="600" height="700">
+        <param name="MainJavaFXScript" value="grabeeter.Main_run"/>
+    </applet-desc>
+    <update check="background"/>
+</jnlp>
