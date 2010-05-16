@@ -3,6 +3,7 @@ log/
 cache/
 config/databases.yml
 data/sql/twitarch-db-model.mwb
+data/*
 .buildpath
 .project
 .settings/
