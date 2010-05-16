@@ -17,11 +17,31 @@ p {
 	padding: 0.3em 0;
 }
 
-#container {	
-	width: 90%;
-	margin: 0 auto;
+#container {
+	margin: 1em 6%;
 	background-color: #a4cddf;
 	border: 1px solid #fff;
+}
+
+#navbar {
+	clear: both;
+ 	float: right;
+ 	background-color: #77aadd;
+ 	padding: 0.1em;
+}
+
+#navbar ul {
+	padding: 0.6em;
+}
+
+#navbar li {
+	display: inline;
+	list-style: none;
+}
+
+#navbar li a {
+	padding: 0.3em;
+	color: #fafafa;
 }
 
 h1 a {

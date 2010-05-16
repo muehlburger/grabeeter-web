@@ -22,8 +22,6 @@
 			<li><a href="<?php echo url_for('@tweet') ?>">Tweets</a></li>
 			<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
 			<li><a href="<?php echo url_for('user') ?>">Users</a></li>
-			<li><a href="<?php echo url_for(array('sf_route' => 'api_tweets', 'username' => 'hmuehlburger', 'sf_format' => 'xml')) ?>">List Tweets</a></li>
-			<li><a href="<?php echo url_for(array('sf_route' => 'api_search', 'q' => 'hmuehlburger', 'sf_format' => 'xml')) ?>">Search Query</a></li>
 		</ul>
 	</div>
 	
