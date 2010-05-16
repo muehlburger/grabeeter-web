@@ -1,42 +1,33 @@
-body {
-	font: normal .8em/1.5em Arial, Helvetica, sans-serif;
-	color: #fff;
-	background: #a4cddf;
-	width: 900px;
-	margin: 100px auto;
+* { 
+margin: 0;
+padding: 0;
 }
 
-h1#headline a {
+body {
+	font: 1.1em/1.3em Delicious, Georgia, Times, "Times New Roman", serif;
+	color: #ffffff;
+	background: #a4cddf;
+}
+
+h1,h2,h3 {
+	padding: 0.7em 0;
+}
+
+p {
+	padding: 0.3em 0;
+}
+
+#container {	
+	width: 90%;
+	margin: 0 auto;
+	background-color: #a4cddf;
+	border: 1px solid #fff;
+}
+
+h1 a {
 	text-decoration: none;
 	color: white;
 	font-size: 130%;
-}
-               
-#search {
-    height: 53px;
-    padding: 13px 50px 0 65px;
-    position: absolute;
-    right: 200px;
-    top: 155px;
-}
-#search * {
-    float: left;
-}
-#search label { /* hide from visual browsers */
-    position: absolute;
-    visibility: hidden;
-}
-#search input {
-    border: 1px solid #40cff5;
-    font-size: 110%;
-    margin-right: 10px;
-    width: 160px;
-}
-
-
-form input {
-    border: 1px solid #c0c3c6;
-    padding: 0.2em 5px;
 }
 
 #pagination {
