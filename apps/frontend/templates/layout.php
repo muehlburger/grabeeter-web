@@ -17,11 +17,11 @@
 	<div id="navbar">
         <ul> 
 			<li><a href="<?php echo url_for('homepage') ?>">Home</a></li>
-			<li><a href="#">FAQ</a></li>
-			<li><a href="#">User Guide</a></li> 
 			<li><a href="<?php echo url_for('@tweet') ?>">Tweets</a></li>
 			<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
 			<li><a href="<?php echo url_for('user') ?>">Users</a></li>
+			<li><a href="#">FAQ</a></li>
+			<li><a href="#">User Guide</a></li> 
 		</ul>
 	</div>
 	
@@ -54,7 +54,7 @@
     </div>
     
     <div id="footer">
-    	<p>&copy; 2010 Social Learning - Graz University of Technology</p>
+    	<p>&copy; 2010 Social Learning - Graz University of Technology | Terms of Usage | Privacy Policy</p>
     </div>
     </div>
   </body>

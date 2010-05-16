@@ -23,10 +23,16 @@ p {
 	border: 1px solid #fff;
 }
 
+#header h1 {
+	float: left;
+	width: 65%;
+	padding: 0.5em 2%;
+}
+	
+
 #navbar {
 	clear: both;
- 	float: right;
- 	background-color: #77aadd;
+ 	font-weight: bold;
  	padding: 0.1em;
 }
 
@@ -44,10 +50,30 @@ p {
 	color: #fafafa;
 }
 
-h1 a {
-	text-decoration: none;
-	color: white;
-	font-size: 130%;
+#content {
+	float: left;
+	width: 65%;
+	padding: 0.5em 3%;
+}
+
+#sidebar {
+	float: right;
+	padding: 0.5em 3%;
+	font-size: 0.95em;
+	color: #777;
+	background-color: #fff;
+	width: 23%;
+}
+
+#footer {
+	clear: both;
+	background-color: #5599dd;
+	text-align: center;
+	color: #fff;
+}
+
+#footer p {
+	padding: 0.5em;
 }
 
 #pagination {
