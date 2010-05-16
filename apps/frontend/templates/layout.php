@@ -2,7 +2,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html>
   <head>
-    <title><?php include_slot('title', 'Grabeeter - Grab your Tweets') ?></title>
+    <title><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></title>
     <link rel="shortcut icon" href="/favicon.ico" />
     <?php use_javascript('jquery-1.4.2.min.js') ?>
     <?php use_javascript('search.js') ?>
@@ -12,7 +12,7 @@
   <body>
     <div id="wrapper">
       <div id="header">
-		<h1 id="headline"><a href="<?php echo url_for('homepage') ?>">Grabeeter - Grab your Tweets</a></h1>
+		<h1 id="headline"><a href="<?php echo url_for('homepage') ?>"><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></a></h1>
             <ul id="nav"> 
 				<li class="current"><a href="<?php echo url_for('homepage') ?>">Home</a></li> 
 				<li>
@@ -24,6 +24,7 @@
 			    <li>
 			    	<a href="<?php echo url_for('user') ?>">Users</a>
 			    </li>
+			    <!--
 			    <li>
 					<a href="#">API</a>
 					<ul>
@@ -31,11 +32,12 @@
 						<li><a href="<?php echo url_for(array('sf_route' => 'api_search', 'q' => 'hmuehlburger', 'sf_format' => 'xml')) ?>">Search Query</a></li>
 					</ul>
 				</li>
-				<!-- <li><a href="<?php echo url_for('source') ?>">Sources</a></li>
+		    <li><a href="<?php echo url_for('source') ?>">Sources</a></li>
 				<li><a href="<?php echo url_for('geolocation') ?>">Geo Locations</a></li> 
-				 -->
+
 				<li><a href="<?php echo url_for('@homepage') ?>">About</a></li> 
 				<li><a href="<?php echo url_for('@homepage') ?>">Contact Us</a></li>
+			-->
 		  </ul>	 
 	</div>
     <div id="body">
