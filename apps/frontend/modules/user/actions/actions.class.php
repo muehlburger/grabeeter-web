@@ -20,13 +20,14 @@ class userActions extends sfActions
 
 	public function executeShow(sfWebRequest $request)
 	{
-		$this->tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id')));
-		$this->forward404Unless($this->tweet_user);
+		//$this->tweet_user = Doctrine::getTable('TweetUser')->find(array($request->getParameter('id')));
+		//$this->forward404Unless($this->tweet_user);
+		$this->tweet_user = $this->getRoute()->getObject();
 	}
 
 	public function executeNew(sfWebRequest $request)
 	{
-		//$this->form = new TweetUserForm();
+		$this->form = new TweetUserForm();
 	}
 
 	public function executeCreate(sfWebRequest $request)

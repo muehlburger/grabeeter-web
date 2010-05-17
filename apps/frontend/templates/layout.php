@@ -8,11 +8,12 @@
     <?php use_javascript('search.js') ?>
     <?php include_javascripts() ?>
     <?php include_stylesheets() ?>
+    <link rel="shortcut icon" href="/favicon.ico" />
   </head>
   <body>
   <div id="container">
     <div id="header">
-		<h1><a href="<?php echo url_for('homepage') ?>"><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></a></h1>
+		<h1 id="logo"><a href="<?php echo url_for('homepage') ?>"><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></a></h1>
 	</div>
 	<div id="navbar">
         <ul> 

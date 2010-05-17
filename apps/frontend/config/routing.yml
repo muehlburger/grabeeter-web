@@ -27,6 +27,14 @@ user:
   class:   sfDoctrineRouteCollection
   options: { model: TweetUser }
 
+user_show:
+  url:     /user/:screen_name
+  class:    sfDoctrineRoute
+  options: { model: TweetUser, type: object }
+  params:  { module: user, action: show }
+  requires:
+    sf_method: get
+    
 #update_tweets:
 #  url:     /tweets/update/:screen_name
 #  param:   { module: user, action: updateTweets }
@@ -69,7 +77,7 @@ geolocation:
 # default rules
 homepage:
   url:   /
-  param: { module: tweet, action: search }
+  param: { module: tweet, action: index }
 
 #default_index:
 #  url:   /:module

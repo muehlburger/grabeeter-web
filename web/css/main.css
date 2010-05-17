@@ -1,13 +1,11 @@
-* { 
-margin: 0;
-padding: 0;
-}
-
-body {
-	font: 1.1em/1.3em Delicious, Georgia, Times, "Times New Roman", serif;
-	color: #ffffff;
-	background: #a4cddf;
-}
+/*
+Reset CSS
+Copyright (c) 2008, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.6.0
+*/
+html{color:#000;}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0;}table{border-collapse:collapse;border-spacing:0;}fieldset,img{border:0;}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal;}li{list-style:none;}caption,th{text-align:left;}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal;}q:before,q:after{content:'';}abbr,acronym{border:0;font-variant:normal;}sup{vertical-align:text-top;}sub{vertical-align:text-bottom;}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit;}input,textarea,select{*font-size:100%;}legend{color:#000;}del,ins{text-decoration:none;}
 
 h1,h2,h3 {
 	padding: 0.7em 0;
@@ -21,19 +19,38 @@ p {
 	margin: 1em 6%;
 	background-color: #a4cddf;
 	border: 1px solid #fff;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
 }
 
-#header h1 {
+#header h1#logo a{
 	float: left;
 	width: 65%;
-	padding: 0.5em 2%;
-}
-	
+	padding: 5em 10%;
+	margin: 1em 2em;
+	background: url(../images/grabeeter_logo.png) no-repeat top left;
+}	
 
 #navbar {
 	clear: both;
  	font-weight: bold;
  	padding: 0.1em;
+ 	border-bottom-left-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
+	background-color: white;
+	margin: 1em;
 }
 
 #navbar ul {
@@ -47,7 +64,7 @@ p {
 
 #navbar li a {
 	padding: 0.3em;
-	color: #fafafa;
+	color: #a4cddf;
 }
 
 #content {
@@ -61,13 +78,19 @@ p {
 	padding: 0.5em 3%;
 	font-size: 0.95em;
 	color: #777;
-	background-color: #fff;
+	border: 1px solid white;
+	display: none;
 	width: 23%;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
 }
 
 #footer {
 	clear: both;
-	background-color: #5599dd;
 	text-align: center;
 	color: #fff;
 }

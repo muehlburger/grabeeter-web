@@ -1,7 +1,9 @@
 #!/bin/bash
+echo
+date
 
 cat usernames | while read line; do
-  ./symfony updateTweets $line --env=dev
+  time ./symfony updateTweets $line --env=dev
   if [ "$?" = "1" ]; then
     exit;
   fi
