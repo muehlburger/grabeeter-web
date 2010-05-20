@@ -7,14 +7,14 @@ default:
  
   metas:
     title:        Grabeeter - Grab your Tweets
-    description:  Tweet Export Service
-    keywords:     tweet, twitter, export, save, backup, service
+    description:  Grabeeter - Grab your Tweets
+    keywords:     grabeeter, tweet, twitter, export, save, backup, service
     language:     en
     robots:       index, follow
  
-  stylesheets:    [main.css]
+  stylesheets:    [reset.css, 960.css, text.css]
  
   javascripts:    []
  
   has_layout:     true
-  layout:         layout
+  layout:         layout-960
