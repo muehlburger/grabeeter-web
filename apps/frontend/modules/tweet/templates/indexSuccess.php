@@ -1,8 +1,8 @@
-<h3>List of Tweets</h3>
+<h2>Tweets</h2>		  
+<p class="subheader">
+	<strong><?php echo count($pager) ?> available Tweets | </strong><em>Page <?php echo $pager->getPage() ?> of <?php echo $pager->getLastPage() ?></p> 
 <p>
-<strong><?php echo count($pager) ?></strong> available tweets
   <?php if ($pager->haveToPaginate()): ?>
-    - currently watching at page <strong><?php echo $pager->getPage() ?></strong> (out of <?php echo $pager->getLastPage() ?> pages)
   <?php endif; ?>
 </p>
 <?php include_partial('tweet/pagination', array('pager' => $pager, 'urlFor' => 'tweet'))?>
