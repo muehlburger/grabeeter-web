@@ -15,7 +15,7 @@ class TweetTable extends Doctrine_Table
 	
 	public function getMatchingTweets(Doctrine_Query $q = null) {
 		if(is_null($q)) {
-			$q = $this->createQuery('t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
+			$q = $this->createQuery('t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at ASC');
 		}
 		
 		return $q;		
