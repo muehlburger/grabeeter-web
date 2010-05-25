@@ -1,5 +1,5 @@
 #container {
-	background-color: #a4cddf;
+	background-color: #eaf4f9;
 }
 
 .round {
@@ -7,7 +7,7 @@
 	border-bottom-right-radius: 5px 5px;
 	border-top-left-radius: 5px 5px;
 	border-top-right-radius: 5px 5px;
-	background-color: #a4cddf;
+	background-color: white;
 }
 
 #navbar {
@@ -24,9 +24,8 @@
 
 #navbar li a {
 	padding: 0.3em;
-	color: #ffffff;
+	text-shadow: white 0px 1px;
 	text-decoration: none;
-	font-weight: bold;
 }
 
 #navbar li a:hover {
@@ -66,7 +65,7 @@
 
 #footer {
 	text-align: center;
-	color: #ffffff;
+	color: #000;
 	margin-top: 10px;
 }
 

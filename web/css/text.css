@@ -19,6 +19,9 @@ body {
 	font-family: Verdana, "Lucida Sans Unicode", "Lucida Grande", "Times New Roman", serif;
 	font-size: 0.81em;
 	line-height: 1.6em;
+	text-shadow: white 0px 1px;
+	background-color: #eaf4f9;
+	color: #425d75;
 }
 
 a:focus {
