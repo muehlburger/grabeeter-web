@@ -12,7 +12,7 @@
   <body>
   <div id="container" class="container_16">
   <div id="header" class="grid_16">
-		<h1 id="logo"><a href="<?php echo url_for('homepage') ?>"><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></a></h1>
+		<h1 id="logo"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="../images/logo.png" width="128px" height="128px" /></a></h1>
   </div>
   <div id="navbar" class="grid_16">
         <ul> 
@@ -24,18 +24,9 @@
 			<li><a href="#">User Guide</a></li> 
 		</ul>
 	</div>
-    <div id="sidebar1" class="grid_5">
-		  <h2>About Grabeeter</h2>		  
-		  <p class="subheader">
-			  <strong>Description | Offers</strong>, by <em>Herbert Mühlburger</em>
-		  </p>        
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting <a href="#" title="Industry">industry</a>. Lorem Ipsum has been the industry's standard <a href="#" title="dummy text">dummy text</a> ever since the 1500s, when an <em>unknown printer</em> took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of <em>Lorem Ipsum</em>.</p>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting <a href="#" title="Industry">industry</a>. Lorem Ipsum has been the industry's standard <a href="#" title="dummy text">dummy text</a> ever since the 1500s, when an <em>unknown printer</em> took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of <em>Lorem Ipsum</em>.</p>
-        <div id="col1" class="grid_2 alpha">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-        <div id="col2" class="grid_3 omega">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
-    </div>
-     	<div id="content" class="grid_6">
-	    Search:<form action="#" method="get" enctype="text/plain"><input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></form>
+     	<div id="content" class="grid_11">
+	    Search:<form action="#" method="get" enctype="text/plain">
+	    		<input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form>
        <?php echo $sf_content ?>
     </div>
     <div id="sidebar3" class="grid_5">
@@ -45,7 +36,7 @@
 		  </p>        
 
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    <div id="col1" class="grid_3 alpha">Add your twitter username:<form action="#" method="get" enctype="text/plain"><input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></form></div>
+    <div id="col1" class="grid_3 alpha">Add your twitter username:<form action="#" method="get" enctype="text/plain"><input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form></div>
     <div id="col2" class="grid_2 omega">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>        
         
     </div>
