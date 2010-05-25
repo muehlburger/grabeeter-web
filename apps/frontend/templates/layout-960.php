@@ -12,24 +12,24 @@
   <body>
   <div id="container" class="container_16">
   <div id="header" class="grid_16">
-		<h1 id="logo"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="../images/logo.png" width="128px" height="128px" /></a></h1>
-  </div>
-  <div id="navbar" class="grid_16">
-        <ul> 
+		<h1 id="logo" class="grid_7 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="../images/logo.png" width="128px" height="128px" /></a></h1>
+        <ul id="navbar" class="grid_9 omega round"> 
 			<li><a href="<?php echo url_for('homepage') ?>">Home</a></li>
-			<li><a href="<?php echo url_for('@tweet') ?>">Tweets</a></li>
-			<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
+			<li><a href="<?php echo url_for('tweet') ?>">Tweets</a></li>
+			<li><a href="<?php echo url_for('tweet_search') ?>">Search</a></li>
 			<li><a href="<?php echo url_for('user') ?>">Users</a></li>
 			<li><a href="#">FAQ</a></li>
-			<li><a href="#">User Guide</a></li> 
+			<li><a href="#">Guide</a></li> 
 		</ul>
-	</div>
-     	<div id="content" class="grid_11">
+  </div><!-- end header -->
+   	<div id="content" class="grid_11 round">
+   	<div>
 	    Search:<form action="#" method="get" enctype="text/plain">
 	    		<input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form>
        <?php echo $sf_content ?>
     </div>
-    <div id="sidebar3" class="grid_5">
+    </div><!-- end content -->
+    <div id="sidebar" class="grid_5 round">
     	  <h2>More Information</h2>		  
 		  <p class="subheader">
 			  <strong>Description | Offers</strong>, by <em>Herbert Mühlburger</em>
@@ -40,7 +40,7 @@
     <div id="col2" class="grid_2 omega">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>        
         
     </div>
-	<div id="footer" class="grid_16">
+	<div id="footer" class="grid_16 round">
     	<p>&copy; 2010 Social Learning - Graz University of Technology | Terms of Usage | Privacy Policy</p>
     </div><!-- end footer -->    
   </div> 

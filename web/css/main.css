@@ -1,65 +1,79 @@
 #container {
 	background-color: #a4cddf;
-	border: 1px solid #fff;
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
-	border-top-right-radius: 10px 10px;
-	border-top-right-radius: 10px 10px;
+}
+
+#header {
+}
+
+.round {
+	border-bottom-left-radius: 5px 5px;
+	border-bottom-right-radius: 5px 5px;
+	border-top-left-radius: 5px 5px;
+	border-top-right-radius: 5px 5px;
+	background-color: #a4cddf;
 }
 
 #navbar {
- 	font-weight: bold;
- 	border-bottom-left-radius: 10px 10px;
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
-	border-top-right-radius: 10px 10px;
-	border-top-right-radius: 10px 10px;
-	background-color: white;
+	padding-top: 5px;
+	padding-bottom: 7px;
+	margin-top: 90px;
 }
-
-#navbar ul {
-	
-}
-
 #navbar li {
-	display: inline;
 	list-style: none;
+	display: inline;
+	padding-top: 20px;
+	margin-top: 10px;
 }
 
 #navbar li a {
 	padding: 0.3em;
-	color: #a4cddf;
+	color: #ffffff;
+	text-decoration: none;
 }
 
-#content {
+#navbar li a:hover {
+	text-decoration: underline;
+}
 
+#content div {
+	padding: 5px;
 }
 
 #sidebar {
 	font-size: 0.95em;
-	color: #777;
-	border: 1px solid white;
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-left-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-bottom-right-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
-	border-top-left-radius: 10px 10px;
+	color: #222;
+}
+
+#sidebar p, h2 {
+	padding: 15px;
+}
+
+#container .subheader {
+ font-size: 0.85em;
+ border-top: solid 2px #7891a1;
+ border-bottom: 1px solid #ccc;
+ padding: 5px 0 5px 15px;
+ margin: 8px 0 0 0;
+}
+
+#container h1, h2 {
+	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
+	font-weight: normal;
+	font-style: italic;
+	line-height: 1.2em;
+	letter-spacing: -1px;
+	font-size: 2.9em;
+	
 }
 
 #footer {
 	text-align: center;
-	color: #000;
+	color: #ffffff;
+	margin-top: 10px;
 }
 
 #footer p {
+	padding:2px;
 }
 
 #pagination {

@@ -99,21 +99,3 @@ em {
 p { 
 	margin: 0.6em 0 0 0;
 }
-
-#container .subheader {
- font-size: 0.85em;
- border-top: solid 2px #7891a1;
- border-bottom: 1px solid #ccc;
- padding: 5px 0 5px 0;
- margin: 8px 0 0 0;
-}
-
-#container h1, h2 {
-	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
-	font-weight: normal;
-	font-style: italic;
-	line-height: 1.2em;
-	letter-spacing: -1px;
-	font-size: 2.9em;
-	
-}

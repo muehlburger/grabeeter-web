@@ -6,9 +6,9 @@ default:
     content-type: text/html
  
   metas:
-    title:        Grabeeter - Grab your Tweets
-    description:  Grabeeter - Grab your Tweets
-    keywords:     grabeeter, tweet, twitter, export, save, backup, service
+    title:        Grabeeter - Grab and Search your Tweets
+    description:  Grabeeter - Grab and Search your Tweets
+    keywords:     grabeeter, tweet, twitter, export, save, backup, service, search, grab
     language:     en
     robots:       index, follow
  
