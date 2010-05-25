@@ -1,18 +1,14 @@
-#container {
-	background-color: #eaf4f9;
-}
-
 .round {
-	border-bottom-left-radius: 5px 5px;
-	border-bottom-right-radius: 5px 5px;
-	border-top-left-radius: 5px 5px;
-	border-top-right-radius: 5px 5px;
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
 	background-color: white;
 }
 
 #navbar {
-	padding-top: 5px;
-	padding-bottom: 7px;
+	padding-top: 6px;
+	padding-bottom: 6px;
 	margin-top: 90px;
 }
 #navbar li {
@@ -129,15 +125,16 @@ text-decoration:none;
 }
 
 .tweet {
-  color: #000;
   clear: both;
   height: 70px;
-  border-top: 1px solid #ccc;	
+  border-top: 1px solid #eaf4f9;
+  border-bottom: 1px solid #eaf4f9;	
 }
 
 .tweet:hover {
-  background-color: #ddd;
-  border-top: 1px solid #ccc;
+  background-color: #eaf4f9;
+  border-top: 1px solid #425d75;
+  border-bottom: 1px solid #425d75;
 }
 
 .tweet a {

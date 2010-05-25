@@ -28,17 +28,13 @@ user:
   options: { model: TweetUser }
 
 user_show:
-  url:     /user/:screen_name
+  url:     /:screen_name/profile
   class:    sfDoctrineRoute
   options: { model: TweetUser, type: object }
   params:  { module: user, action: show }
   requires:
     sf_method: get
     
-#update_tweets:
-#  url:     /tweets/update/:screen_name
-#  param:   { module: user, action: updateTweets }
-
 #########################################
 # Source Routes
 ##
@@ -52,6 +48,14 @@ source:
 tweet:
   class:   sfDoctrineRouteCollection
   options: { model: Tweet }
+  
+tweet_index:
+  url:     /:screen_name/tweets
+  class:    sfDoctrineRoute
+  options: { model: Tweet, type: object }
+  params:  { module: tweet, action: index }
+  requires:
+    sf_method: get
   
 tweet_show:
   url:     /tweet/:id/:text_slug

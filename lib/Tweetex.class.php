@@ -1,6 +1,11 @@
 <?php
 class Tweetex {
 
+	static public function generateLink($text) {
+		
+		return $text;	
+	}
+	
 	static public function slugify($text)
 	{
 			

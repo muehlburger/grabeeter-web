@@ -12,7 +12,7 @@
   <body>
   <div id="container" class="container_16">
   <div id="header" class="grid_16">
-		<h1 id="logo" class="grid_7 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="../images/logo.png" width="128px" height="128px" /></a></h1>
+		<h1 id="logo" class="grid_7 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a></h1>
         <ul id="navbar" class="grid_9 omega round"> 
 			<li><a href="<?php echo url_for('homepage') ?>">Home</a></li>
 			<li><a href="<?php echo url_for('tweet') ?>">Tweets</a></li>
@@ -24,8 +24,6 @@
   </div><!-- end header -->
    	<div id="content" class="grid_11 round">
    	<div>
-	    Search:<form action="#" method="get" enctype="text/plain">
-	    		<input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form>
        <?php echo $sf_content ?>
     </div>
     </div><!-- end content -->
