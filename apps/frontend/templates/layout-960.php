@@ -28,15 +28,15 @@
     </div>
     </div><!-- end content -->
     <div id="sidebar" class="grid_5 round">
+    	  <?php if(!include_slot('sidebar')): ?>
     	  <h2>More Information</h2>		  
 		  <p class="subheader">
 			  <strong>Description | Offers</strong>, by <em>Herbert Mühlburger</em>
-		  </p>        
-
-    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-    <div id="col1" class="grid_3 alpha">Add your twitter username:<form action="#" method="get" enctype="text/plain"><input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form></div>
-    <div id="col2" class="grid_2 omega">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>        
-        
+		  </p>
+		    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+		    <div id="col1" class="grid_3 alpha">Add your twitter username:<form action="#" method="get" enctype="text/plain"><input type="text" name="username" value="<?php if (isset($_POST['username'])) { echo $username; } ?>" size="20" maxlength="20"></input></form></div>
+		    <div id="col2" class="grid_2 omega">Lorem Ipsum is simply dummy text of the printing and typesetting industry.</div>
+		  <?php endif; ?>        
     </div>
 	<div id="footer" class="grid_16 round">
     	<p>&copy; 2010 Social Learning - Graz University of Technology | Terms of Usage | Privacy Policy</p>
