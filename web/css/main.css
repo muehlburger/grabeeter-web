@@ -127,14 +127,11 @@ text-decoration:none;
 .tweet {
   clear: both;
   height: 70px;
-  border-top: 1px solid #eaf4f9;
   border-bottom: 1px solid #eaf4f9;	
 }
 
 .tweet:hover {
   background-color: #eaf4f9;
-  border-top: 1px solid #425d75;
-  border-bottom: 1px solid #425d75;
 }
 
 .tweet a {
@@ -150,17 +147,24 @@ text-decoration:none;
 }
 
 .tweet p {
-  margin-top: 0;
+  margin-top: 0px;
   margin-left: 53px;  
 }
 
 .tweet span.description {
-  color: #aaa;
+  float: left;
+  width: 100%;
+  color: #425d75;
+  font-size: 0.7em;
 }
 
 .description a {
-  color: #aaa;
   text-decoration: none;
+}
+
+.tweet span.source {
+  font-size: 0.7em;
+  float: right;
 }
 
 a:hover {

@@ -3,12 +3,12 @@
 <div id="tweets">
   <?php foreach ($tweets as $i => $tweet): ?>
     <div class="tweet <?php echo fmod($i, 2) ? 'even' : 'odd' ?>">
-		<a href="<?php echo url_for('tweet_index', $tweet->getTweetUser()) ?>?page=1"><img src="<?php echo $tweet->getTweetUser()->getProfileImageUrl() ?>" /></a>
+		<?php echo link_to(image_tag($tweet->getTweetUser()->getProfileImageUrl()), 'tweet_index', array('screen_name' => $tweet->getTweetUser(), 'page' => 1)) ?>
         <p>
-        <!-- <a href="<?php echo url_for('user_show', $tweet->getTweetUser()) ?>"><?php echo $tweet->getTweetUser() ?></a> -->
-        <a href="http://twitter.com/<?php echo $tweet->getTweetUser() ?>" target="_blank">@<?php echo $tweet->getTweetUser() ?></a>
-          &nbsp;<?php echo auto_link_text($tweet->getText()) ?>
-        <span class="description"><a href="<?php echo url_for('tweet_show', $tweet) ?>">created at </a> &nbsp;<?php echo $tweet->getDateTimeObject('tweet_created_at')->format('jS, F Y (H:i:s T)') ?></span>
+	        <?php echo link_to('@'.$tweet->getTweetUser(), 'http://twitter.com/'.$tweet->getTweetUser(), 'target=_blank')?>
+	        &nbsp;<?php echo auto_link_text($tweet->getText(), 'all', array('target' =>'_blank')) ?>
+	        <span class="description"><?php echo link_to($tweet->getDateTimeObject('tweet_created_at')->format('D, d M Y H:i:s'), 'tweet_show', $tweet) ?></span>
+	        <span class="source"><?php echo link_to('access on Twitter', 'http://twitter.com/'.$tweet->getTweetUser().'/status/'.$tweet->getTweetTwitterId(), array('target' => '_blank'))?></span>
         </p>
     </div>
   <?php endforeach; ?>
