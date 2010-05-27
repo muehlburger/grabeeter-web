@@ -3,7 +3,7 @@
 <div id="tweets">
   <?php foreach ($tweets as $i => $tweet): ?>
     <div class="tweet <?php echo fmod($i, 2) ? 'even' : 'odd' ?>">
-		<?php echo link_to(image_tag($tweet->getTweetUser()->getProfileImageUrl()), 'tweet_index', array('screen_name' => $tweet->getTweetUser(), 'page' => 1)) ?>
+		<?php echo link_to(image_tag($tweet->getTweetUser()->getProfileImageUrl()), 'tweet_user_tweets', array('screen_name' => $tweet->getTweetUser(), 'page' => 1)) ?>
         <p>
 	        <?php echo link_to('@'.$tweet->getTweetUser(), 'http://twitter.com/'.$tweet->getTweetUser(), 'target=_blank')?>
 	        &nbsp;<?php echo auto_link_text($tweet->getText(), 'all', array('target' =>'_blank')) ?>

@@ -44,16 +44,12 @@ source:
 
 #########################################
 # Tweet Routes
-##
-tweet:
-  class:   sfDoctrineRouteCollection
-  options: { model: Tweet }
-  
-tweet_index:
-  url:     /:screen_name/tweets
+##  
+tweet_user_tweets:
+  url:     /:screen_name/tweets/:page
   class:    sfDoctrineRoute
   options: { model: Tweet, type: object }
-  params:  { module: tweet, action: index }
+  params:  { module: tweet, action: index, page: 1 }
   requires:
     sf_method: get
   
@@ -71,6 +67,10 @@ tweet_search:
   requirements:
     sf_method: get
 
+tweet:
+  class:   sfDoctrineRouteCollection
+  options: { model: Tweet }
+  
 #########################################
 # Geolocation Routes
 ##

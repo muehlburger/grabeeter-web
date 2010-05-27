@@ -8,11 +8,10 @@ user:
 
 prod:
   logger:
-    class:   sfFileLogger
+    class:   sfNoLogger
     param:
       level:   err
       loggers: ~
-      file:    %SF_LOG_DIR%/%SF_APP%_%SF_ENVIRONMENT%.log
 
 test:
   storage:

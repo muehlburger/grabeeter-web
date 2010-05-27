@@ -53,8 +53,8 @@ EOF;
 		}
 
 		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($curl, CURLOPT_TIMEOUT, 900);
-		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 300);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 3600);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 
 		//make the request
 		$curlReturnValue = curl_exec($curl);
