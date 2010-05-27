@@ -1,4 +1,7 @@
 #!/bin/bash
+echo
+date
+
 if [ -e "lock" ]; then
   echo "waiting ..."
   exit;
@@ -12,3 +15,4 @@ cat usernames | while read line; do
     exit;
   fi
 done
+rm lock;
