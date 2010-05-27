@@ -1,8 +1,9 @@
 # Project files
+/web/uploads/*
 /cache/*
 /log/*
 /web/*_dev.php
-/web/uploads/*
+/web/frontend_cache.php
 .project
 .gitignore
 .buildpath
