@@ -79,6 +79,11 @@ EOF;
 
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
 		$statusesCount = $result->statuses_count;
+		
+		// Just try to access the first 3200 tweets
+		if($statusesCount > sfConfig::get('app_twitter_statuses_limit'));
+			$statusesCount = sfConfig::get('app_twitter_statuses_limit');
+			
 		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
   		$pages = ceil($statusesCount / $count);
 	
@@ -87,13 +92,11 @@ EOF;
 			$sources[$source['label']]= $source['id'];
 		}
 
-		if(!$user) {
+		if(!$user)
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
-			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-		} else {	
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $user->getLastSavedTweetId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-		}
 		
+		$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+
 		for($i = $pages; $i > 0; $i--) {
 			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);			
@@ -130,14 +133,18 @@ EOF;
 	
 	private function checkHttpStatusOk($curl) {
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-		$this->logSection('Info: ', 'HTTP Status Code: ' . $statusCode);
-		
+				
 		switch ($statusCode) {
 			case 200:
 				return true;
 			case 502:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
+				return false;
+			case 400:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
 				return false;
 			default:
+				$this->logSection('Info: ', 'HTTP Status Code: '. $statusCode);
 				return false;
 		}
 	}

@@ -8,3 +8,4 @@ all:
   max_tweets_on_page: 5 
   max_sources_on_page: 10
   default_username: hmuehlburger
+  twitter_statuses_limit: 3200
