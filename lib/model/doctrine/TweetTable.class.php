@@ -61,19 +61,18 @@ class TweetTable extends Doctrine_Table
 	
 	public function saveTweets(&$results, &$sources, &$user) {
 
+		// start with the oldest element
+		$results = array_reverse($results);
+		
 		$numberOfTweets = 0;
 		$conn = $this->getConnection();
 		$conn->beginTransaction();
-
-		if(!is_array($results)) {
-			var_dump($results);
-			exit(1);
-		}
 		
 		try {
 			foreach($results as $result) {
 				if(!array_key_exists($result->source, $sources)) {
 					$source = new TweetSource();
+
 					// TODO: Parse url and label correctly here
 					$source->setLabel($result->source);
 					$source->setUrl($result->source);
@@ -114,6 +113,10 @@ class TweetTable extends Doctrine_Table
 
 				$numberOfTweets++;
 				$tweet->save($conn);
+				
+//				echo "id: ";
+//				echo $tweet->getTweetTwitterId();
+//				echo "\n";
 			}
 				$conn->commit();
 				

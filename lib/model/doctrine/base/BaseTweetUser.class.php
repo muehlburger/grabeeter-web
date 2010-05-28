@@ -20,43 +20,46 @@
  * @property string $lang
  * @property integer $utc_offset
  * @property string $profile_image_url
+ * @property integer $last_saved_tweet_id
  * @property Doctrine_Collection $Tweet
  * @property Doctrine_Collection $Tweets
  * 
- * @method string              getName()               Returns the current record's "name" value
- * @method string              getScreenName()         Returns the current record's "screen_name" value
- * @method integer             getTwitterUserId()      Returns the current record's "twitter_user_id" value
- * @method string              getDescription()        Returns the current record's "description" value
- * @method integer             getFollowersCount()     Returns the current record's "followers_count" value
- * @method integer             getStatusesCount()      Returns the current record's "statuses_count" value
- * @method string              getUrl()                Returns the current record's "url" value
- * @method integer             getFriendsCount()       Returns the current record's "friends_count" value
- * @method boolean             getGeoEnabled()         Returns the current record's "geo_enabled" value
- * @method timestamp           getTwitterCreatedAt()   Returns the current record's "twitter_created_at" value
- * @method string              getTimeZone()           Returns the current record's "time_zone" value
- * @method string              getLocation()           Returns the current record's "location" value
- * @method string              getLang()               Returns the current record's "lang" value
- * @method integer             getUtcOffset()          Returns the current record's "utc_offset" value
- * @method string              getProfileImageUrl()    Returns the current record's "profile_image_url" value
- * @method Doctrine_Collection getTweet()              Returns the current record's "Tweet" collection
- * @method Doctrine_Collection getTweets()             Returns the current record's "Tweets" collection
- * @method TweetUser           setName()               Sets the current record's "name" value
- * @method TweetUser           setScreenName()         Sets the current record's "screen_name" value
- * @method TweetUser           setTwitterUserId()      Sets the current record's "twitter_user_id" value
- * @method TweetUser           setDescription()        Sets the current record's "description" value
- * @method TweetUser           setFollowersCount()     Sets the current record's "followers_count" value
- * @method TweetUser           setStatusesCount()      Sets the current record's "statuses_count" value
- * @method TweetUser           setUrl()                Sets the current record's "url" value
- * @method TweetUser           setFriendsCount()       Sets the current record's "friends_count" value
- * @method TweetUser           setGeoEnabled()         Sets the current record's "geo_enabled" value
- * @method TweetUser           setTwitterCreatedAt()   Sets the current record's "twitter_created_at" value
- * @method TweetUser           setTimeZone()           Sets the current record's "time_zone" value
- * @method TweetUser           setLocation()           Sets the current record's "location" value
- * @method TweetUser           setLang()               Sets the current record's "lang" value
- * @method TweetUser           setUtcOffset()          Sets the current record's "utc_offset" value
- * @method TweetUser           setProfileImageUrl()    Sets the current record's "profile_image_url" value
- * @method TweetUser           setTweet()              Sets the current record's "Tweet" collection
- * @method TweetUser           setTweets()             Sets the current record's "Tweets" collection
+ * @method string              getName()                Returns the current record's "name" value
+ * @method string              getScreenName()          Returns the current record's "screen_name" value
+ * @method integer             getTwitterUserId()       Returns the current record's "twitter_user_id" value
+ * @method string              getDescription()         Returns the current record's "description" value
+ * @method integer             getFollowersCount()      Returns the current record's "followers_count" value
+ * @method integer             getStatusesCount()       Returns the current record's "statuses_count" value
+ * @method string              getUrl()                 Returns the current record's "url" value
+ * @method integer             getFriendsCount()        Returns the current record's "friends_count" value
+ * @method boolean             getGeoEnabled()          Returns the current record's "geo_enabled" value
+ * @method timestamp           getTwitterCreatedAt()    Returns the current record's "twitter_created_at" value
+ * @method string              getTimeZone()            Returns the current record's "time_zone" value
+ * @method string              getLocation()            Returns the current record's "location" value
+ * @method string              getLang()                Returns the current record's "lang" value
+ * @method integer             getUtcOffset()           Returns the current record's "utc_offset" value
+ * @method string              getProfileImageUrl()     Returns the current record's "profile_image_url" value
+ * @method integer             getLastSavedTweetId()    Returns the current record's "last_saved_tweet_id" value
+ * @method Doctrine_Collection getTweet()               Returns the current record's "Tweet" collection
+ * @method Doctrine_Collection getTweets()              Returns the current record's "Tweets" collection
+ * @method TweetUser           setName()                Sets the current record's "name" value
+ * @method TweetUser           setScreenName()          Sets the current record's "screen_name" value
+ * @method TweetUser           setTwitterUserId()       Sets the current record's "twitter_user_id" value
+ * @method TweetUser           setDescription()         Sets the current record's "description" value
+ * @method TweetUser           setFollowersCount()      Sets the current record's "followers_count" value
+ * @method TweetUser           setStatusesCount()       Sets the current record's "statuses_count" value
+ * @method TweetUser           setUrl()                 Sets the current record's "url" value
+ * @method TweetUser           setFriendsCount()        Sets the current record's "friends_count" value
+ * @method TweetUser           setGeoEnabled()          Sets the current record's "geo_enabled" value
+ * @method TweetUser           setTwitterCreatedAt()    Sets the current record's "twitter_created_at" value
+ * @method TweetUser           setTimeZone()            Sets the current record's "time_zone" value
+ * @method TweetUser           setLocation()            Sets the current record's "location" value
+ * @method TweetUser           setLang()                Sets the current record's "lang" value
+ * @method TweetUser           setUtcOffset()           Sets the current record's "utc_offset" value
+ * @method TweetUser           setProfileImageUrl()     Sets the current record's "profile_image_url" value
+ * @method TweetUser           setLastSavedTweetId()    Sets the current record's "last_saved_tweet_id" value
+ * @method TweetUser           setTweet()               Sets the current record's "Tweet" collection
+ * @method TweetUser           setTweets()              Sets the current record's "Tweets" collection
  * 
  * @package    tweetex
  * @subpackage model
@@ -133,6 +136,11 @@ abstract class BaseTweetUser extends sfDoctrineRecord
              'type' => 'string',
              'notnull' => true,
              'length' => 255,
+             ));
+        $this->hasColumn('last_saved_tweet_id', 'integer', 20, array(
+             'type' => 'integer',
+             'default' => 0,
+             'length' => 20,
              ));
 
 

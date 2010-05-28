@@ -23,6 +23,7 @@ class Tweet extends BaseTweet
 	public function save(Doctrine_Connection $conn = null) {
 		$ret = parent::save($conn);
 
+		Doctrine::getTable('TweetUser')->updateLastSavedTweet($this->getUserId(), $this->getTweetTwitterId());
 		$this->updateLuceneIndex();
 		return $ret;
 	}

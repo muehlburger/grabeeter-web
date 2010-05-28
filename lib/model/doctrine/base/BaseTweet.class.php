@@ -76,9 +76,10 @@ abstract class BaseTweet extends sfDoctrineRecord
              'type' => 'timestamp',
              'notnull' => true,
              ));
-        $this->hasColumn('tweet_twitter_id', 'integer', null, array(
+        $this->hasColumn('tweet_twitter_id', 'integer', 20, array(
              'type' => 'integer',
              'notnull' => true,
+             'length' => 20,
              ));
         $this->hasColumn('statuses_count', 'integer', null, array(
              'type' => 'integer',

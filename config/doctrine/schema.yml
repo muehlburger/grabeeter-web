@@ -17,7 +17,7 @@ Tweet:
       type: timestamp
       notnull: true
     tweet_twitter_id:
-      type: integer
+      type: integer(20)
       notnull: true
     statuses_count:
       type: integer
@@ -82,6 +82,9 @@ TweetUser:
     profile_image_url:
       type: string(255)
       notnull: true
+    last_saved_tweet_id:
+      type: integer(20)
+      default: 0
   options:
     collate: utf8_unicode_ci
     charset: utf8

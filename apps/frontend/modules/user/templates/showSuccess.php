@@ -67,6 +67,11 @@
       <td><?php echo $tweet_user->getProfileImageUrl() ?></td>
     </tr>
     <tr>
+      <th>Last saved Tweet Id:</th>
+      <td><?php echo $tweet_user->getLastSavedTweetId() ?></td>
+    </tr>
+    
+    <tr>
       <th>Created at:</th>
       <td><?php echo $tweet_user->getCreatedAt() ?></td>
     </tr>

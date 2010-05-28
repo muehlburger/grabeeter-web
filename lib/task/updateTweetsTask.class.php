@@ -57,9 +57,10 @@ EOF;
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 
 		//make the request
-		$curlReturnValue = curl_exec($curl);
+		$this->logSection('Info: ', 'Getting userdata: '. $url);
+		$curlReturnValue = curl_exec($curl);	
 		
-		if($curlReturnValue)
+		if($this->checkHttpStatusOk($curl))
 			$result = json_decode($curlReturnValue);
 		else {
 			$result = new stdClass();
@@ -79,7 +80,8 @@ EOF;
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
 		$statusesCount = $result->statuses_count;
 		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
-
+  		$pages = ceil($statusesCount / $count);
+	
 		$sources = array();
 		foreach($allTweetSources as $source) {
 			$sources[$source['label']]= $source['id'];
@@ -87,38 +89,27 @@ EOF;
 
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
-			$pages = ceil($statusesCount / $count);
 			$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-		} else {
-			$savedStatusesCount = $user->getStatusesCount();
-			$pages = ceil(($statusesCount - $savedStatusesCount) / $count);
-
-			$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
-			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $tweet->getTweetTwitterId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+		} else {	
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $user->getLastSavedTweetId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
 		
-		for($i = 1; $i <= $pages; $i++) {
-			$this->logSection('Info: ', 'Processing url: '. $url.$i);
+		for($i = $pages; $i > 0; $i--) {
+			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);			
 			
 			//make the request
 			$curlReturnValue = curl_exec($curl);
 			
-			if($curlReturnValue)
+			if($this->checkHttpStatusOk($curl))
 				$results = json_decode($curlReturnValue);
 			else {
 				$results = new stdClass();
-				$results->error = "Curl failed!";
+				$results->error = "Curl failed, check your internet connection!";
 			}
 			
 			if(isset($results->error)) {
-				$this->logSection('error: ', $results->error);
-				exit(1);
-			}
-			
-			if(!isset($result->id)) {
-				$this->logSection('Error: ', 'Twitter returned an error!');
-				vardump($result);
+				$this->logSection('Error: ', $results->error);
 				exit(1);
 			}
 			
@@ -133,8 +124,21 @@ EOF;
 		}
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 
-		$this->numberOfDeletedTweets = $statusesCount - $this->numberOfStoredTweets;
 		$this->logBlock('Task run successfuly for '.$arguments['username'], 'INFO');
 
+	}
+	
+	private function checkHttpStatusOk($curl) {
+		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+		$this->logSection('Info: ', 'HTTP Status Code: ' . $statusCode);
+		
+		switch ($statusCode) {
+			case 200:
+				return true;
+			case 502:
+				return false;
+			default:
+				return false;
+		}
 	}
 }

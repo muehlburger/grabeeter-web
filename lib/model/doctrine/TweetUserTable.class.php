@@ -3,6 +3,14 @@
 class TweetUserTable extends Doctrine_Table
 {
 	
+	public function updateLastSavedTweet($userId, $tweetId) {
+		$q = $this->createQuery('u')
+			->update('TweetUser')
+			->set('last_saved_tweet_id', $tweetId)
+			->where('id = ?', $userId);
+		return $q->execute();
+	}
+	
 	public function updateUserStatusesCount($userId, $statusesCount) {
 		$q = $this->createQuery('u')
 			->update('TweetUser')
@@ -52,13 +60,12 @@ class TweetUserTable extends Doctrine_Table
 		return $q->fetchOne();
 	}
 	
-//	public function getStatusesCount($twitterUserId) {
-//		$q = $this->createQuery('u')
-//		->from('TweetUser u')
-//		->where('u.twitter_user_id = ?', $twitterUserId)
-//		->
-//
-//		return $q->fetchOne();
-//	}
+	public function getStatusesCount($twitterUserId) {
+		$q = $this->createQuery('u')
+		->from('TweetUser u')
+		->where('u.twitter_user_id = ?', $twitterUserId);
+
+		echo $q->execute();
+	}
 
 }
