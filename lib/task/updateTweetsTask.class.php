@@ -92,11 +92,15 @@ EOF;
 			$sources[$source['label']]= $source['id'];
 		}
 
-		if(!$user)
-			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
-		
 		$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
-
+		if(!$user) {
+			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
+		} else {
+			$lastSavedTwitterId = $user->getLastSavedTwitterId();
+			if($lastSavedTwitterId > 0)
+				$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $user->getLastSavedTweetId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+		}
+		
 		for($i = $pages; $i > 0; $i--) {
 			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);			
