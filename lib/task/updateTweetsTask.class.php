@@ -98,6 +98,7 @@ EOF;
 		}
 		
 		for($i = 1; $i <= $pages; $i++) {
+			$this->logSection('Info: ', 'Processing url: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);			
 			
 			//make the request
@@ -114,8 +115,13 @@ EOF;
 				$this->logSection('error: ', $results->error);
 				exit(1);
 			}
-
-			$this->results = $results;				
+			
+			if(!isset($result->id)) {
+				$this->logSection('Error: ', 'Twitter returned an error!');
+				vardump($result);
+				exit(1);
+			}
+			
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}

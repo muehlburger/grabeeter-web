@@ -65,7 +65,7 @@ class tweetActions extends sfActions
 	{
 		//$this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
 		$this->tweet = $this->getRoute()->getObject();
-		$this->form = new TweetForm($tweet);
+		$this->form = new TweetForm($this->tweet);
 	}
 
 	public function executeUpdate(sfWebRequest $request)
