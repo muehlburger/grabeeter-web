@@ -15,4 +15,7 @@ cat usernames | while read line; do
     exit;
   fi
 done
-rm lock;
+
+if [ -e "lock" ]; then
+  rm lock;
+fi
