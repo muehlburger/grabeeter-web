@@ -96,9 +96,9 @@ EOF;
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);
 		} else {
-			$lastSavedTwitterId = $user->getLastSavedTwitterId();
+			$lastSavedTwitterId = $user->getLastSavedTweetId();
 			if($lastSavedTwitterId > 0)
-				$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $user->getLastSavedTweetId() .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+				$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $lastSavedTwitterId .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
 		
 		for($i = $pages; $i > 0; $i--) {
