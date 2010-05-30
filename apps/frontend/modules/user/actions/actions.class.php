@@ -11,6 +11,31 @@
 class userActions extends sfActions
 {
 
+	public function executeRegister(sfWebRequest $request) {
+		$this->form = new sfForm();
+		$this->form->setWidgets(array(
+			'username'    => new sfWidgetFormInputText(),
+		));
+
+		$this->form->setValidators(array(
+  			'username' => new sfValidatorString(array(), array('required'   => 'Please provide a username',))
+		));
+
+		// Deal with the request
+		if ($request->isMethod('post'))
+		{
+			$this->form->bind();
+			if ($this->form->isValid()) {
+
+				// Handle the form submission
+				$username = $request->getParameter('username');
+
+				$this->redirect('@homepage');
+
+			}
+		}
+	}
+
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')

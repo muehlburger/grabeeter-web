@@ -35,6 +35,10 @@ user_show:
   requires:
     sf_method: get
     
+user_register:
+  url:     /register
+  param:   { module: user, action: register }
+    
 #########################################
 # Source Routes
 ##
