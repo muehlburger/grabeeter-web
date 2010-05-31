@@ -42,9 +42,9 @@ registration:
   url:     /registration
   param:   { module: registration, action: index }
   
-registration_submit:
-  url:     /registration/submit
-  param:   { module: registration, action: submit }
+registration_thankyou:
+  url:    /registration/thankyou
+  param:  { module: registration, action: thankyou }
     
 #########################################
 # Source Routes

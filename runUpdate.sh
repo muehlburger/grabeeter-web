@@ -8,7 +8,7 @@ if [ -e "lock" ]; then
 fi
 
 touch lock;
-cat usernames | while read line; do
+cat data/usernames | while read line; do
   ./symfony updateTweets $line --env=prod
   if [ "$?" = "1" ]; then
     rm lock;

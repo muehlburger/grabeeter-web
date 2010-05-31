@@ -1,0 +1,1 @@
+Thank you for submitting your username! Your tweets will shortly be available!
