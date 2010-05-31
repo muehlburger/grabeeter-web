@@ -12,7 +12,7 @@ runUpdate_dev.sh
 README
 /data/fixtures/*
 /data/sql/*
-/data/*.index/*
+/data/*.index
 
 # SCM files
 .arch-params
