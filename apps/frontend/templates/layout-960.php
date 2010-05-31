@@ -15,10 +15,9 @@
 		<h1 id="logo" class="grid_7 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a></h1>
         <ul id="navbar" class="grid_9 omega round"> 
 			<li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
-			<li><a href="<?php echo url_for('@tweet') ?>">Tweets</a></li>
+			<li><a href="<?php echo url_for('@registration') ?>">Register</a></li>
 			<li><a href="<?php echo url_for('@tweet_search') ?>">Search</a></li>
 			<li><a href="<?php echo url_for('@user') ?>">Users</a></li>
-			<li><a href="<?php echo url_for('@registration') ?>">Register</a></li>
 			<li><a href="#">FAQ</a></li>
 			<li><a href="#">Guide</a></li> 
 		</ul>

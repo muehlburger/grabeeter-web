@@ -10,7 +10,9 @@
 /.settings*
 runUpdate_dev.sh
 README
-/data/*
+/data/fixtures/*
+/data/sql/*
+/data/*.index/*
 
 # SCM files
 .arch-params
