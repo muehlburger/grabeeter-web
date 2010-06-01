@@ -5,7 +5,7 @@
 # Api Routes
 ##
 api_tweets:
-  url:     /api/tweets/:username.:sf_format
+  url:     /api/tweets/:screen_name.:sf_format
   class:   sfDoctrineRoute
   param:   { module: api, action: list, sf_format: xml }
   options: { model: Tweet, type: list, method: getForUsername }

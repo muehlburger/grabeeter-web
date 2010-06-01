@@ -2,15 +2,13 @@
 
 class TweetTable extends Doctrine_Table
 {
-	public function getForUsername($username) {
+	public function getForUsername($params) {
+		
 		$q = $this->createQuery('t')
 		->leftJoin('t.TweetUser u')
-		->where('u.screen_name = ?', $username)
-		//->limit(3)
-		->orderBy('tweet_created_at DESC');
-
-		var_dump($q);
-		exit;
+		->where('u.screen_name = ?', $params['screen_name'])
+		->orderBy('t.tweet_created_at DESC');
+		
 		return $q->execute();
 	}
 	

@@ -18,6 +18,7 @@ class apiActions extends sfActions
 	 */
 	public function executeList(sfWebRequest $request) {
 		$this->tweets = array();
+
 		foreach ($this->getRoute()->getObjects() as $tweet) {
 			$this->tweets[$this->generateUrl('tweet_show', $tweet, true)] = $tweet->asArray();
 		}
