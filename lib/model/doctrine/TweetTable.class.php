@@ -9,7 +9,8 @@ class TweetTable extends Doctrine_Table
 		//->limit(3)
 		->orderBy('tweet_created_at DESC');
 
-			
+		var_dump($q);
+		exit;
 		return $q->execute();
 	}
 	
