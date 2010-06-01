@@ -102,7 +102,7 @@ EOF;
 		}
 		
 		for($i = $pages; $i > 0; $i--) {
-			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
+			//$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);			
 			
 			//make the request
