@@ -58,10 +58,14 @@ EOF;
 
 		//make the request
 		$this->logSection('Info: ', 'Getting userdata: '. $url);
-		$curlReturnValue = curl_exec($curl);	
-		
-		if($this->checkHttpStatusOk($curl))
+		$curlReturnValue = curl_exec($curl);
+
+		$httpStatusCode = $this->getHttpStatusOk($curl);
+
+		if($httpStatusCode == 200)
 			$result = json_decode($curlReturnValue);
+		elseif($httpStatusCode == 404)
+			exit(2);
 		else {
 			$result = new stdClass();
 			$result->error = "Curl failed, check your internet connection!";
@@ -71,7 +75,7 @@ EOF;
 			$this->logSection('Error: ', $result->error);
 			exit(1);
 		}
-		
+
 		if(!isset($result->id)) {
 			$this->logSection('Error: ', 'Twitter not reachable!');
 			exit(1);
@@ -79,14 +83,14 @@ EOF;
 
 		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
 		$statusesCount = $result->statuses_count;
-		
+
 		// Just try to access the first 3200 tweets
 		if($statusesCount > sfConfig::get('app_twitter_statuses_limit'));
-			$statusesCount = sfConfig::get('app_twitter_statuses_limit');
+		$statusesCount = sfConfig::get('app_twitter_statuses_limit');
 			
 		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
-  		$pages = ceil($statusesCount / $count);
-	
+		$pages = ceil($statusesCount / $count);
+
 		$sources = array();
 		foreach($allTweetSources as $source) {
 			$sources[$source['label']]= $source['id'];
@@ -98,28 +102,30 @@ EOF;
 		} else {
 			$lastSavedTwitterId = $user->getLastSavedTweetId();
 			if($lastSavedTwitterId > 0)
-				$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $lastSavedTwitterId .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
+			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $lastSavedTwitterId .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
-		
+
 		for($i = $pages; $i > 0; $i--) {
 			//$this->logSection('Info: ', 'Processing pages: '. $url.$i);
-			curl_setopt($curl, CURLOPT_URL, $url.$i);			
-			
+			curl_setopt($curl, CURLOPT_URL, $url.$i);
+				
 			//make the request
 			$curlReturnValue = curl_exec($curl);
-			
-			if($this->checkHttpStatusOk($curl))
+				
+			$httpStatusCode = $this->getHttpStatusOk($curl);
+
+			if($httpStatusCode == 200)
 				$results = json_decode($curlReturnValue);
 			else {
 				$results = new stdClass();
 				$results->error = "Curl failed, check your internet connection!";
 			}
-			
+				
 			if(isset($results->error)) {
 				$this->logSection('Error: ', $results->error);
 				exit(1);
 			}
-			
+				
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
@@ -134,22 +140,26 @@ EOF;
 		$this->logBlock('Task run successfuly for '.$arguments['username'], 'INFO');
 
 	}
-	
-	private function checkHttpStatusOk($curl) {
+
+	private function getHttpStatusOk($curl) {
 		$statusCode = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-				
+
 		switch ($statusCode) {
 			case 200:
-				return true;
+				return $statusCode;
 			case 502:
 				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
-				return false;
+				return $statusCode;
 			case 400:
 				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
-				return false;
+				return $statusCode;
+			case 404:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
+				$this->logSection('Error: ', 'User not valid!');
+				return $statusCode;
 			default:
 				$this->logSection('Info: ', 'HTTP Status Code: '. $statusCode);
-				return false;
+				return $statusCode;
 		}
 	}
 }

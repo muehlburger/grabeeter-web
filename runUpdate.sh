@@ -14,6 +14,9 @@ cat data/usernames | while read line; do
     rm lock;
     exit;
   fi
+  
+  if [ "$?" = "2" ]; then
+  fi
 done
 
 if [ -e "lock" ]; then
