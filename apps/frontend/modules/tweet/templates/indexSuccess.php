@@ -2,7 +2,8 @@
   <?php if (is_null($screenName)): ?>
   <h2>Information</h2>
   <ul>
-  	<li><?php echo count($pager) ?> stored Tweets</li>
+  	<li>Stored Tweets: <?php echo count($pager) ?></li>
+  	<li>Monitored Users: <?php echo $userCount ?></li>
   </ul>
   <?php else: ?>
   	<?php echo link_to(image_tag($user->getProfileImageUrl()), '@user_show?screen_name='. $user->getScreenName()) ?>
@@ -16,7 +17,9 @@
   <ul>
   	<li>Friends: <?php echo $user->getFriendsCount() ?></li>
   	<li>Followers: <?php echo $user->getFollowersCount() ?></li>
-  	<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl()) ?></li>
+  	<?php if($user->getUrl()): ?>
+  		<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl(), 'target=_blank') ?></li>
+  	<?php endif;?>
   </ul>
     <ul>
   	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>
