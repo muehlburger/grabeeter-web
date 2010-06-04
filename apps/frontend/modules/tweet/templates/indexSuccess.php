@@ -5,10 +5,24 @@
   	<li><?php echo count($pager) ?> stored Tweets</li>
   </ul>
   <?php else: ?>
-    <h2><?php echo $screenName ?></h2>
+  	<?php echo link_to(image_tag($user->getProfileImageUrl()), '@user_show?screen_name='. $user->getScreenName()) ?>
+  	<h2><?php echo $user->getName() ?></h2>
   <ul>
-  	<li><?php echo count($pager) ?> stored Tweets</li>
-  </ul> 
+    <li>Twitter User: <?php echo $user->getScreenName() ?></li>
+    <li>Tweets: <?php echo $user->getStatusesCount() ?></li>
+  	<li>Indexed Tweets: <?php echo count($pager) .' ('. $relativeNumberOfIndexedTweets ?> %)</li>
+  	<li>Links: <?php echo $linkCount . ' ('. $relativeNumberOfLinks ?> %)</li>
+  </ul>
+  <ul>
+  	<li>Friends: <?php echo $user->getFriendsCount() ?></li>
+  	<li>Followers: <?php echo $user->getFollowersCount() ?></li>
+  	<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl()) ?></li>
+  </ul>
+    <ul>
+  	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>
+  	<li>On Grabeeter: <br /><?php echo $user->getDateTimeObject('created_at')->format('D, d M Y H:i:s') ?></li>
+  </ul>
+      <p><?php echo $user->getDescription() ?></p>
   <?php endif; ?>
 <?php end_slot() ?>
 

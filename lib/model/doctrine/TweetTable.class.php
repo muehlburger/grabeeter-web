@@ -2,13 +2,19 @@
 
 class TweetTable extends Doctrine_Table
 {
+	public function getLinkCount($user) {
+		$q = $this->createQuery('t')
+		->where('t.user_id = ?', $user->getId())
+		->andWhere('t.text LIKE ?', '%http://%');
+
+		return $q->count();
+	}
+	
 	public function getForUsername($params) {
-		
 		$q = $this->createQuery('t')
 		->leftJoin('t.TweetUser u')
 		->where('u.screen_name = ?', $params['screen_name'])
 		->orderBy('t.tweet_created_at DESC');
-		
 		return $q->execute();
 	}
 	

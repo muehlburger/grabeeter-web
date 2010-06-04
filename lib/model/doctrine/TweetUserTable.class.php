@@ -2,21 +2,21 @@
 
 class TweetUserTable extends Doctrine_Table
 {
-	
+
 	public function updateLastSavedTweet($userId, $tweetId) {
 		$q = $this->createQuery('u')
-			->update('TweetUser')
-			->set('last_saved_tweet_id', $tweetId)
-			->where('id = ?', $userId);
+		->update('TweetUser')
+		->set('last_saved_tweet_id', $tweetId)
+		->where('id = ?', $userId);
 		return $q->execute();
 	}
-	
+
 	public function updateUserStatusesCount($userId, $statusesCount) {
 		$q = $this->createQuery('u')
-			->update('TweetUser')
-    		->set('statuses_count', $statusesCount)
-    		->where('id = ?', $userId);
-    	return $q->execute();
+		->update('TweetUser')
+		->set('statuses_count', $statusesCount)
+		->where('id = ?', $userId);
+		return $q->execute();
 	}
 
 	public function createNewTweetUser($result) {
@@ -59,7 +59,15 @@ class TweetUserTable extends Doctrine_Table
 
 		return $q->fetchOne();
 	}
-	
+
+	public function getUserByScreenName($screenName) {
+		$q = $this->createQuery('u')
+		->from('TweetUser u')
+		->where('u.screen_name = ?', $screenName);
+
+		return $q->fetchOne();
+	}
+
 	public function getStatusesCount($twitterUserId) {
 		$q = $this->createQuery('u')
 		->from('TweetUser u')
