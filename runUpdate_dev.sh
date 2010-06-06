@@ -1,11 +1,11 @@
 #!/bin/bash
-echo
-date
-
 if [ -e "lock" ]; then
   echo "waiting ..."
   exit;
 fi
+
+echo
+date
 
 touch lock;
 cat data/usernames | while read line; do
