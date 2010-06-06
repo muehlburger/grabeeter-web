@@ -6,7 +6,7 @@
   	<li>Monitored Users: <?php echo $userCount ?></li>
   </ul>
   <?php else: ?>
-  	<?php echo link_to(image_tag($user->getProfileImageUrl()), '@user_show?screen_name='. $user->getScreenName()) ?>
+  	<?php echo image_tag($user->getProfileImageUrl()) ?>
   	<h2><?php echo $user->getName() ?></h2>
   <ul>
     <li>Twitter User: <?php echo $user->getScreenName() ?></li>
