@@ -16,6 +16,7 @@ cat data/usernames | while read line; do
   fi
   
   if [ "$?" = "2" ]; then
+    echo "username unknown";
   fi
 done
 

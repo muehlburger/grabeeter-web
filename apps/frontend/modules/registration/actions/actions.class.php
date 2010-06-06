@@ -36,13 +36,15 @@ class registrationActions extends sfActions
 				
 				$username = $this->form->getValue('username');
 				$filepath = sfConfig::get('sf_data_dir').'/'.sfConfig::get('app_username_file');
+				$newUsers = sfConfig::get('sf_data_dir').'/newUsers';
 				
 				$stordeUsernames = file_get_contents($filepath);
 				$storedUsernames = explode("\n", $stordeUsernames);
 				
 				if(!in_array($username, $storedUsernames)) {
 					$username = $username . "\n";
-					$bytesWritten = file_put_contents($filepath, $username, FILE_APPEND);
+					$bytesStored = file_put_contents($filepath, $username, FILE_APPEND);
+					$bytesNewUsers = file_put_contents($newUsers, $username, FILE_APPEND);
 				}
 				
 				$this->redirect('@registration_thankyou');	

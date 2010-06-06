@@ -57,7 +57,7 @@ EOF;
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 
 		//make the request
-		$this->logSection('Info: ', 'Getting userdata: '. $url);
+		//$this->logSection('Info: ', 'Getting userdata: '. $url);
 		$curlReturnValue = curl_exec($curl);
 
 		$httpStatusCode = $this->getHttpStatusOk($curl);
