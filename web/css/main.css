@@ -129,7 +129,6 @@ text-decoration:none;
 }
 
 .tweet a {
-  display: block;
   text-decoration: none;
 }
 
@@ -160,9 +159,4 @@ text-decoration:none;
 
 a:hover {
 	text-decoration: underline;
-}
-
-.tweet p a{
-  font-weight: bold;
-  float: left; 
 }
