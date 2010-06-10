@@ -18,7 +18,7 @@ class tweetActions extends sfActions
 		$query = $requestValues[0];
 		
 		if(!$query) {
-			$query = "";
+			$query = "*";
 		}
 
 		$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);

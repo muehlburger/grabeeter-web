@@ -1,13 +1,6 @@
 <h2>What do you want to find?</h2>
 
-<div class="search">
-<form action="<?php echo url_for('@tweet_search') ?>" method="get">
-  <input type="text" name="query" value="<?php echo $sf_request->getParameter('query') ?>" id="search_keywords" />
-  <img id="loader" src="/images/loader.gif" style="vertical-align: middle; display: none"/>
-  <input type="submit" value="search" />
-  <div class="help">Enter some keywords (eg. web, eLearning, ...)</div>
-</form>
-</div>
+<?php include_partial('tweet/search', array('screen_name' => $screenName)) ?>
 
 <h3>Try out our Grabeeter Client</h3>
 <p>Grabeeter is a JavaFX application and enables you to search your tweets offline. You don't have to have an internet

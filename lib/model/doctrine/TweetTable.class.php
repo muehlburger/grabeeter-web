@@ -31,7 +31,6 @@ class TweetTable extends Doctrine_Table
 	public function getForLuceneQuery($query, $screenName) {
 
 	  $query = 'text:"'. $query .'" AND screenName:' . $screenName;
-
 	  $hits = $this->getLuceneIndex()->find($query);
 	  
 	  $pks = array();
@@ -46,9 +45,9 @@ class TweetTable extends Doctrine_Table
 	  
 	  $q = $this->createQuery('t')
 	  	->whereIn('t.id', $pks);
-//	  	->limit(20);
+//	  	->limit(2);
 	  	
-	  $q = $this->getMatchingTweets($q, $screenName);
+	  $q = $this->getMatchingTweets($q);
 	  
 	  return $q->execute();
 	}

@@ -16,7 +16,7 @@
         <ul id="navbar" class="grid_9 omega round"> 
 			<li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
 			<li><a href="<?php echo url_for('@registration') ?>">Register</a></li>
-			<li><a href="<?php echo url_for('@tweet_search') ?>">Search</a></li>
+			<!-- <li><a href="<?php echo url_for('@tweet_search') ?>">Search</a></li> -->
 			<li><a href="<?php echo url_for('@user') ?>">Users</a></li>
 			<li><a href="#">FAQ</a></li>
 			<li><a href="#">Guide</a></li> 

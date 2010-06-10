@@ -9,7 +9,7 @@ $(document).ready(function()
       $('#loader').show();
       $('#tweets').load(
         $(this).parents('form').attr('action'),
-        { 'values[]': [this.value + '*', $('#screen_name').val() ] },
+        { 'values[]': [this.value + '*', $('#screen_name').val() ]},
         function() { $('#loader').hide(); }
       );
     }
