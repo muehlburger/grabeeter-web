@@ -92,7 +92,7 @@ geolocation:
 # default rules
 homepage:
   url:   /
-  param: { module: tweet, action: index }
+  param: { module: user, action: index }
 
 #default_index:
 #  url:   /:module

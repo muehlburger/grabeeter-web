@@ -15,6 +15,7 @@ class userActions extends sfActions
 	{
 		$this->tweet_users = Doctrine::getTable('TweetUser')
 		->createQuery('a')
+		->limit(11)
 		->execute();
 	}
 

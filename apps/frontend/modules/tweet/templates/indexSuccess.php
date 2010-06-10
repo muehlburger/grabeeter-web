@@ -29,9 +29,10 @@
   <?php endif; ?>
 <?php end_slot() ?>
 
-<h2>Tweets</h2>		  
+<h2>Tweets</h2>
+<?php include_partial('tweet/search', array('screen_name' => $screenName)) ?> 
 <p class="subheader">
-	<strong><?php echo count($pager) ?> available Tweets | </strong><em>Page <?php echo $pager->getPage() ?> of <?php echo $pager->getLastPage() ?></p> 
+	<strong><?php echo count($pager) ?> available Tweets | </strong><em>Page <?php echo $pager->getPage() ?> of <?php echo $pager->getLastPage() ?></em></p> 
 <p>
   <?php if ($pager->haveToPaginate()): ?>
   <?php endif; ?>

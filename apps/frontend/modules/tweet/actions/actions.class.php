@@ -11,11 +11,17 @@
 class tweetActions extends sfActions
 {
 	public function executeSearch(sfWebRequest $request) {
-		if(!$query = $request->getParameter('query')) {
+		
+		$requestValues = $request->getParameter('values');
+		
+		$this->screenName = $requestValues[1];
+		$query = $requestValues[0];
+		
+		if(!$query) {
 			$query = "";
 		}
 
-		$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query);
+		$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
 
 		if ($request->isXmlHttpRequest())
 		{

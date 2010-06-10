@@ -23,19 +23,19 @@
 		</ul>
   </div><!-- end header -->
    	<div id="content" class="grid_11 round">
-   	<div>
+   	
        <?php echo $sf_content ?>
-    </div>
+    
     </div><!-- end content -->
     <div id="sidebar" class="grid_5 round">
     	  <?php if(!include_slot('sidebar')): ?>
     	  <h2>Grabeeter</h2>
 			  <p>Grabeeter - Grab and Search your Tweets</p>
 		  <?php endif; ?>        
-    </div>
+    </div><!-- end sidebar -->
 	<div id="footer" class="grid_16 round">
     	<p>&copy; 2010 Social Learning - Graz University of Technology | Terms of Usage | Privacy Policy</p>
     </div><!-- end footer -->    
-  </div> 
+  </div><!-- end container -->
   </body>
 </html>
