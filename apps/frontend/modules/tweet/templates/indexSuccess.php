@@ -37,6 +37,6 @@
   <?php if ($pager->haveToPaginate()): ?>
   <?php endif; ?>
 </p>
-<?php include_partial('tweet/pagination', array('pager' => $pager, 'urlFor' => 'tweet'))?>
+<?php include_partial('tweet/pagination', array('pager' => $pager, 'screen_name' => $screenName))?>
 <?php include_partial('tweet/list', array('tweets' => $pager->getResults())) ?>
-<?php include_partial('tweet/pagination', array('pager' => $pager, 'urlFor' => 'tweet'))?>
+<?php include_partial('tweet/pagination', array('pager' => $pager, 'screen_name' => $screenName))?>

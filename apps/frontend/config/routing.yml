@@ -57,7 +57,7 @@ source:
 # Tweet Routes
 ##  
 tweet_user_tweets:
-  url:     /:screen_name/tweets/:page
+  url:     /tweets/:screen_name/:page
   class:    sfDoctrineRoute
   options: { model: Tweet, type: object }
   params:  { module: tweet, action: index, page: 1 }
