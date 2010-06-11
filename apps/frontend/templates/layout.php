@@ -1,9 +1,8 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html>
-  <head>
-    <title><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></title>
-    <link rel="shortcut icon" href="/favicon.ico" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de"> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title><?php include_slot('title', 'Grabeeter - Grab and Search your Tweets') ?></title>
     <?php use_javascript('jquery-1.4.2.min.js') ?>
     <?php use_javascript('search.js') ?>
     <?php include_javascripts() ?>
@@ -11,52 +10,31 @@
     <link rel="shortcut icon" href="/favicon.ico" />
   </head>
   <body>
-  <div id="container">
-    <div id="header">
-		<h1 id="logo"><a href="<?php echo url_for('homepage') ?>"><?php include_slot('title', 'Grabeeter - Search your Tweets') ?></a></h1>
-	</div>
-	<div id="navbar">
-        <ul> 
-			<li><a href="<?php echo url_for('homepage') ?>">Home</a></li>
-			<li><a href="<?php echo url_for('@tweet') ?>">Tweets</a></li>
-			<li><a href="<?php echo url_for('tweet_search') ?>">Search Tweets</a></li>
-			<li><a href="<?php echo url_for('user') ?>">Users</a></li>
+  <div id="container" class="container_16">
+  <div id="header" class="grid_16">
+		<h1 id="logo" class="grid_7 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a></h1>
+        <ul id="navbar" class="grid_9 omega round"> 
+			<li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
+			<li><a href="<?php echo url_for('@registration') ?>">Register</a></li>
+			<!-- <li><a href="<?php echo url_for('@tweet_search') ?>">Search</a></li> -->
 			<li><a href="#">FAQ</a></li>
-			<li><a href="#">User Guide</a></li> 
+			<li><a href="#">Guide</a></li> 
 		</ul>
-	</div>
-	
-	<div id="content">	
-    <?php if ($sf_user->hasFlash('notice')): ?>
-          <div class="flash_notice">
-            <?php echo $sf_user->getFlash('notice') ?>
-          </div>
-        <?php endif; ?>
- 
-        <?php if ($sf_user->hasFlash('error')): ?>
-          <div class="flash_error">
-            <?php echo $sf_user->getFlash('error') ?>
-          </div>
-        <?php endif; ?>
-        
-        <?php echo $sf_content ?>
-	</div>
-      
-    <div id="sidebar">
-    	<h2>Sidebar</h2>
-    	<p>Lorem ipsum vix elit ... </p>
-    	<h3>Überschrift (h3)</h3>
-    	<ul>
-    		<li><a href="#">Link 1</a></li>
-    		<li><a href="#">Link 2</a></li>
-    		<li><a href="#">Link 3</a></li>
-    		<li><a href="#">Link 4</a></li>
-    	</ul>
-    </div>
+  </div><!-- end header -->
+   	<div id="content" class="grid_11 round">
+   	
+       <?php echo $sf_content ?>
     
-    <div id="footer">
+    </div><!-- end content -->
+    <div id="sidebar" class="grid_5 round">
+    	  <?php if(!include_slot('sidebar')): ?>
+    	  <h2>Grabeeter</h2>
+			  <p>Grabeeter - Grab and Search your Tweets</p>
+		  <?php endif; ?>        
+    </div><!-- end sidebar -->
+	<div id="footer" class="grid_16 round">
     	<p>&copy; 2010 Social Learning - Graz University of Technology | Terms of Usage | Privacy Policy</p>
-    </div>
-    </div>
+    </div><!-- end footer -->    
+  </div><!-- end container -->
   </body>
 </html>

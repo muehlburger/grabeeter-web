@@ -17,4 +17,4 @@ default:
   javascripts:    []
  
   has_layout:     true
-  layout:         layout-960
+  layout:         layout
