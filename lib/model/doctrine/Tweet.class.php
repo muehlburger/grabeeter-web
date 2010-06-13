@@ -16,7 +16,8 @@ class Tweet extends BaseTweet
 		return array(
 			'text'			=>		$this->getText(),
 			'screen_name'	=>		$this->getTweetUser(),
-			'created'		=>		$this->getDateTimeObject('tweet_created_at')->format('Y-m-d')
+			'created'		=>		$this->getDateTimeObject('tweet_created_at')->format('Y-m-d'),
+			'twitterUrl'	=>		'http://twitter.com/' . $this->getTweetUser() . '/status/'.$this->getTweetTwitterId()
 		);	
 	}
 	
