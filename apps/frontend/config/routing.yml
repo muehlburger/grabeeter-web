@@ -2,6 +2,21 @@
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
 
 #########################################
+# Help Routes
+##
+help_faq:
+  url:    /FAQs
+  param:  { module: help, action: faq }
+  
+help_userguide:
+  url:    /userguide
+  param:  { module: help, action: userguide }
+  
+help_api:
+  url:    /developers
+  param:  { module: help, action: api }
+
+#########################################
 # Api Routes
 ##
 api_tweets:

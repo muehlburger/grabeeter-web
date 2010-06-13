@@ -2,16 +2,14 @@
 <jnlp spec="1.0+" codebase="http://grabeeter.tugraz.at/" href="Grabeeter.jnlp">
     <information>
         <title>Grabeeter</title>
-        <vendor>Graz University of Technology</vendor>
+        <vendor>Herbert Mühlburger, Graz University of Technology</vendor>
         <homepage href="http://grabeeter.tugraz.at"/>
         <description>Grabeeter</description>
         <description kind="short">Grabeeter</description>
         <icon kind="shortcut" href="Grabeeter_logo_16x16.png" width="16" height="16"/>
         <icon kind="shortcut" href="Grabeeter_logo_24x24.png" width="24" height="24"/>
         <icon kind="shortcut" href="Grabeeter_logo_32x32.png" width="32" height="32"/>
-	<icon kind="shortcut" href="Grabeeter_logo_48x48.png" width="48" height="48"/>        
-	<icon kind="shortcut" href="Grabeeter_logo_64x64.png" width="64" height="64"/>
-	<icon kind="shortcut" href="Grabeeter_logo_128x128.png" width="128" height="128"/>  
+	<icon kind="shortcut" href="Grabeeter_logo_48x48.png" width="48" height="48"/>
         <icon kind="splash" href="Grabeeter_logo_128x128.png"/>
         <shortcut online="true">
             <desktop/>
@@ -24,7 +22,7 @@
     </security>
     <resources>
         <java version="1.6+"/>
-        <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.2/javafx-rt.jnlp"/>
+        <extension name="JavaFX Runtime" href="http://dl.javafx.com/1.3/javafx-rt.jnlp"/>
         <jar href="Grabeeter.jar" main="true"/>
         <jar href="lib/lucene-core-3.0.1.jar"/>
         <jar href="lib/lucene-analyzers-3.0.1.jar"/>
@@ -32,5 +30,5 @@
     <application-desc main-class="com.sun.javafx.runtime.main.Main">
         <argument>MainJavaFXScript=grabeeter.Main_run</argument>
     </application-desc>
-    <update check="background"/>
+    <update check="always"/>
 </jnlp>
