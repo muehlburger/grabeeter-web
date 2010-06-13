@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jnlp spec="1.0+" codebase="http://vlpc01.tugraz.at/projekte/herbert/t/dist/" href="Grabeeter.jnlp">
+<jnlp spec="1.0+" codebase="http://grabeeter.tugraz.at/" href="Grabeeter.jnlp">
     <information>
         <title>Grabeeter</title>
         <vendor>Graz University of Technology</vendor>
-        <homepage href="http://vlpc01.tugraz.at/projekte/herbert/t/dist/"/>
+        <homepage href="http://grabeeter.tugraz.at"/>
         <description>Grabeeter</description>
         <description kind="short">Grabeeter</description>
-        <icon kind="shortcut" href="grabeeter-icon-64.png" width="16" height="16"/>
-        <icon kind="splash" href="grabeeter-icon-64.png"/>
+        <icon kind="shortcut" href="Grabeeter_logo_16x16.png" width="16" height="16"/>
+        <icon kind="shortcut" href="Grabeeter_logo_24x24.png" width="24" height="24"/>
+        <icon kind="shortcut" href="Grabeeter_logo_32x32.png" width="32" height="32"/>
+	<icon kind="shortcut" href="Grabeeter_logo_48x48.png" width="48" height="48"/>        
+	<icon kind="shortcut" href="Grabeeter_logo_64x64.png" width="64" height="64"/>
+	<icon kind="shortcut" href="Grabeeter_logo_128x128.png" width="128" height="128"/>  
+        <icon kind="splash" href="Grabeeter_logo_128x128.png"/>
         <shortcut online="true">
             <desktop/>
             <menu submenu="Grabeeter"/>
