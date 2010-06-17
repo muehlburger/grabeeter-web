@@ -27,11 +27,13 @@
   <div id="header" class="grid_16">
 		<h1 id="logo" class="grid_9 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a></h1>
         <ul id="navbar" class="grid_7 omega round"> 
-			<li><a href="<?php echo url_for('@homepage') ?>">Home</a></li>
-			<li><a href="<?php echo url_for('@registration') ?>">Register</a></li>
-			<li><?php echo link_to('Help', '@help_userguide')?></li>
-			<li><?php echo link_to('FAQs', '@help_faq')?></li>
+			<li><?php echo link_to('Search', '@user') ?></li>
+			<li><?php echo link_to('Register', '@registration') ?></li>
 			<li><?php echo link_to('API', '@help_api')?></li>
+			<li><?php echo link_to('FAQs', '@help_faq')?></li>
+			<li><?php echo link_to('Help', '@help_userguide')?></li>
+			
+			
 		</ul>
   </div><!-- end header -->
    	<div id="content" class="grid_11 round">
