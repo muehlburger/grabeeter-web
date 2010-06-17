@@ -2,10 +2,10 @@
 # http://www.symfony-project.org/reference/1_4/en/11-App
 
 # default values
-#all:
 all:
   twitter_count: 200
   max_tweets_on_page: 25
+  max_tweets_on_startpage: 3
   max_sources_on_page: 10
   twitter_statuses_limit: 3200
   username_file: usernames

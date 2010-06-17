@@ -11,6 +11,23 @@
 class helpActions extends sfActions
 {
 	/**
+	 * Executes index action
+	 * 
+	 * @param sfWeRequest $request
+	 */
+	public function executeIndex(sfWebRequest $request) {
+		$this->tweet_users = Doctrine::getTable('TweetUser')
+		->createQuery('a')
+		->limit(11)
+		->execute();
+		
+		$q = Doctrine::getTable('Tweet')
+		->getMatchingTweets(null, $this->tweet_users[0]);
+		$q->limit(sfConfig::get('app_max_tweets_on_startpage'));
+		
+		$this->tweets = $q->execute();
+	}
+	/**
 	 * Executes faq action
 	 *
 	 * @param sfRequest $request A request object

@@ -11,9 +11,6 @@
 class tweetActions extends sfActions
 {
 	public function executeSearch(sfWebRequest $request) {
-
-		
-		
 		$this->tweets = array();
 		$requestValues = $request->getParameter('values');
 
@@ -73,7 +70,7 @@ class tweetActions extends sfActions
 			$this->user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
 			$this->linkCount = Doctrine::getTable('Tweet')->getLinkCount($this->user);
 			$this->relativeNumberOfLinks = round($this->linkCount / count($this->pager) * 100);
-			$this->relativeNumberOfIndexedTweets = round(count($this->user->getStatusesCount() / $this->pager) * 100);
+			$this->relativeNumberOfIndexedTweets = round(count($this->pager) / $this->user->getStatusesCount() * 100);
 		}
 
 	}

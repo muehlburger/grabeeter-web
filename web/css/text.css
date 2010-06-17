@@ -40,18 +40,22 @@ hr {
 
 h1 {
 	font-size: 25px;
+	text-shadow: white 0px 1px;	
 }
 
 h2 {
+	font-size: 24px;
 	text-shadow: white 0px 1px;
 }
 
 h3 {
 	font-size: 21px;
+	text-shadow: white 0px 1px;
 }
 
 h4 {
 	font-size: 19px;
+	text-shadow: white 0px 1px;
 }
 
 h5 {
@@ -71,10 +75,11 @@ ol {
 
 ul {
 	list-style: disc;
+	list-style-image: url("/images/check-blue.png");	
 }
 
 li {
-	margin-left: 30px;
+	margin-left: 45px;
 }
 
 p,
@@ -92,13 +97,9 @@ pre,
 table,
 address,
 fieldset {
-	margin-bottom: 20px;
-}
-
-em {
-	font-style: italic;
+	margin-bottom: 3px;
 }
 
 p { 
-	margin: 0.6em 0 0 0;
+	margin: 5px;
 }

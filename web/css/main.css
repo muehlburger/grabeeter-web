@@ -17,6 +17,7 @@
 	display: inline;
 	padding-top: 20px;
 	margin-top: 10px;
+	margin-left: 30px;
 }
 
 #navbar li a {
@@ -30,16 +31,12 @@
 }
 
 #content div {
-	padding: 5px;
+	padding: 10px;
 }
 
-#sidebar {
-	font-size: 0.95em;
-	color: #222;
-}
 
-#sidebar p,h2 {
-	padding: 15px;
+#sidebar div {
+	padding:10px;
 }
 
 #container .subheader {
@@ -50,14 +47,17 @@
 	margin: 8px 0 0 0;
 }
 
-#container h1,h2 {
-	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times,
-		serif;
+h1,h2,h3,h4 {
+	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
 	font-weight: normal;
 	font-style: italic;
 	line-height: 1.2em;
 	letter-spacing: -1px;
 	font-size: 2.9em;
+}
+
+h1 a, h1 a:hover {
+  text-decoration: none;
 }
 
 #footer {

@@ -25,31 +25,29 @@
   <body>
   <div id="container" class="container_16">
   <div id="header" class="grid_16">
-		<h1 id="logo" class="grid_9 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a></h1>
+		<h1 id="logo" class="grid_9 alpha"><a href="<?php echo url_for('homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" />Grabeeter - Search your Tweets</a></h1>
         <ul id="navbar" class="grid_7 omega round"> 
 			<li><?php echo link_to('Search', '@user') ?></li>
 			<li><?php echo link_to('Register', '@registration') ?></li>
 			<li><?php echo link_to('API', '@help_api')?></li>
 			<li><?php echo link_to('FAQs', '@help_faq')?></li>
 			<li><?php echo link_to('Help', '@help_userguide')?></li>
-			
-			
 		</ul>
   </div><!-- end header -->
    	<div id="content" class="grid_11 round">
    		<div>
-       <?php echo $sf_content ?>
+       	<?php echo $sf_content ?>
     	</div>
     </div><!-- end content -->
     <div id="sidebar" class="grid_5 round">
+    <div>
     	  <?php if(!include_slot('sidebar')): ?>
-    	  <h2>Grabeeter</h2>
-			  <p>Grabeeter - Grab and Search your Tweets</p>
-			  <strong>Try out our Grabeeter Client</strong>
+			  <h3>Grabeeter Client</h3>
 <p>Grabeeter is a JavaFX application and enables you to search your tweets offline. You don't have to have an internet
 connection to search in your tweets. </p> 
 <a href="http://grabeeter.tugraz.at/Grabeeter.jnlp" title="Grabeeter"><img src="/images/jws-launch-button.gif" title="Grabeeter" alt="Grabeeter" /></a>	  
-		  <?php endif; ?>        
+		  <?php endif; ?>
+	</div>        
     </div><!-- end sidebar -->
 	<div id="footer" class="grid_16 round">
     	<p>&copy; 2010 <?php echo link_to('Social Learning', 'http://portal.tugraz.at/portal/page/portal/TU_Graz/Studium_Lehre/tugnet_vl_start/tugnet_vl_elearning') ?>  - <?php echo link_to('Graz University of Technology', 'http://www.tugraz.at') ?> | Terms of Usage | Privacy Policy</p>

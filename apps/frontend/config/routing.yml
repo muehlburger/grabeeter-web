@@ -107,7 +107,7 @@ geolocation:
 # default rules
 homepage:
   url:   /
-  param: { module: user, action: index }
+  param: { module: help, action: index }
 
 #default_index:
 #  url:   /:module
