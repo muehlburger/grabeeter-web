@@ -11,6 +11,7 @@
 	padding-bottom: 6px;
 	margin-top: 90px;
 }
+
 #navbar li {
 	list-style: none;
 	display: inline;
@@ -37,26 +38,26 @@
 	color: #222;
 }
 
-#sidebar p, h2 {
+#sidebar p,h2 {
 	padding: 15px;
 }
 
 #container .subheader {
- font-size: 0.85em;
- border-top: solid 2px #7891a1;
- border-bottom: 1px solid #ccc;
- padding: 5px 0 5px 15px;
- margin: 8px 0 0 0;
+	font-size: 0.85em;
+	border-top: solid 2px #7891a1;
+	border-bottom: 1px solid #ccc;
+	padding: 5px 0 5px 15px;
+	margin: 8px 0 0 0;
 }
 
-#container h1, h2 {
-	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
+#container h1,h2 {
+	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times,
+		serif;
 	font-weight: normal;
 	font-style: italic;
 	line-height: 1.2em;
 	letter-spacing: -1px;
 	font-size: 2.9em;
-	
 }
 
 #footer {
@@ -66,97 +67,118 @@
 }
 
 #footer p {
-	padding:2px;
+	padding: 2px;
 }
 
 #pagination {
-  text-align: center;
-  padding: 10px;
+	text-align: center;
+	padding: 10px;
 }
 
 #pagination ul {
 	margin: auto;
 }
 
-#pagination-clean li{
-border:0; margin:0; padding:0;
-font-size:11px;
-list-style:none;
+#pagination-clean li {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	font-size: 11px;
+	list-style: none;
 }
-#pagination-clean li, #pagination-clean a{
-/* border:  1px solid #DEDEDE; */
-margin-right:2px;
+
+#pagination-clean li,#pagination-clean a {
+	/* border:  1px solid #DEDEDE; */
+	margin-right: 2px;
 }
-#pagination-clean .previous-off,
-#pagination-clean .next-off {
-color:#888888;
-display:block;
-float:left;
-font-weight:bold;
-padding:3px 4px;
+
+#pagination-clean .previous-off,#pagination-clean .next-off {
+	color: #888888;
+	display: block;
+	float: left;
+	font-weight: bold;
+	padding: 3px 4px;
 }
-#pagination-clean .next a,
-#pagination-clean .previous a {
-font-weight:bold;
-} 
-#pagination-clean .active{
-color:#00000;
-font-weight:bold;
-display:block;
-float:left;
-padding:4px 6px;
+
+#pagination-clean .next a,#pagination-clean .previous a {
+	font-weight: bold;
 }
-#pagination-clean a:link,
-#pagination-clean a:visited {
-color:#0033CC;
-display:block;
-float:left;
-padding:3px 6px;
-text-decoration:none;
+
+#pagination-clean .active {
+	color: #00000;
+	font-weight: bold;
+	display: block;
+	float: left;
+	padding: 4px 6px;
 }
-#pagination-clean a:hover{
-text-decoration:none;
+
+#pagination-clean a:link,#pagination-clean a:visited {
+	color: #0033CC;
+	display: block;
+	float: left;
+	padding: 3px 6px;
+	text-decoration: none;
+}
+
+#pagination-clean a:hover {
+	text-decoration: none;
 }
 
 .tweet {
-  clear: left;
-  height: 70px;
-  border-bottom: 1px solid #eaf4f9;	
+	clear: left;
+	height: 70px;
+	border-bottom: 1px solid #eaf4f9;
 }
 
 .tweet:hover {
-  background-color: #eaf4f9;
+	background-color: #eaf4f9;
 }
 
 .tweet a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .tweet img {
-  float: left;
+	float: left;
 }
 
 .tweet p {
-  margin-top: 0px;
-  margin-left: 53px;  
+	margin-top: 0px;
+	margin-left: 53px;
 }
 
 .tweet span.description {
-  clear: both;
-  float: left;
-  color: #425d75;
-  font-size: 0.7em;
+	clear: both;
+	float: left;
+	color: #425d75;
+	font-size: 0.7em;
 }
 
 .description a {
-  text-decoration: none;
+	text-decoration: none;
 }
 
 .tweet span.source {
-  font-size: 0.7em;
-  float: right;
+	font-size: 0.7em;
+	float: right;
 }
 
 a:hover {
 	text-decoration: underline;
+}
+
+.search input.iround {
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	height: 1,5em;
+	overflow: auto;
+	padding: 5px;
+	resize: none;
+	width: 93%;
 }
