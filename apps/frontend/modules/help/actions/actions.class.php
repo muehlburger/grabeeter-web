@@ -22,7 +22,7 @@ class helpActions extends sfActions
 		->execute();
 		
 		$q = Doctrine::getTable('Tweet')
-		->getMatchingTweets(null, $this->tweet_users[0]);
+		->getMatchingTweets(null, sfConfig::get('app_default_user_on_starpage'));
 		$q->limit(sfConfig::get('app_max_tweets_on_startpage'));
 		
 		$this->tweets = $q->execute();
