@@ -1,6 +1,5 @@
 <?php use_helper('Text') ?>
 
-<div id="tweets">
   <?php foreach ($tweets as $i => $tweet): ?>
     <div class="tweet">
 		<?php echo link_to(image_tag($tweet->getTweetUser()->getProfileImageUrl(), array('width' => '48px', 'height' => '48px')), '@tweet_user_tweets?screen_name='. $tweet->getTweetUser()) ?><p>
@@ -11,4 +10,3 @@
         </p>
     </div>
   <?php endforeach; ?>
-</div>

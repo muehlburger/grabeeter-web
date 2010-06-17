@@ -11,21 +11,23 @@
 class tweetActions extends sfActions
 {
 	public function executeSearch(sfWebRequest $request) {
+
 		
+		
+		$this->tweets = array();
 		$requestValues = $request->getParameter('values');
-		
+
 		$this->screenName = $requestValues[1];
 		$query = $requestValues[0];
 		
-		if(!$query) {
-			$query = "*";
-		}
-
-		$this->tweets = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
-
 		if ($request->isXmlHttpRequest())
 		{
-			if ('*' == $query || !$this->tweets)
+			$q = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
+			
+			if(count($q))
+				$this->tweets = $q->execute();	
+
+			if (count($this->tweets) < 1)
 			{
 				return $this->renderText('No results.');
 			}
@@ -34,6 +36,24 @@ class tweetActions extends sfActions
 				return $this->renderPartial('tweet/list', array('tweets' => $this->tweets));
 			}
 		}
+		
+		$this->screenName = $request->getParameter('screen_name');
+		
+		$q = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
+		//$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
+		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
+		$this->pager->setQuery($q);
+		$this->pager->setPage($request->getParameter('page'), 1);
+		$this->pager->init();
+		
+		if(!is_null($this->screenName)) {
+			$this->user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
+			$this->linkCount = Doctrine::getTable('Tweet')->getLinkCount($this->user);
+			$this->relativeNumberOfLinks = round($this->linkCount / count($this->pager) * 100);
+			$this->relativeNumberOfIndexedTweets = round(count($this->pager) / $this->user->getStatusesCount() * 100);
+		}
+		
+		$this->setTemplate('index');
 	}
 
 	public function executeIndex(sfWebRequest $request)
@@ -48,7 +68,7 @@ class tweetActions extends sfActions
 		$this->pager->setQuery($q);
 		$this->pager->setPage($request->getParameter('page'), 1);
 		$this->pager->init();
-		 
+			
 		if(!is_null($this->screenName)) {
 			$this->user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
 			$this->linkCount = Doctrine::getTable('Tweet')->getLinkCount($this->user);
