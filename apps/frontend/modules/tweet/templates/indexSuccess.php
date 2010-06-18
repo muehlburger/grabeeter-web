@@ -8,6 +8,7 @@
   <?php else: ?>
   	<?php echo image_tag($user->getProfileImageUrl()) ?>
   	<h2><?php echo $user->getName() ?></h2>
+  	<p><?php echo $user->getDescription() ?></p>
   <ul>
     <li>Twitter User: <?php echo $user->getScreenName() ?></li>
     <li>Tweets: <?php echo $user->getStatusesCount() ?></li>
@@ -21,11 +22,20 @@
   		<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl(), 'target=_blank') ?></li>
   	<?php endif;?>
   </ul>
+  <h3>Statistics</h3>
     <ul>
   	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>
   	<li>On Grabeeter: <br /><?php echo $user->getDateTimeObject('created_at')->format('D, d M Y H:i:s') ?></li>
+  	<li><?php echo link_to('Save Tweets (XML)', '@api_tweets?screen_name='.$screenName) ?></li>
   </ul>
-      <p><?php echo $user->getDescription() ?></p>
+  
+  <h3>Export Tweets</h3>
+    <ul>
+  	<li><?php echo link_to('Export Tweets as XML', '@api_tweets?screen_name='.$screenName) ?></li>
+  	<li><?php echo link_to('Export Tweets as JSON', '@api_tweets?sf_format=json&screen_name='.$screenName) ?></li>
+  </ul>
+  
+      
   <?php endif; ?>
 <?php end_slot() ?>
 

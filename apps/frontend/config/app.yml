@@ -9,4 +9,4 @@ all:
   max_sources_on_page: 10
   twitter_statuses_limit: 3200
   username_file: usernames
-  default_user_on_starpage: mebner
+  default_user_on_starpage: hmuehlburger

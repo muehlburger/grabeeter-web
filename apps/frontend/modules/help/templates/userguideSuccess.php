@@ -20,7 +20,7 @@ Only tweets of Twitter users registered on Grabeeter can be searched.
 	<li>Register Twitter users to Grabeeter and become their tweets searchable by doing so</li>
 	<li>Search tweets of all Twitter users registered on Grabeeter online</li>
 	<li>Advanced tweet search selecting parameters user, time frame, advanced keyword options</li>
-	<li>Install the Grabeeter application for desktop usage (optionally by drag&drop)</li>
+	<li>Install the Grabeeter application for desktop usage (optionally by drag &amp; drop)</li>
 </ul>
 
 <p>To search tweets just type in the search keyword into the intended textfield "Tweetsearch" in the middle of the interface.

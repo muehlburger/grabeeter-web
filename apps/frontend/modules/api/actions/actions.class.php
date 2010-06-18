@@ -23,16 +23,25 @@ class apiActions extends sfActions
 			$this->tweets[$this->generateUrl('tweet_show', $tweet, true)] = $tweet->asArray();
 		}
 		
+		$response = $this->getResponse();
+		
+		$response->setStatusCode(200);
+	    $response->addVaryHttpHeader('Accept-Language');
+	    $response->addCacheControlHttpHeader('no-cache');
+		
 		switch ($request->getRequestFormat())
 	    {
 	      case 'yaml':
 	        $this->setLayout(false);
-	        $this->getResponse()->setContentType('text/yaml');
+	        $response->setContentType('text/yaml');
 	        break;
 	      case 'xml':
 	      	$this->setLayout(false);
-	      	$this->getResponse()->setContentType('text/xml');
+	      	$response->setContentType('application/xml');
 	      	break;
+	      case 'json':
+	      	$this->setLayout(false);
+	      	$response->setContentType('application/json');
 	    }
 	}
 	

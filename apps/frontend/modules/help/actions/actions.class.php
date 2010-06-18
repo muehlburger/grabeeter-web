@@ -16,16 +16,22 @@ class helpActions extends sfActions
 	 * @param sfWeRequest $request
 	 */
 	public function executeIndex(sfWebRequest $request) {
-		$this->tweet_users = Doctrine::getTable('TweetUser')
+		$users = Doctrine::getTable('TweetUser')
 		->createQuery('a')
+		->select('a.*, RANDOM() rand')
+		->orderBy('rand')	
 		->limit(11)
 		->execute();
 		
+		$randomUserIndex = rand(0, sizeof($users));
+		$screenName = $users[$randomUserIndex]->getScreenName();
+				
 		$q = Doctrine::getTable('Tweet')
-		->getMatchingTweets(null, sfConfig::get('app_default_user_on_starpage'));
+		->getMatchingTweets(null, $screenName);
 		$q->limit(sfConfig::get('app_max_tweets_on_startpage'));
 		
 		$this->tweets = $q->execute();
+		$this->tweet_users = $users;
 	}
 	/**
 	 * Executes faq action
