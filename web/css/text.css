@@ -39,26 +39,26 @@ hr {
 ----------------------------------------------------------------------------------------------------*/
 
 h1 {
-	font-size: 25px;
+	font-size: 30px;
 	text-shadow: white 0px 1px;	
 }
 
 h2 {
-	font-size: 24px;
+	font-size: 22px;
 	text-shadow: white 0px 1px;
 	padding-top: 10px;
 }
 
 h3 {
-	font-size: 21px;
+	font-size: 19px;
 	text-shadow: white 0px 1px;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 h4 {
 	font-size: 19px;
 	text-shadow: white 0px 1px;
-	padding-top: 10px;
+	padding-top: 15px;
 }
 
 h5 {

@@ -17,9 +17,14 @@
 	padding-top: 10px;
 }
 
-h1#logo {
-	margin-top: 60px;
+#logo {
+	margin-top: 52px;
 }
+
+#logo a {
+ 	text-decoration: none;
+}
+
 
 #navbar {
 	padding-top: 6px;
