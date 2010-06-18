@@ -43,13 +43,14 @@ There are two possibilities to store or export your tweets.
 <h4>Use the Web Interface</h4>
 <p>You can export the tweets of every user in a structured format. Currently XML and JSON are supported.</p>
 
-<h4>Use the Client Application</h4>
+<h4><a name="tweets-location">Use the Client Application</a></h4>
 <p>The client application stores your tweets in the background locally. Currently you cannot specify the path 
 of your tweets but you can find them stored in a file in the following locations depending on your operating system:
 </p>
 <ul>
 <li>Linux: /home/{linux-username}/.javafx/deployment/storage/muffin/</li>
 <li>Windows: C:\Documents and Settings\{windows-username}\JavaFX\Deployment\storage\muffin\</li>
+<li>Mac: {mac-username}/.javafx/deployment/storage/muffin/</li>
 </ul>
 
 <h3>How can i remove Grabeeter from my desktop?</h3>

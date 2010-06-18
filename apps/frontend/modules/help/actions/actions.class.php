@@ -48,7 +48,7 @@ class helpActions extends sfActions
 	 * Executes userGuide action
 	 * @param sfRequest $request A request object
 	 */
-	public function executeUserguide(sfWebRequest $request) {
+	public function executeHelp(sfWebRequest $request) {
 
 	}
 

@@ -5,16 +5,16 @@
 # Help Routes
 ##
 help_faq:
-  url:    /FAQs
-  param:  { module: help, action: faq }
+  url:    /frequently-asked-questions.:sf_format
+  param:  { module: help, action: faq, sf_format: html }
   
 help_userguide:
-  url:    /userguide
-  param:  { module: help, action: userguide }
+  url:    /userguide.:sf_format
+  param:  { module: help, action: help, sf_format: html }
   
 help_api:
-  url:    /developers
-  param:  { module: help, action: api }
+  url:    /developers.:sf_format
+  param:  { module: help, action: api, sf_format: html }
 
 #########################################
 # Api Routes
