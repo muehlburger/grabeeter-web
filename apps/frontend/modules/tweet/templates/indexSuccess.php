@@ -26,7 +26,6 @@
     <ul>
   	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>
   	<li>On Grabeeter: <br /><?php echo $user->getDateTimeObject('created_at')->format('D, d M Y H:i:s') ?></li>
-  	<li><?php echo link_to('Save Tweets (XML)', '@api_tweets?screen_name='.$screenName) ?></li>
   </ul>
   
   <h3>Export Tweets</h3>
