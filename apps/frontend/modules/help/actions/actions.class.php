@@ -20,7 +20,7 @@ class helpActions extends sfActions
 		->createQuery('a')
 		->select('a.*, RANDOM() rand')
 		->orderBy('rand')	
-		->limit(11)
+		->limit(sfConfig::get('app_max_users_on_startpage'))
 		->execute();
 		
 		$randomUserIndex = rand(0, sizeof($users) - 1);

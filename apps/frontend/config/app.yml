@@ -6,7 +6,7 @@ all:
   twitter_count: 200
   max_tweets_on_page: 25
   max_tweets_on_startpage: 3
+  max_users_on_startpage: 10
   max_sources_on_page: 10
   twitter_statuses_limit: 3200
   username_file: usernames
-  default_user_on_starpage: hmuehlburger
