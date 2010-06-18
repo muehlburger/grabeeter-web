@@ -23,8 +23,9 @@ class helpActions extends sfActions
 		->limit(11)
 		->execute();
 		
-		$randomUserIndex = rand(0, sizeof($users));
-		$screenName = $users[$randomUserIndex]->getScreenName();
+		$randomUserIndex = rand(0, sizeof($users) - 1);
+		$user = $users[$randomUserIndex];
+		$screenName = $user->getScreenName();
 				
 		$q = Doctrine::getTable('Tweet')
 		->getMatchingTweets(null, $screenName);
@@ -32,6 +33,7 @@ class helpActions extends sfActions
 		
 		$this->tweets = $q->execute();
 		$this->tweet_users = $users;
+		$this->user = $user;
 	}
 	/**
 	 * Executes faq action

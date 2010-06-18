@@ -31,11 +31,9 @@
   
   <h3>Export Tweets</h3>
     <ul>
-  	<li><?php echo link_to('Export Tweets as XML', '@api_tweets?screen_name='.$screenName) ?></li>
-  	<li><?php echo link_to('Export Tweets as JSON', '@api_tweets?sf_format=json&screen_name='.$screenName) ?></li>
-  </ul>
-  
-      
+  	<li><?php echo link_to('Export Tweets as XML', '@api_tweets?screen_name='.$screenName, array('target' => '_blank')) ?></li>
+  	<li><?php echo link_to('Export Tweets as JSON', '@api_tweets?sf_format=json&screen_name='.$screenName, array('target' =>'_blank')) ?></li>
+  </ul>      
   <?php endif; ?>
 <?php end_slot() ?>
 
