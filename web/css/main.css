@@ -67,6 +67,10 @@
 	padding: 10px;
 }
 
+#launch {
+	text-align: center;
+}
+
 #container .subheader {
 	font-size: 0.85em;
 	border-top: solid 2px #7891a1;
