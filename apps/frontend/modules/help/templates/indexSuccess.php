@@ -6,4 +6,4 @@
 </div>
 
 <p>In the following you can seen some sample users which decided to use Grabeeter:</p>
-<div><?php include_partial('user/list', array('tweet_users' => $tweet_users)) ?></div>
+<?php include_partial('user/list', array('tweet_users' => $tweet_users)) ?>

@@ -12,10 +12,12 @@
 <body>
 <div id="container" class="container_16">
 <div id="header" class="grid_16">
-<h1 id="logo" class="grid_9 alpha"><a
-	href="<?php echo url_for('homepage') ?>"><img
-	alt="Grabeeter - Grab and Search your Tweets" src="/images/logo.png"
-	width="128px" height="128px" />Grabeeter - Search your Tweets</a></h1>
+<div class="grid_3 round alpha">
+		<a href="<?php echo url_for('@homepage') ?>"><img alt="Grabeeter - Grab and Search your Tweets" title="Grabeeter - Grab and Search your Tweets" src="/images/logo.png" width="128px" height="128px" /></a>
+</div>
+<h1 id="logo" class="grid_6">	
+	<?php echo link_to('Grabeeter <br />Grab and Search your Tweets', '@homepage')?>
+</h1>
 <ul id="navbar" class="grid_7 omega round">
 	<li><?php echo link_to('Search', '@user') ?></li>
 	<li><?php echo link_to('Register', '@registration') ?></li>
@@ -38,9 +40,9 @@
 </div>
 <!-- end sidebar -->
 <div id="footer" class="grid_16 round">
-<p>&copy; 2010 <?php echo link_to('Social Learning', 'http://portal.tugraz.at/portal/page/portal/TU_Graz/Studium_Lehre/tugnet_vl_start/tugnet_vl_elearning') ?>
-- <?php echo link_to('Graz University of Technology', 'http://www.tugraz.at') ?>
-| Terms of Usage | Privacy Policy</p>
+<p>&copy; 2010 <?php echo link_to('Social Learning', 'http://portal.tugraz.at/portal/page/portal/TU_Graz/Studium_Lehre/tugnet_vl_start/tugnet_vl_elearning', array('target' => '_blank')) ?>
+- <?php echo link_to('Graz University of Technology', 'http://www.tugraz.at', array('target' => '_blank')) ?>
+<!-- | Terms of Usage | Privacy Policy --> | <?php echo link_to('Imprint', 'http://portal.tugraz.at/pls/portal/TU_GRAZ.PORTLET_PAGE_IMPRESSUM.show_page_imp?pPageId=1&pSiteId=75&pLanguage=d', array('target' => '_blank')) ?></p>
 </div>
 <!-- end footer --></div>
 <!-- end container -->
