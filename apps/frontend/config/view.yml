@@ -12,7 +12,7 @@ default:
     language:     en
     robots:       index, follow
  
-  stylesheets:    [reset.css, 960.css, main.css, default.css, text.css]
+  stylesheets:    [reset.css, 960.css, main.css, text.css]
  
   javascripts:    []
  

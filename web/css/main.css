@@ -34,9 +34,8 @@
 	padding: 10px;
 }
 
-
 #sidebar div {
-	padding:10px;
+	padding: 10px;
 }
 
 #container .subheader {
@@ -48,7 +47,8 @@
 }
 
 h1,h2,h3,h4 {
-	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times, serif;
+	font-family: Georgia, "Lucida Sans Unicode", "Times New Roman", Times,
+		serif;
 	font-weight: normal;
 	font-style: italic;
 	line-height: 1.2em;
@@ -56,8 +56,8 @@ h1,h2,h3,h4 {
 	font-size: 2.9em;
 }
 
-h1 a, h1 a:hover {
-  text-decoration: none;
+h1 a,h1 a:hover {
+	text-decoration: none;
 }
 
 #footer {
@@ -124,10 +124,19 @@ h1 a, h1 a:hover {
 	text-decoration: none;
 }
 
+#tweets {
+	
+}
+
 .tweet {
+	border-bottom-left-radius: 10px 10px;
+	border-bottom-right-radius: 10px 10px;
+	border-top-left-radius: 10px 10px;
+	border-top-right-radius: 10px 10px;
 	clear: left;
 	height: 70px;
 	border-bottom: 1px solid #eaf4f9;
+	background-color: #fff;
 }
 
 .tweet:hover {
@@ -152,15 +161,13 @@ h1 a, h1 a:hover {
 	float: left;
 	color: #425d75;
 	font-size: 0.7em;
-}
-
-.description a {
-	text-decoration: none;
+	margin-top: 10px;
 }
 
 .tweet span.source {
 	font-size: 0.7em;
 	float: right;
+	margin-top: 10px;
 }
 
 a:hover {
@@ -176,9 +183,22 @@ a:hover {
 	border-top-left-radius: 3px 3px;
 	border-top-right-radius: 3px 3px;
 	border-top-right-radius: 3px 3px;
-	height: 1,5em;
+	height: 1, 5em;
 	overflow: auto;
 	padding: 5px;
 	resize: none;
 	width: 93%;
+}
+
+#content img {
+	padding: 1px;
+	border: 1px solid #eaf4f9;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-left-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-bottom-right-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-left-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
+	border-top-right-radius: 3px 3px;
 }
