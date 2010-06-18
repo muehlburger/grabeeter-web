@@ -5,5 +5,5 @@
 	<?php include_partial('tweet/list', array('tweets' => $tweets)) ?>
 </div>
 
-<p>In the following you can seen some sample users which decided to use Grabeeter:</p>
+<p>In the following you see some <?php echo link_to('users', '@user') ?> which are on Grabeeter right now.</p>
 <?php include_partial('user/list', array('tweet_users' => $tweet_users)) ?>
