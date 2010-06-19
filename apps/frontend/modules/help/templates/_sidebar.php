@@ -7,7 +7,7 @@
 	<li>Grabeeter provides an <?php echo link_to('API', '@help_api')?></li>
 </ul>
 
-<?php include_partial('launchgrabeeter') ?>
+<?php include_partial('help/launchgrabeeter') ?>
 
 <h2>Follow us on Twitter</h2>
 <?php echo link_to(image_tag('follow-grabeeter.png'), 'http://twitter.com/grabeeter', array('target' => '_blank'))?>
