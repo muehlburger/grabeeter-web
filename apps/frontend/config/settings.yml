@@ -6,6 +6,7 @@ prod:
     no_script_name:         true
     logging_enabled:        false
     web_debug:              false
+    debug:                  false
 
 dev:
   .settings:
@@ -35,3 +36,7 @@ all:
 
     # Enable the database manager
     use_database:           true
+    
+  .actions:
+    error_404_module: default
+    error_404_action: error404
