@@ -32,7 +32,8 @@
     <ul>
   	<li><?php echo link_to('Export Tweets as XML', '@api_tweets?screen_name='.$screenName, array('target' => '_blank')) ?></li>
   	<li><?php echo link_to('Export Tweets as JSON', '@api_tweets?sf_format=json&screen_name='.$screenName, array('target' =>'_blank')) ?></li>
-  </ul>      
+  </ul>
+  <?php include_partial('help/launchgrabeeter') ?>
   <?php endif; ?>
 <?php end_slot() ?>
 
