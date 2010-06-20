@@ -37,8 +37,7 @@
   <?php endif; ?>
 <?php end_slot() ?>
 
-<h2>Tweets</h2>
-<?php include_partial('tweet/search', array('screen_name' => $screenName)) ?>
+<?php include_partial('tweet/search', array('screen_name' => $screenName, 'name'	=> 	$user->getName())) ?>
 <div id="tweets">
 <p class="subheader">
 	<strong><?php echo count($pager) ?> available Tweets | </strong><em>Page <?php echo $pager->getPage() ?> of <?php echo $pager->getLastPage() ?></em></p> 
