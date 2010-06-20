@@ -40,6 +40,9 @@ class tweetActions extends sfActions
 	public function executeIndex(sfWebRequest $request)
 	{
 		$this->screenName = $request->getParameter('screen_name');
+		$user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
+		$this->forward404Unless($user);
+		
 		$this->userCount = Doctrine::getTable('TweetUser')
 		->createQuery('a')
 		->count();

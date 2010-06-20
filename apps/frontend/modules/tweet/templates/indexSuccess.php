@@ -11,7 +11,7 @@
   	<p><?php echo $user->getDescription() ?></p>
   <ul>
     <li>Twitter User: <?php echo $user->getScreenName() ?></li>
-    <li>Tweets: <?php echo $user->getStatusesCount() ?></li>
+    <li>Tweets on Twitter: <?php echo $user->getStatusesCount() ?></li>
   	<li>Indexed Tweets: <?php echo count($pager) .' ('. $relativeNumberOfIndexedTweets ?> %)</li>
   	<li>Links: <?php echo $linkCount . ' ('. $relativeNumberOfLinks ?> %)</li>
   </ul>

@@ -13,7 +13,8 @@ README
 /data/fixtures/*
 /data/sql/*
 /data/*.index
-/data/*
+/data/newUsers
+/data/usernames
 
 # SCM files
 .arch-params
