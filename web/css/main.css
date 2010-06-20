@@ -156,10 +156,6 @@ h1 a,h1 a:hover {
 	text-decoration: none;
 }
 
-#tweets {
-	
-}
-
 .tweet {
 	border-bottom-left-radius: 10px 10px;
 	border-bottom-right-radius: 10px 10px;
@@ -215,11 +211,21 @@ a:hover {
 	border-top-left-radius: 3px 3px;
 	border-top-right-radius: 3px 3px;
 	border-top-right-radius: 3px 3px;
-	height: 1, 5em;
+	height: 1,5em;
 	overflow: auto;
 	padding: 5px;
 	resize: none;
-	width: 93%;
+	width: 86%;
+}
+
+.search input#search {	
+	overflow: auto;
+	padding-top: 12px;
+	padding-bottom: 12px;
+	resize: none;
+	font-weight: bold;
+	width: 72px;
+	margin-left:-7px;
 }
 
 #content img {

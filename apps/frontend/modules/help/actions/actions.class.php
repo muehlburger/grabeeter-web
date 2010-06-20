@@ -45,13 +45,17 @@ class helpActions extends sfActions
 	}
 
 	/**
-	 * Executes userGuide action
+	 * Executes help action
 	 * @param sfRequest $request A request object
 	 */
 	public function executeHelp(sfWebRequest $request) {
 
 	}
 
+	/**
+	 * Executes api action
+	 * @param sfWebRequest $request
+	 */
 	public function executeApi(sfWebRequest $request) {
 		 
 	}

@@ -12,7 +12,10 @@ class tweetActions extends sfActions
 {
 	public function executeSearch(sfWebRequest $request) {
 		
+		$this->tweets = array();
+		$this->forwardUnless($request->isMethod('POST'), 'help', 'index');
 		$this->forwardUnless($query = $request->getParameter('query'), 'help', 'index');
+		
 		$this->screenName = $request->getParameter('screen_name');
 		
 		$q = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
