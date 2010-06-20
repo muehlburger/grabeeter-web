@@ -3,8 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title><?php include_slot('title', 'Grabeeter - Grab and Search your Tweets') ?></title>
-<?php use_javascript('jquery-1.4.2.min.js') ?>
-<?php use_javascript('search.js') ?>
+
 <?php include_javascripts() ?>
 <?php include_stylesheets() ?>
 <link rel="shortcut icon" href="/favicon.ico" />

@@ -3,7 +3,7 @@
 <?php include_partial('tweet/search', array('screen_name' => $screenName)) ?>
 
 <?php if(count($tweets)): ?>
-<h3>Results</h3>
+<h3><?php echo count($tweets) ?> Tweets found matching "<?php echo $query ?>":</h3>
 <?php include_partial('tweet/list', array('tweets' => $tweets))?>
 <?php else: ?>
 <h3>Your search did not return any results.</h3>

@@ -11,33 +11,14 @@
 class tweetActions extends sfActions
 {
 	public function executeSearch(sfWebRequest $request) {
-		$this->tweets = array();
-		$requestValues = $request->getParameter('values');
-
-		$this->screenName = $requestValues[1];
-		$query = $requestValues[0];
 		
-		if ($request->isXmlHttpRequest())
-		{
-			$q = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
-			
-			if(count($q))
-				$this->tweets = $q->execute();	
-
-			if (count($this->tweets) < 1)
-			{
-				return $this->renderText('No results.');
-			}
-			else
-			{
-				return $this->renderPartial('tweet/list', array('tweets' => $this->tweets));
-			}
-		}
-		
+		$this->forwardUnless($query = $request->getParameter('query'), 'help', 'index');
 		$this->screenName = $request->getParameter('screen_name');
 		
 		$q = Doctrine::getTable('Tweet')->getForLuceneQuery($query, $this->screenName);
-		//$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
+		if(count($q))
+			$this->tweets = $q->execute();
+
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 		$this->pager->setQuery($q);
 		$this->pager->setPage($request->getParameter('page'), 1);
@@ -50,7 +31,7 @@ class tweetActions extends sfActions
 			$this->relativeNumberOfIndexedTweets = round(count($this->pager) / $this->user->getStatusesCount() * 100);
 		}
 		
-		$this->setTemplate('index');
+		$this->query = $query;
 	}
 
 	public function executeIndex(sfWebRequest $request)
