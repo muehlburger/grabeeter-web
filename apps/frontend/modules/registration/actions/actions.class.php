@@ -35,6 +35,10 @@ class registrationActions extends sfActions
 			if($this->form->isValid()) {
 				
 				$username = $this->form->getValue('username');
+				
+				// Remove spaces in username
+				$username = preg_replace('/\s+/', '', $username);
+
 				$filepath = sfConfig::get('sf_data_dir').'/'.sfConfig::get('app_username_file');
 				$newUsers = sfConfig::get('sf_data_dir').'/newUsers';
 				
