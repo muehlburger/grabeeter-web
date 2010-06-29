@@ -42,12 +42,14 @@ class registrationActions extends sfActions
 				$filepath = sfConfig::get('sf_data_dir').'/'.sfConfig::get('app_username_file');
 				$newUsers = sfConfig::get('sf_data_dir').'/newUsers';
 				
-				$stordeUsernames = file_get_contents($filepath);
-				$storedUsernames = explode("\n", $stordeUsernames);
+				$storedUsernames = file_get_contents($filepath);
+				$explodedStoredUsernames = explode("\n", $storedUsernames);
 				
-				if(!in_array($username, $storedUsernames)) {
+				if(!in_array($username, $explodedStoredUsernames)) {
 					$username = $username . "\n";
-					$bytesStored = file_put_contents($filepath, $username, FILE_APPEND);
+					$fileContent = $username . $storedUsernames;
+					
+					$bytesStored = file_put_contents($filepath, $fileContent);
 					$bytesNewUsers = file_put_contents($newUsers, $username, FILE_APPEND);
 				}
 				
