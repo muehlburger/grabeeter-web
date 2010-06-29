@@ -66,6 +66,8 @@ EOF;
 			$result = json_decode($curlReturnValue);
 		elseif($httpStatusCode == 404)
 			exit(2);
+		elseif($httpStatusCode == 401)
+			exit(3);
 		else {
 			$result = new stdClass();
 			$result->error = "Curl failed, check your internet connection!";

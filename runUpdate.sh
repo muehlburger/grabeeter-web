@@ -18,6 +18,10 @@ cat data/usernames | while read line; do
   if [ "$?" = "2" ]; then
     echo "username unknown";
   fi
+  
+  if [ "$?" = "3" ]; then
+    echo "unauthorized (user has protected its tweets)";
+  fi
 done
 
 if [ -e "lock" ]; then
