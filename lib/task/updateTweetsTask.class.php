@@ -62,8 +62,13 @@ EOF;
 
 		$httpStatusCode = $this->getHttpStatusOk($curl);
 
-		if($httpStatusCode == 200)
+		if($httpStatusCode == 200) {
 			$result = json_decode($curlReturnValue);
+			if($result->protected == true) {
+				$this->logSection('Error: ', 'cannot access protected tweets from user: '. $screenName);
+				exit(3);
+			}
+		}
 		elseif($httpStatusCode == 404)
 			exit(2);
 		elseif($httpStatusCode == 401)
