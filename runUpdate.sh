@@ -16,12 +16,9 @@ cat data/usernames | while read line; do
   fi
   
   if [ "$?" = "2" ]; then
-    echo "username unknown";
+    echo "skipping user because of an error";
   fi
   
-  if [ "$?" = "3" ]; then
-    echo "unauthorized (user has protected its tweets)";
-  fi
 done
 
 if [ -e "lock" ]; then

@@ -62,20 +62,26 @@ EOF;
 
 		$httpStatusCode = $this->getHttpStatusOk($curl);
 
-		if($httpStatusCode == 200) {
-			$result = json_decode($curlReturnValue);
-			if($result->protected == true) {
-				$this->logSection('Error: ', 'cannot access protected tweets from user: '. $screenName);
-				exit(3);
-			}
-		}
-		elseif($httpStatusCode == 404)
-			exit(2);
-		elseif($httpStatusCode == 401)
-			exit(3);
-		else {
-			$result = new stdClass();
-			$result->error = "Curl failed, check your internet connection!";
+		switch($httpStatusCode) {
+			case 200:
+				$result = json_decode($curlReturnValue);
+				if($result->protected == true) {
+					$this->logSection('Error: ', 'cannot access protected tweets from user: '. $screenName);
+					exit(3);
+				}
+				break;
+			case 401:
+				exit(2);
+				break;
+			case 404:
+				exit(2);
+				break;
+			case 502:
+				exit(2);
+				break;
+			default:
+				$result = new stdClass();
+				$result->error = "Curl failed, check your internet connection!";
 		}
 
 		if(isset($result->error)) {
@@ -115,24 +121,24 @@ EOF;
 		for($i = $pages; $i > 0; $i--) {
 			//$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
-				
+
 			//make the request
 			$curlReturnValue = curl_exec($curl);
-				
+
 			$httpStatusCode = $this->getHttpStatusOk($curl);
 
 			if($httpStatusCode == 200)
-				$results = json_decode($curlReturnValue);
+			$results = json_decode($curlReturnValue);
 			else {
 				$results = new stdClass();
 				$results->error = "Curl failed, check your internet connection!";
 			}
-				
+
 			if(isset($results->error)) {
 				$this->logSection('Error: ', $results->error);
 				exit(1);
 			}
-				
+
 			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
 
 		}
@@ -154,15 +160,22 @@ EOF;
 		switch ($statusCode) {
 			case 200:
 				return $statusCode;
-			case 502:
-				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
-				return $statusCode;
 			case 400:
 				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
 				return $statusCode;
+			case 401:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
+				$this->logSection('Error: ', 'User has protected his tweets!');
+				return $statusCode;
 			case 404:
 				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
-				$this->logSection('Error: ', 'User not valid!');
+				$this->logSection('Error: ', 'Not a valid Twitter Username!');
+				return $statusCode;
+			case 502:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
+				return $statusCode;
+			case 503:
+				$this->logSection('Error: ', 'HTTP Status Code: '. $statusCode);
 				return $statusCode;
 			default:
 				$this->logSection('Info: ', 'HTTP Status Code: '. $statusCode);
