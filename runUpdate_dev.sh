@@ -15,7 +15,7 @@ cat data/usernames | while read line; do
     exit;
   fi
   
-  if [ "$?" = "2" ]; then
+  if [ "$?" = 2 ]; then
     echo "skipping user because of an error";
   fi
 done

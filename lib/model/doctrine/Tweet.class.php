@@ -12,6 +12,10 @@
  */
 class Tweet extends BaseTweet
 {
+	public function __toString() {
+		return $this->getText();	
+	}
+	
 	public function asArray() {
 		return array(
 			'text'			=>		$this->getText(),
