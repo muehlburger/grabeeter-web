@@ -19,7 +19,7 @@
  * @method sfGuardForgotPassword setExpiresAt()  Sets the current record's "expires_at" value
  * @method sfGuardForgotPassword setUser()       Sets the current record's "User" value
  * 
- * @package    tweetex
+ * @package    grabeeter
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $

@@ -1,3 +1,8 @@
-symfony needs to be added to /lib/vendor
-zend framework (lucene) needs to be added to /lib/vendor
-database connection has to be configured properly for production
+requirements:
+ + symfony framework placed in /lib/vendor/symfony
+ + lucene part of zend framework placed in /lib/vendor/Zend
+ + php5-curl apache module
+
+setup:
+ + make sure all requirements are met
+ + configure your database connection

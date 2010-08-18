@@ -25,7 +25,7 @@
  * @method sfGuardPermission   setUsers()                  Sets the current record's "Users" collection
  * @method sfGuardPermission   setSfGuardUserPermission()  Sets the current record's "sfGuardUserPermission" collection
  * 
- * @package    tweetex
+ * @package    grabeeter
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $

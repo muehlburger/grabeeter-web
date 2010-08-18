@@ -43,7 +43,7 @@
  * @method Tweet            setTweetSource()           Sets the current record's "TweetSource" value
  * @method Tweet            setTweetGeoLocation()      Sets the current record's "TweetGeoLocation" value
  * 
- * @package    tweetex
+ * @package    grabeeter
  * @subpackage model
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: Builder.php 7490 2010-03-29 19:53:27Z jwage $
