@@ -27,11 +27,6 @@
         <?php echo $sf_content ?>
       </div>
  
-      <div id="footer">
-        <img src="/images/jobeet-mini.png" />
-        powered by <a href="http://www.symfony-project.org/">
-        <img src="/images/symfony.gif" alt="symfony framework" /></a>
-      </div>
     </div>
   </body>
 </html>
