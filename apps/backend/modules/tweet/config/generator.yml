@@ -13,9 +13,16 @@ generator:
 
     config:
       actions: ~
-      fields:  ~
-      list:    ~
+      fields:
+        user_id:   { label: Twitter User, help: Creator of this tweet. }
+        source_id: { label: Source, help: The tweet was created using this application. }
+        geolocation:
+      list:
+        title:    Tweet Management
+        display:  [=text]
+        max_per_page: 100
       filter:  ~
       form:    ~
-      edit:    ~
+      edit:
+        title: Editing Tweet: "%%text%%"
       new:     ~

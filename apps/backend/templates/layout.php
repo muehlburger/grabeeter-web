@@ -9,6 +9,10 @@
 <?php include_javascripts() ?>
 </head>
 <body>
+<div id="header">
+<h1><a href="<?php echo url_for('homepage') ?>"> <img
+	src="/images/logo.jpg" alt="Grabeeter Backend" /> </a></h1>
+</div>
 <?php if ($sf_user->isAuthenticated()): ?>
 <div id="menu">
 <ul>
@@ -21,7 +25,8 @@
 </ul>
 </div>
 <?php endif ?>
-
-<?php echo $sf_content ?>
+<div id="content">
+	<?php echo $sf_content ?>
+</div>
 </body>
 </html>
