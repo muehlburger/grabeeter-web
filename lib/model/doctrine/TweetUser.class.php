@@ -13,6 +13,8 @@
 class TweetUser extends BaseTweetUser
 {	
 	public function __toString() {
-		return $this->getScreenName();
+//		return '<img scr="'.$this->getProfileImageUrl().'" alt="'.$this->getName().'" />';
+//		return $this->getScreenName();
+		return $this->getName();
 	}
 }
