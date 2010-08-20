@@ -22,9 +22,11 @@ generator:
         created_at:       { label: Stored since, help: Creation date on Grabeeter. }
       list:
         title:            Tweet Management
-        display:          [=text, tweet_user, tweet_created_at, created_at]
+        display:          [text, tweet_user, tweet_created_at, created_at]
         max_per_page:     50
         sort:             [tweet_created_at, desc]
+        object_actions:
+          _delete:         ~
         batch_actions:
           _delete:         ~
         actions:           {}
