@@ -5,8 +5,8 @@
 <p>Just use this REST-style api as follows.</p>
 
 <ul>
-<li>http://www.grabeeter.dat/api/tweets/{twitter-username}.xml</li>
-<li>http://www.grabeeter.dat/api/tweets/{twitter-username}.json</li>
+<li>http://grabeeter.tugraz.at/api/tweets/{twitter-username}.xml</li>
+<li>http://grabeeter.tugraz.at/api/tweets/{twitter-username}.json</li>
 </ul>
 
 In the above uri the string {twitter-username} represents the Twitter username of the author
@@ -19,8 +19,8 @@ relevant results.
 </p>
 
 <ul>
-<li><?php echo link_to('http://www.grabeeter.dat/api/tweets/hmuehlburger.xml', '@api_tweets?screen_name=hmuehlburger&sf_format=xml', array('target' => '_blank')) ?></li>
-<li><?php echo link_to('http://www.grabeeter.dat/api/tweets/hmuehlburger.json', '@api_tweets?screen_name=hmuehlburger&sf_format=json', array('target' => '_blank')) ?></li>
+<li><?php echo link_to('http://grabeeter.tugraz.at/api/tweets/hmuehlburger.xml', '@api_tweets?screen_name=hmuehlburger&sf_format=xml', array('target' => '_blank')) ?></li>
+<li><?php echo link_to('http://grabeeter.tugraz.at/api/tweets/hmuehlburger.json', '@api_tweets?screen_name=hmuehlburger&sf_format=json', array('target' => '_blank')) ?></li>
 </ul>
 
 <p>Have fun! :-)</p>
