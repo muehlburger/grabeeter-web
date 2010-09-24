@@ -29,19 +29,18 @@ class apiActions extends sfActions
 	    $response->addVaryHttpHeader('Accept-Language');
 	    $response->addCacheControlHttpHeader('no-cache');
 		
+	    $this->setLayout(false);
 		switch ($request->getRequestFormat())
 	    {
 	      case 'yaml':
-	        $this->setLayout(false);
 	        $response->setContentType('text/yaml');
 	        break;
 	      case 'xml':
-	      	$this->setLayout(false);
 	      	$response->setContentType('application/xml');
 	      	break;
 	      case 'json':
-	      	$this->setLayout(false);
 	      	$response->setContentType('application/json');
 	    }
 	}
+	
 }
