@@ -1,7 +1,7 @@
 <?php 
 require_once dirname(__FILE__).'/../bootstrap/unit.php';
 
-$t = new lime_test(11);
+$t = new lime_test(14);
 
 $t->comment('::slugify()');
 $t->is(Tweetex::slugify('Tweetex'), 'tweetex', '::slugify() converts all characters to lower case');
@@ -17,3 +17,4 @@ $t->is(Tweetex::slugify('Herbert Mühlburger'), 'herbert-muehlburger', '::slugif
 $t->is(Tweetex::extractUsernames("@hmuehlburger"), array('hmuehlburger'), '::extractUsernames() extracts 1 username');
 $t->is(Tweetex::extractUsernames("@cathywonderful      Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('cathywonderful', 'campbeer'), '::extractUsernames() extracts 2 usernames');
 $t->is(Tweetex::extractUsernames("@hmuehlburger @flowolf     @behi_at       @mebner Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('hmuehlburger', 'flowolf', 'behi_at', 'mebner', 'campbeer'), '::extractUsernames() extracts more than 2 usernames');
+$t->is(Tweetex::extractUsernames("just"), array(), '::extractUsernames() ignores tweets without usernames');

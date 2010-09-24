@@ -13,7 +13,7 @@ class Tweetex {
 		if(preg_match("/[\s]+/", $text)) {
 			$tokenizedText = explode(' ', $text, -1);
 			foreach ($tokenizedText as $token) {
-				$match = preg_match("/@\w+/", $token);
+				$match = preg_match("/^@[\w]+/", $token);
 				if($match) {
 					$token = trim($token, '@');
 					$usernames[] = $token;
@@ -21,7 +21,7 @@ class Tweetex {
 			}
 		} else {
 			// Text doesn't contain a whitespace
-			$match = preg_match("/@\w+/", $text);
+			$match = preg_match("/^@[\w]+/", $text);
 			if($match) {
 				$text = trim($text, '@');
 				$usernames[] = $text;
