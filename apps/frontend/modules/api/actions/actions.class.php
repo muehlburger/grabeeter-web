@@ -43,4 +43,8 @@ class apiActions extends sfActions
 	    }
 	}
 	
+	public function executeExtract(sfWebRequest $request) {
+		
+	}
+	
 }

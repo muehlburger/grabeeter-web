@@ -1,6 +1,26 @@
 <?php
 class Tweetex {
 
+	/**
+	 * 
+	 * Extracts usernames which are in the text of a tweet
+	 * @param string $text
+	 */
+	static public function extractUsernames($text) {
+		$tokenizedText = explode(' ', $text, -1);
+		
+		$usernames = array();
+		foreach ($tokenizedText as $token) {
+			$match = preg_match("/@\w+/", $token);
+			if($match) {
+				$token = trim($token, '@');
+				$usernames[] = $token;	
+			}
+		}
+		
+		return $usernames;
+	}
+	
 	static public function generateLink($text) {
 		
 		return $text;	
