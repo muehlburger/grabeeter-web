@@ -14,5 +14,6 @@ $t->is(Tweetex::slugify(''), 'n-a', '::slugify() converts the empty string to n-
 $t->is(Tweetex::slugify('   -    '), 'n-a', '::slugify() converts a string that only contains non-ASCII characters to n-a');
 $t->is(Tweetex::slugify('Développeur Web'), 'developpeur-web', '::slugify() removes accents');
 $t->is(Tweetex::slugify('Herbert Mühlburger'), 'herbert-muehlburger', '::slugify() removes German Umlaute');
+$t->is(Tweetex::extractUsernames("@hmuehlburger"), array('hmuehlburger'), '::extractUsernames() extracts 1 username');
 $t->is(Tweetex::extractUsernames("@cathywonderful      Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('cathywonderful', 'campbeer'), '::extractUsernames() extracts 2 usernames');
 $t->is(Tweetex::extractUsernames("@hmuehlburger @flowolf     @behi_at       @mebner Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('hmuehlburger', 'flowolf', 'behi_at', 'mebner', 'campbeer'), '::extractUsernames() extracts more than 2 usernames');

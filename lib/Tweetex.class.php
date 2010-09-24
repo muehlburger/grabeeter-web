@@ -2,30 +2,41 @@
 class Tweetex {
 
 	/**
-	 * 
+	 *
 	 * Extracts usernames which are in the text of a tweet
 	 * @param string $text
 	 */
 	static public function extractUsernames($text) {
-		$tokenizedText = explode(' ', $text, -1);
-		
 		$usernames = array();
-		foreach ($tokenizedText as $token) {
-			$match = preg_match("/@\w+/", $token);
+
+		// If text contains at least one whitespace
+		if(preg_match("/[\s]+/", $text)) {
+			$tokenizedText = explode(' ', $text, -1);
+			foreach ($tokenizedText as $token) {
+				$match = preg_match("/@\w+/", $token);
+				if($match) {
+					$token = trim($token, '@');
+					$usernames[] = $token;
+				}
+			}
+		} else {
+			// Text doesn't contain a whitespace
+			$match = preg_match("/@\w+/", $text);
 			if($match) {
-				$token = trim($token, '@');
-				$usernames[] = $token;	
+				$text = trim($text, '@');
+				$usernames[] = $text;
 			}
 		}
-		
+
+
 		return $usernames;
 	}
-	
+
 	static public function generateLink($text) {
-		
-		return $text;	
+
+		return $text;
 	}
-	
+
 	static public function slugify($text)
 	{
 			
