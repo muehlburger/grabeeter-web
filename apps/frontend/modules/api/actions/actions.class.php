@@ -42,9 +42,4 @@ class apiActions extends sfActions
 	      	$response->setContentType('application/json');
 	    }
 	}
-	
-	public function executeExtract(sfWebRequest $request) {
-		
-	}
-	
 }

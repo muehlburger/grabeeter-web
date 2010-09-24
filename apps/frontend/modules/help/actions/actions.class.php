@@ -32,6 +32,10 @@ class helpActions extends sfActions
 		$q->limit(sfConfig::get('app_max_tweets_on_startpage'));
 		
 		$this->tweets = $q->execute();
+		
+		foreach ($this->tweets as $tweet) {
+			$this->$usernames = Tweetex::extractUsernames($tweet);
+		}
 		$this->tweet_users = $users;
 		$this->user = $user;
 	}

@@ -23,6 +23,18 @@
   	<?php endif;?>
   </ul>
   <h3>Statistics</h3>
+  <?php foreach ($usernames as $username): ?>
+  <ul>
+   	<li><?php foreach ($username as $u): ?>
+   			<?php if($u != null): ?>
+   				<?php echo $u ?>
+   			<?php endif ?>
+   		<?php endforeach ?>
+   	</li>
+  </ul>
+	<?php endforeach; ?>
+  
+  <h3>Statistics</h3>
     <ul>
   	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>
   	<li>On Grabeeter: <br /><?php echo $user->getDateTimeObject('created_at')->format('D, d M Y H:i:s') ?></li>
