@@ -44,34 +44,4 @@ class apiActions extends sfActions
 	      	$response->setContentType('application/json');
 	    }
 	}
-	
-	/**
-	 * Executes the search action.
-	 * Returns a list of tweets matching the search query.
-	 * 
-	 * @param sfWebRequest $request
-	 */
-	public function executeSearch(sfWebRequest $request) {
-		$this->tweets = array();
-		if(!$query = $request->getParameter('q')) {
-			$query = "";
-		}
-
-		$results = Doctrine::getTable('Tweet')->getForLuceneQuery($query);
-		
-		foreach ($results as $tweet) {
-			$this->tweets[$this->generateUrl('tweet_show', $tweet, true)] = $tweet->asArray();
-		}
-		
-		switch ($request->getRequestFormat())
-	    {
-	      case 'yaml':
-	        $this->setLayout(false);
-	        $this->getResponse()->setContentType('text/yaml');
-	        break;
-	    }
-	    
-	    $this->setTemplate('list');
-		
-	}
 }

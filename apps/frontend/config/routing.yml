@@ -27,13 +27,6 @@ api_tweets:
   requirements:
     sf_format: (?:xml|json|yaml)
     sf_method: get
-    
-api_search:
-  url:    /api/search/:q.:sf_format
-  param:  { module: api, action: search, sf_format: xml }
-  requirements:
-    sf_format: (?:xml|json|yaml)
-    sf_method: get
 
 #########################################
 # User Routes
