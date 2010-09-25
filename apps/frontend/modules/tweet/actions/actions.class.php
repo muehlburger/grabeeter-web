@@ -48,6 +48,16 @@ class tweetActions extends sfActions
 		->count();
 
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
+		
+		$tweets = $q->execute();
+		
+		$this->usernames = array();
+		foreach ($tweets as $tweet) {
+			$usernames = Tweetex::extractUsernames($tweet);
+			if($usernames != null) {
+				$this->usernames[] = $usernames;
+			}
+		}
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 		$this->pager->setQuery($q);
 		$this->pager->setPage($request->getParameter('page'), 1);
@@ -56,8 +66,12 @@ class tweetActions extends sfActions
 		if(!is_null($this->screenName)) {
 			$this->user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
 			$this->linkCount = Doctrine::getTable('Tweet')->getLinkCount($this->user);
-			$this->relativeNumberOfLinks = round($this->linkCount / count($this->pager) * 100);
-			$this->relativeNumberOfIndexedTweets = round(count($this->pager) / $this->user->getStatusesCount() * 100);
+			
+			$count = count($this->pager);
+			if($count == 0)
+				$count = 1;
+			$this->relativeNumberOfLinks = round($this->linkCount / $count * 100);
+			$this->relativeNumberOfIndexedTweets = round($count / $this->user->getStatusesCount() * 100);
 		}
 
 	}
@@ -85,7 +99,6 @@ class tweetActions extends sfActions
 
 	public function executeEdit(sfWebRequest $request)
 	{
-		//$this->forward404Unless($tweet = Doctrine::getTable('Tweet')->find(array($request->getParameter('id'))), sprintf('Object tweet does not exist (%s).', $request->getParameter('id')));
 		$this->tweet = $this->getRoute()->getObject();
 		$this->form = new TweetForm($this->tweet);
 	}

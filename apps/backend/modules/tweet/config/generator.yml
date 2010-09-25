@@ -12,10 +12,30 @@ generator:
     actions_base_class:    sfActions
 
     config:
-      actions: ~
-      fields:  ~
-      list:    ~
-      filter:  ~
-      form:    ~
-      edit:    ~
-      new:     ~
+      actions:            ~
+      fields:
+        text:             { label: Tweet }
+        user_id:          { label: Author, help: Author of the tweet. }
+        tweet_user:       { label: Author, help: Creator of the tweet. }
+        source_id:        { label: Source, help: The tweet was created using this application. }
+        tweet_created_at: { label: Tweeted at, help: Creation date on Twitter. }
+        created_at:       { label: Stored since, help: Creation date on Grabeeter. }
+      list:
+        title:            Tweet Management
+        display:          [text, tweet_user, tweet_created_at, created_at]
+        max_per_page:     50
+        sort:             [tweet_created_at, desc]
+        object_actions:
+          _delete:         ~
+        batch_actions:
+          _delete:         ~
+        actions:           {}
+      filter:
+        display:          [text, user_id, tweet_created_at]
+      form:
+        display:
+          Tweet Information:          [text, tweet_created_at, created_at]
+          Author Information:         [_user_photo, user_id, statuses_count]
+      edit:
+        title:            Editing Tweet: "%%text%%"
+      new:                ~

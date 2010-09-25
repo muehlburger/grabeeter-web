@@ -5,7 +5,7 @@
  *
  * @method Tweet getObject() Returns the current form's model object
  *
- * @package    tweetex
+ * @package    grabeeter
  * @subpackage form
  * @author     Herbert Muehlburger
  * @version    SVN: $Id: sfDoctrineFormGeneratedTemplate.php 29553 2010-05-20 14:33:00Z Kris.Wallsmith $
