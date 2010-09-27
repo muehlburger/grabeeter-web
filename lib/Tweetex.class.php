@@ -9,11 +9,17 @@ class Tweetex {
 	static public function extractUsernames($text) {
 		$usernames = array();
 
+		$tokenizedText = explode(' ', $text, -1);
+		$search = preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$2', $tokenizedText);
+				
+		var_dump($search);
+		exit;
 		// If text contains at least one whitespace
-		if(preg_match("/[\s]+/", $text)) {
+		if(preg_match("/[\s]+/", $text, $treffer)) {
 			$tokenizedText = explode(' ', $text, -1);
 			foreach ($tokenizedText as $token) {
-				$match = preg_match("/^@[\w]+/", $token);
+				//$match = preg_match("/^@[\w]+/", $token);
+				$match = preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1', $token);
 				if($match) {
 					$token = trim($token, '@');
 					$usernames[] = $token;
