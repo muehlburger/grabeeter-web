@@ -1,7 +1,7 @@
 <?php 
 require_once dirname(__FILE__).'/../bootstrap/unit.php';
 
-$t = new lime_test(14);
+$t = new lime_test(15);
 
 $t->comment('::slugify()');
 $t->is(Tweetex::slugify('Tweetex'), 'tweetex', '::slugify() converts all characters to lower case');
@@ -18,3 +18,5 @@ $t->is(Tweetex::extractUsernames("@hmuehlburger"), array('hmuehlburger'), '::ext
 $t->is(Tweetex::extractUsernames("@cathywonderful      Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('cathywonderful', 'campbeer'), '::extractUsernames() extracts 2 usernames');
 $t->is(Tweetex::extractUsernames("@hmuehlburger @flowolf     @behi_at       @mebner Thanks for the quick response. Dunno what's up with my e-mail. Looking forward to @campbeer #STOUTAPALOOZA!"), array('hmuehlburger', 'flowolf', 'behi_at', 'mebner', 'campbeer'), '::extractUsernames() extracts more than 2 usernames');
 $t->is(Tweetex::extractUsernames("just"), array(), '::extractUsernames() ignores tweets without usernames');
+$t->is(Tweetex::extractUsernames("@William_Antonio: @richardbair:"), array('William_Antonio', 'richardbair'), '::extractUsernames() extracts usernames');
+$t->is(Tweetex::extractUsernames("RT @behi_at: RT @phish108 JTEL Winter School 2010 is supporting next generation researcher of #stellarnet http://tinyurl.com/ydjylab"), array('behi_at', 'phish108'), '::extractUsernames() extracts usernames'); 
