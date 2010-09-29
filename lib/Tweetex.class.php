@@ -6,44 +6,29 @@ class Tweetex {
 	 * Extracts usernames which are in the text of a tweet
 	 * @param string $text
 	 */
-	static public function extractUsernames($text) {
-		$usernames = array();
-
-		$tokenizedText = explode(' ', $text, -1);
-		$search = preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$2', $tokenizedText);
-				
-		var_dump($search);
-		exit;
-		// If text contains at least one whitespace
-		if(preg_match("/[\s]+/", $text, $treffer)) {
-			$tokenizedText = explode(' ', $text, -1);
-			foreach ($tokenizedText as $token) {
-				//$match = preg_match("/^@[\w]+/", $token);
-				$match = preg_replace('/(^|[^a-z0-9_])@([a-z0-9_]+)/i', '$1', $token);
-				if($match) {
-					$token = trim($token, '@');
-					$usernames[] = $token;
+	public static function extractMentionedScreennames($tweet) {
+		return Twitter_Extractor::extractMentionedScreennames($tweet);
+	}
+	
+	public static function array_flatten($array, $return) {
+		for($x = 0; $x < count($array); $x++) {
+			if(is_array($array[$x])) {
+				$return = array_flatten($array[$x], $return);
+			} else {
+				if($array[$x]) {
+					$return[] = $array[$x];
 				}
 			}
-		} else {
-			// Text doesn't contain a whitespace
-			$match = preg_match("/^@[\w]+/", $text);
-			if($match) {
-				$text = trim($text, '@');
-				$usernames[] = $text;
-			}
 		}
-
-
-		return $usernames;
+		return $return;
 	}
 
-	static public function generateLink($text) {
+	public static function generateLink($text) {
 
 		return $text;
 	}
 
-	static public function slugify($text)
+	public static function slugify($text)
 	{
 			
 		// replace non letter or digits by -
