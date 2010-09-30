@@ -33,9 +33,6 @@ class helpActions extends sfActions
 		
 		$this->tweets = $q->execute();
 		
-		foreach ($this->tweets as $tweet) {
-			$this->$usernames = Tweetex::extractUsernames($tweet);
-		}
 		$this->tweet_users = $users;
 		$this->user = $user;
 	}

@@ -53,11 +53,15 @@ class tweetActions extends sfActions
 		
 		$this->usernames = array();
 		foreach ($tweets as $tweet) {
-			$usernames = Tweetex::extractUsernames($tweet);
-			if($usernames != null) {
-				$this->usernames[] = $usernames;
+			$screennames = Tweetex::extractMentionedScreennames($tweet);
+			if($screennames  != null) {
+				$this->usernames = $screennames;
 			}
 		}
+		
+		//$this->usernames = array_unique($this->usernames, SORT_REGULAR);
+		//Tweetex::array_flatten($this->usernames, $this->usernames);
+		
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 		$this->pager->setQuery($q);
 		$this->pager->setPage($request->getParameter('page'), 1);
