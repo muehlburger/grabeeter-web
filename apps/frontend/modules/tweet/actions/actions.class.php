@@ -63,6 +63,7 @@ class tweetActions extends sfActions
 		
 		$flattenedScreennames = Tweetex::array_flatten($usernames);
 		$flattenedScreennames = array_unique($flattenedScreennames, SORT_REGULAR);
+		sort($flattenedScreennames);
 		
 		$this->usernames = $flattenedScreennames;
 		$this->numberOfCommunicationPartners = count($flattenedScreennames);
