@@ -34,9 +34,9 @@ EOF;
 		$connection = $databaseManager->getDatabase($options['connection'])->getConnection();
 
 		$this->logBlock('Running task for '.$arguments['username'], 'INFO');
-		$this->screenName = $arguments['username'];
+		$screenName = $arguments['username'];
 		
-		$user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
+		$user = Doctrine::getTable('TweetUser')->getUserByScreenName($screenName);
 		if(!isset($user)) {
 			$this->logSection('error: ', 'Twitter Username not found in Database!');
 			exit(1);
@@ -46,15 +46,15 @@ EOF;
 		->createQuery('a')
 		->count();
 
-		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
+		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $screenName);
 		
 		$tweets = $q->execute();
 		
 		$usernames = array();
 		foreach ($tweets as $tweet) {
-			$this->screenNames = Tweetex::extractMentionedScreennames($tweet);
-			if($this->screenNames  != null) {
-				$usernames[] = $this->screenNames;
+			$screenNames = Tweetex::extractMentionedScreennames($tweet);
+			if($screenNames  != null) {
+				$usernames[] = $screenNames;
 			}
 		}
 		
@@ -62,17 +62,17 @@ EOF;
 		
 		
 		$flattenedScreennames = Tweetex::array_flatten($usernames);
-		$this->logSection('Info: ', count($flattenedScreennames) . ' usernames found in ' . $this->screenName . '\'s tweets.');
+		$this->logSection('Info: ', count($flattenedScreennames) . ' usernames found in ' . $screenName . '\'s tweets.');
 		
 		$uniqueScreennames = array();
-		foreach ($flattenedScreennames as $this->screenName) {
-			if(!in_array($this->screenName, $uniqueScreennames)) {
-				$uniqueScreennames[] = $this->screenName;
+		foreach ($flattenedScreennames as $name) {
+			if(!in_array($name, $uniqueScreennames)) {
+				$uniqueScreennames[] = $name;
 			}
 		}
 		
 		$numberOfCommunicationPartners = count($uniqueScreennames);
-		$this->logSection('Info: ', $numberOfCommunicationPartners . ' usernames found in ' . $this->screenName . '\'s tweets.');
+		$this->logSection('Info: ', $numberOfCommunicationPartners . ' usernames found in ' . $screenName . '\'s tweets.');
 		
 	}
 }
