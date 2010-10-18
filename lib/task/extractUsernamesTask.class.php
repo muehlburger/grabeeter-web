@@ -63,11 +63,10 @@ EOF;
 		
 		$flattenedScreennames = Tweetex::array_flatten($usernames);
 		
-		//$flattenedScreennames = array_unique($flattenedScreennames, SORT_REGULAR);
-		sort($flattenedScreennames);
+		$uniqueScreennames = array_unique($flattenedScreennames, SORT_STRING);
+		//sort($flattenedScreennames);
 		
-		$usernames = $flattenedScreennames;
-		$numberOfCommunicationPartners = count($flattenedScreennames);
+		$numberOfCommunicationPartners = count($uniqueScreennames);
 		$this->logSection('Info: ', $numberOfCommunicationPartners . ' usernames found in ' . $screenName . '\'s tweets.');
 		
 	}
