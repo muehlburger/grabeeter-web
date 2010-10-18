@@ -47,31 +47,10 @@ EOF;
 		->count();
 
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $screenName);
-		
 		$tweets = $q->execute();
+		$extractedScreennames = Tweetex::extractMentionedScreennames($tweets);
 		
-		$usernames = array();
-		foreach ($tweets as $tweet) {
-			$screenNames = Tweetex::extractMentionedScreennames($tweet);
-			if($screenNames  != null) {
-				$usernames[] = $screenNames;
-			}
-		}
-		
-		$flattenedScreennames = array();
-		
-		
-		$flattenedScreennames = Tweetex::array_flatten($usernames);
-		$this->logSection('Info: ', count($flattenedScreennames) . ' usernames found in ' . $screenName . '\'s tweets.');
-		
-		$uniqueScreennames = array();
-		foreach ($flattenedScreennames as $name) {
-			if(!in_array($name, $uniqueScreennames)) {
-				$uniqueScreennames[] = $name;
-			}
-		}
-		
-		$numberOfCommunicationPartners = count($uniqueScreennames);
+		$numberOfCommunicationPartners = count($extractedScreennames);
 		$this->logSection('Info: ', $numberOfCommunicationPartners . ' usernames found in ' . $screenName . '\'s tweets.');
 		
 	}

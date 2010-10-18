@@ -48,31 +48,11 @@ class tweetActions extends sfActions
 		->count();
 
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
-		
-		$tweets = $q->execute();
-		
-		$usernames = array();
-		foreach ($tweets as $tweet) {
-			$screenNames = Tweetex::extractMentionedScreennames($tweet);
-			if($screenNames  != null) {
-				$usernames[] = $screenNames;
-			}
-		}
-		
-		$flattenedScreennames = array();
-		
-		
-		$flattenedScreennames = Tweetex::array_flatten($usernames);
-		
-		$uniqueScreennames = array();
-		foreach ($flattenedScreennames as $name) {
-			if(!in_array($name, $uniqueScreennames)) {
-				$uniqueScreennames[] = $name;
-			}
-		}
-		
-		$this->usernames = $uniqueScreennames;
-		$this->numberOfCommunicationPartners = count($uniqueScreennames);
+				
+//		$tweets = $q->execute();
+//		$extractedScreennames = Tweetex::extractMentionedScreennames($tweets);
+//		$this->usernames = $extractedScreennames;
+//		$this->numberOfCommunicationPartners = count($extractedScreennames);
 		
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 		$this->pager->setQuery($q);

@@ -22,14 +22,14 @@
   		<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl(), 'target=_blank') ?></li>
   	<?php endif;?>
   </ul>
-  <h3>Communication Partners (<?php echo $numberOfCommunicationPartners?>)</h3>
+  <!-- <h3>Communication Partners (<?php echo $numberOfCommunicationPartners?>)</h3>
   <p><?php echo $user->getName() ?> mentioned the following Twitter users:</p>
   <?php foreach ($usernames as $username): ?>
   <ul>
    	<li><a href="http://twitter.com/<?php echo $username ?>" target="_blank"><?php echo $username ?></a></li>
   </ul>
 	<?php endforeach; ?>
-  
+   -->
   <h3>Statistics</h3>
     <ul>
   	<li>On Twitter: <br /><?php echo $user->getDateTimeObject('twitter_created_at')->format('D, d M Y H:i:s') ?></li>

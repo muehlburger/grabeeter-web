@@ -6,8 +6,27 @@ class Tweetex {
 	 * Extracts usernames which are in the text of a tweet
 	 * @param string $text
 	 */
-	public static function extractMentionedScreennames($tweet) {
-		return Twitter_Extractor::extractMentionedScreennames($tweet);
+	public static function extractMentionedScreennames($tweets) {
+		
+	$usernames = array();
+		foreach ($tweets as $tweet) {
+			$screenNames = Twitter_Extractor::extractMentionedScreennames($tweet);
+			if($screenNames  != null) {
+				$usernames[] = $screenNames;
+			}
+		}
+		
+		$flattenedScreennames = array();
+		$flattenedScreennames = Tweetex::array_flatten($usernames);
+		
+		$uniqueScreennames = array();
+		foreach ($flattenedScreennames as $name) {
+			if(!in_array($name, $uniqueScreennames)) {
+				$uniqueScreennames[] = $name;
+			}
+		}
+		
+		return $uniqueScreennames;
 	}
 
 	/**
