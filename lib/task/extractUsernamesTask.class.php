@@ -23,7 +23,7 @@ class extractUsernamesTask extends sfBaseTask
 The [exctractUsernames|INFO] task does things.
 Call it with:
 
-  [php symfony addUsernames|INFO]
+  [php symfony exctractUsernames|INFO]
 EOF;
 	}
 
@@ -60,8 +60,10 @@ EOF;
 		
 		$flattenedScreennames = array();
 		
+		
 		$flattenedScreennames = Tweetex::array_flatten($usernames);
-		$flattenedScreennames = array_unique($flattenedScreennames, SORT_REGULAR);
+		
+		//$flattenedScreennames = array_unique($flattenedScreennames, SORT_REGULAR);
 		sort($flattenedScreennames);
 		
 		$usernames = $flattenedScreennames;
