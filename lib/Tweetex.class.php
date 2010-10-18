@@ -9,18 +9,23 @@ class Tweetex {
 	public static function extractMentionedScreennames($tweet) {
 		return Twitter_Extractor::extractMentionedScreennames($tweet);
 	}
-	
-	public static function array_flatten($array, $return) {
-		for($x = 0; $x < count($array); $x++) {
-			if(is_array($array[$x])) {
-				$return = array_flatten($array[$x], $return);
-			} else {
-				if($array[$x]) {
-					$return[] = $array[$x];
-				}
-			}
+
+	/**
+	 *
+	 * @flatten multi-dimensional array
+	 *
+	 * @param array $array
+	 *
+	 * @return array
+	 *
+	 */
+	public static function array_flatten(array $array){
+		$ret_array = array();
+		foreach(new RecursiveIteratorIterator(new RecursiveArrayIterator($array)) as $value)
+		{
+			$ret_array[] = $value;
 		}
-		return $return;
+		return $ret_array;
 	}
 
 	public static function generateLink($text) {

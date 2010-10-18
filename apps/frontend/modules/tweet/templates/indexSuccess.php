@@ -22,13 +22,11 @@
   		<li>Url: <?php echo link_to($user->getUrl(), $user->getUrl(), 'target=_blank') ?></li>
   	<?php endif;?>
   </ul>
-  <h3>Communication Partners</h3>
+  <h3>Communication Partners (<?php echo $numberOfCommunicationPartners?>)</h3>
+  <p><?php echo $user->getName() ?> mentioned the following Twitter users:</p>
   <?php foreach ($usernames as $username): ?>
   <ul>
-   	<li><?php foreach ($username as $u): ?>
-   			<?php echo $u ?>
-   		<?php endforeach ?>
-   	</li>
+   	<li><a href="http://twitter.com/<?php echo $username ?>" target="_blank"><?php echo $username ?></a></li>
   </ul>
 	<?php endforeach; ?>
   
