@@ -29,13 +29,13 @@ class registrationActions extends sfActions
 	{
 		$this->form = new RegistrationForm();
 
+		
 		if($request->isMethod('post')) {
 			$this->form->bind($request->getParameter('registration'));
 			
-			if($this->form->isValid()) {
-				
+			if($this->form->isValid()) {	
 				$username = $this->form->getValue('username');
-				
+								
 				// Remove spaces in username
 				$username = preg_replace('/\s+/', '', $username);
 
