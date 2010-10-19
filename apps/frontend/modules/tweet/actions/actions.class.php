@@ -42,10 +42,6 @@ class tweetActions extends sfActions
 		$this->screenName = $request->getParameter('screen_name');
 		$user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
 		$this->forward404Unless($user);
-		
-		$this->userCount = Doctrine::getTable('TweetUser')
-		->createQuery('a')
-		->count();
 
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
 				

@@ -12,27 +12,34 @@ class helpActions extends sfActions
 {
 	/**
 	 * Executes index action
-	 * 
+	 *
 	 * @param sfWeRequest $request
 	 */
 	public function executeIndex(sfWebRequest $request) {
 		$users = Doctrine::getTable('TweetUser')
 		->createQuery('a')
 		->select('a.*, RANDOM() rand')
-		->orderBy('rand')	
+		->orderBy('rand')
 		->limit(sfConfig::get('app_max_users_on_startpage'))
 		->execute();
-		
+
 		$randomUserIndex = rand(0, sizeof($users) - 1);
 		$user = $users[$randomUserIndex];
 		$screenName = $user->getScreenName();
-				
+
 		$q = Doctrine::getTable('Tweet')
 		->getMatchingTweets(null, $screenName);
 		$q->limit(sfConfig::get('app_max_tweets_on_startpage'));
-		
+
+		$this->numberOfUsers = Doctrine::getTable('TweetUser')
+		->createQuery('a')
+		->count();
+
+		$this->numberOfTweets = Doctrine::getTable('Tweet')
+		->createQuery('t')
+		->count();
+
 		$this->tweets = $q->execute();
-		
 		$this->tweet_users = $users;
 		$this->user = $user;
 	}
@@ -42,7 +49,7 @@ class helpActions extends sfActions
 	 * @param sfRequest $request A request object
 	 */
 	public function executeFaq(sfWebRequest $request) {
-		 
+			
 	}
 
 	/**
@@ -58,6 +65,6 @@ class helpActions extends sfActions
 	 * @param sfWebRequest $request
 	 */
 	public function executeApi(sfWebRequest $request) {
-		 
+			
 	}
 }
