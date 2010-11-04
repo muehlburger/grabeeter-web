@@ -7,6 +7,6 @@ setup:
  + make sure you meet all requirements
  + enter your database connection parameters in config/databases.yml
  + build the models/forms/filters by typing "./symfony doctrine:build --all"
- + enter a initial twitter username in data/usernames
+ + enter an initial twitter username in data/usernames
  + run runUpdate.sh or runUpdate_dev.sh from your shell.
- + goto http://<yourhost.com> and smile! :-)
+ + open grabeeter in a browser and smile! :-)
