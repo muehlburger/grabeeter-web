@@ -42,31 +42,13 @@ class tweetActions extends sfActions
 		$this->screenName = $request->getParameter('screen_name');
 		$user = Doctrine::getTable('TweetUser')->getUserByScreenName($this->screenName);
 		$this->forward404Unless($user);
-		
-		$this->userCount = Doctrine::getTable('TweetUser')
-		->createQuery('a')
-		->count();
 
 		$q = Doctrine::getTable('Tweet')->getMatchingTweets(null, $this->screenName);
-		
-		$tweets = $q->execute();
-		
-		$usernames = array();
-		foreach ($tweets as $tweet) {
-			$screennames = Tweetex::extractMentionedScreennames($tweet);
-			if($screennames  != null) {
-				$usernames[] = $screennames;
-			}
-		}
-		
-		$flattenedScreennames = array();
-		
-		$flattenedScreennames = Tweetex::array_flatten($usernames);
-		$flattenedScreennames = array_unique($flattenedScreennames, SORT_REGULAR);
-		sort($flattenedScreennames);
-		
-		$this->usernames = $flattenedScreennames;
-		$this->numberOfCommunicationPartners = count($flattenedScreennames);
+				
+//		$tweets = $q->execute();
+//		$extractedScreennames = Tweetex::extractMentionedScreennames($tweets);
+//		$this->usernames = $extractedScreennames;
+//		$this->numberOfCommunicationPartners = count($extractedScreennames);
 		
 		$this->pager = new sfDoctrinePager('Tweet', sfConfig::get('app_max_tweets_on_page'));
 		$this->pager->setQuery($q);
