@@ -9,7 +9,7 @@ class TweetTable extends Doctrine_Table
 
 		return $q->count();
 	}
-	
+
 	public function getForUsername($params) {
 		$q = $this->createQuery('t')
 		->leftJoin('t.TweetUser u')
@@ -17,44 +17,44 @@ class TweetTable extends Doctrine_Table
 		->orderBy('t.tweet_created_at DESC');
 		return $q->execute();
 	}
-	
+
 	public function getMatchingTweets(Doctrine_Query $q = null, $screenName = null) {
 		if(is_null($q)) {
 			$q = $this->createQuery('t')->leftJoin('t.TweetUser u')->orderBy('tweet_created_at DESC');
-			if(!is_null($screenName)) 
-				$q = $q->where('u.screen_name = ?', $screenName);
+			if(!is_null($screenName))
+			$q = $q->where('u.screen_name = ?', $screenName);
 		}
-		
-		return $q;		
+
+		return $q;
 	}
-	
+
 	public function getForLuceneQuery($query, $screenName) {
-	  if($query != "*")
-	  	$query = 'text:"'. $query .'" AND screenName:' . $screenName;
-	  else 
-	  	$query = 'screenName:' . $screenName;
-	  
-	  $hits = $this->getLuceneIndex()->find($query);
-	  	  
-	  $pks = array();
-	  foreach ($hits as $hit) {
-	  	$pks[] = $hit->pk;
-	  }
-	  
-	  if(empty($pks))
-	  {
-	  	return array();
-	  }
-	  
-	  $q = $this->createQuery('t')
-	  	->whereIn('t.id', $pks)
-	  	->orderBy('t.tweet_created_at DESC');
-	  	
-	  $q = $this->getMatchingTweets($q, $screenName);
-	  
-	  return $q;
+		if($query != "*")
+		$query = 'text:"'. $query .'" AND screenName:' . $screenName;
+		else
+		$query = 'screenName:' . $screenName;
+		 
+		$hits = $this->getLuceneIndex()->find($query);
+
+		$pks = array();
+		foreach ($hits as $hit) {
+			$pks[] = $hit->pk;
+		}
+		 
+		if(empty($pks))
+		{
+			return array();
+		}
+		 
+		$q = $this->createQuery('t')
+		->whereIn('t.id', $pks)
+		->orderBy('t.tweet_created_at DESC');
+
+		$q = $this->getMatchingTweets($q, $screenName);
+		 
+		return $q;
 	}
-	
+
 	static public function getLuceneIndex() {
 		ProjectConfiguration::registerZend();
 
@@ -64,20 +64,20 @@ class TweetTable extends Doctrine_Table
 			return Zend_Search_Lucene::create($index);
 		}
 	}
-	
+
 	static public function getLuceneIndexFile() {
 		return sfConfig::get('sf_data_dir').'/tweet.'.sfConfig::get('sf_environment').'.index';
 	}
-	
-	public function saveTweets(&$results, &$sources, &$user) {
+
+	public function saveTweets($results, $sources, $user) {
 
 		// start with the oldest element
 		$results = array_reverse($results);
-		
+
 		$numberOfTweets = 0;
 		$conn = $this->getConnection();
 		$conn->beginTransaction();
-		
+
 		try {
 			foreach($results as $result) {
 				if(!array_key_exists($result->source, $sources)) {
@@ -114,6 +114,7 @@ class TweetTable extends Doctrine_Table
 					$tweet->setInReplyToUserId($result->in_reply_to_user_id);
 				}
 
+				echo "bin hier";
 				$parsedDate = date_parse($result->created_at);
 				$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
 				$tweet->setTweetCreatedAt($createdAt);
@@ -122,19 +123,19 @@ class TweetTable extends Doctrine_Table
 				$tweet->setText($result->text);
 
 				$numberOfTweets++;
+
 				$tweet->save($conn);
-				
-//				echo "id: ";
-//				echo $tweet->getTweetTwitterId();
-//				echo "\n";
+
+				echo "id: " . $tweet->getTweetTwitterId() . "\n";
 			}
-				$conn->commit();
-				
+			$conn->commit();
+
 		} catch(Exception $e) {
+			echo $e->getMessage();
 			$conn->rollback();
 			throw $e;
 		}
-			return $numberOfTweets;
+		return $numberOfTweets;
 	}
 
 	public function getLastTweet($userId) {

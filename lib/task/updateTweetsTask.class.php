@@ -20,8 +20,7 @@ class updateTweetsTask extends sfBaseTask
 		$this->name             = 'updateTweets';
 		$this->briefDescription = 'Task for updating tweets';
 		$this->detailedDescription = <<<EOF
-The [say:hello|INFO] task is an implementation of the classical
-Hello World example using symfony's task system.
+The [updateTweets|INFO] task is implemented using symfony's task system.
  
   [./symfony updateTweets <username>|INFO]
  
@@ -118,6 +117,7 @@ EOF;
 			$url = 'http://twitter.com/statuses/user_timeline.json?since_id='. $lastSavedTwitterId .'&count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		}
 
+		$tweetsTable = Doctrine_Core::getTable('Tweet');
 		for($i = $pages; $i > 0; $i--) {
 			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
@@ -139,15 +139,18 @@ EOF;
 				exit(1);
 			}
 
-			$this->numberOfStoredTweets += Doctrine_Core::getTable('Tweet')->saveTweets($results, $sources, $user);
+			$this->numberOfStoredTweets += $tweetsTable->saveTweets($results, $sources, $user);
 
 		}
 		curl_close($curl);
+		
+		$this->logSection('Info: ', 'getLastTweet of user with id: '. $user->getId());
 		$tweet = Doctrine_Core::getTable('Tweet')->getLastTweet($user->getId());
 		if($tweet == false) {
 			$tweet = new Tweet();
 			$tweet->setStatusesCount(0);
 		}
+		$this->logSection('Info: ', 'updateUserStatusesCount of user with id: '. $user->getId());
 		Doctrine_Core::getTable('TweetUser')->updateUserStatusesCount($user->getId(), $tweet->getStatusesCount());
 
 		$this->logBlock('Task run successfuly for '.$arguments['username'], 'INFO');
