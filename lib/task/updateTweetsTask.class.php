@@ -57,7 +57,7 @@ EOF;
 		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 0);
 
 		//make the request
-		//$this->logSection('Info: ', 'Getting userdata: '. $url);
+		$this->logSection('Info: ', 'Getting userdata: '. $url);
 		$curlReturnValue = curl_exec($curl);
 
 		$httpStatusCode = $this->getHttpStatusOk($curl);
@@ -119,7 +119,7 @@ EOF;
 		}
 
 		for($i = $pages; $i > 0; $i--) {
-			//$this->logSection('Info: ', 'Processing pages: '. $url.$i);
+			$this->logSection('Info: ', 'Processing pages: '. $url.$i);
 			curl_setopt($curl, CURLOPT_URL, $url.$i);
 
 			//make the request
