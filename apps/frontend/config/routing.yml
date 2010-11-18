@@ -29,9 +29,12 @@ api_tweets:
     sf_method: get
     
 api_register:
-  url:    /api/user/register/:screen_name
-  param:  { module: api, action: register }
+  url:    /api/:token/register/:screen_name.:sf_format
+  class:  sfDoctrineRoute
+  param:  { module: api, action: register, sf_format: xml }
+  options: { model: Affiliate, type: list, action: getForToken }
   requirements:
+    sf_format: (?:xml)
     sf_method: get
 
 #########################################

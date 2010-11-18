@@ -3,17 +3,16 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $browser = new sfTestFunctional(new sfBrowser());
-
+$browser->loadData();
 $browser->
-  get('/api/index')->
-
-  with('request')->begin()->
-    isParameter('module', 'api')->
-    isParameter('action', 'index')->
-  end()->
-
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/This is a temporary page/')->
+  info('1 - Web service security')->
+ 
+  info('  1.1 - A token is needed to access the service')->
+  get('/api/foo/jobs.xml')->
+  with('response')->isStatusCode(404)->
+ 
+  info('  1.2 - An inactive account cannot access the web service')->
+  get('/api/symfony/jobs.xml')->
+  with('response')->isStatusCode(404)->
   end()
 ;
