@@ -27,6 +27,12 @@ api_tweets:
   requirements:
     sf_format: (?:xml|json|yaml)
     sf_method: get
+    
+api_register:
+  url:    /api/user/register/:screen_name
+  param:  { module: api, action: register }
+  requirements:
+    sf_method: get
 
 #########################################
 # User Routes

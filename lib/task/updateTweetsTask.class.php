@@ -88,26 +88,26 @@ EOF;
 			exit(1);
 		}
 
-		if(!isset($result->id)) {
+		if(!isset($result->id_str)) {
 			$this->logSection('Error: ', 'Twitter not reachable!');
 			exit(1);
 		}
 
-		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id);
+		$user = Doctrine_Core::getTable('TweetUser')->getUserByTwitterUserId($result->id_str);
 		$statusesCount = $result->statuses_count;
 
 		// Just try to access the first 3200 tweets
 		if($statusesCount > sfConfig::get('app_twitter_statuses_limit'));
 		$statusesCount = sfConfig::get('app_twitter_statuses_limit');
 			
-		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
+//		$allTweetSources = Doctrine_Core::getTable('TweetSource')->findAll(Doctrine_Core::HYDRATE_ARRAY);
 		$pages = ceil($statusesCount / $count);
 
 		$sources = array();
-		foreach($allTweetSources as $source) {
-			$sources[$source['href']]= $source['id'];
-		}
-
+//		foreach($allTweetSources as $source) {
+//			$sources[$source['url']]= $source['id'];
+//		}
+		
 		$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
 		if(!$user) {
 			$user = Doctrine_Core::getTable('TweetUser')->createNewTweetUser($result);

@@ -10,6 +10,14 @@
  */
 class apiActions extends sfActions
 {
+	public function executeRegister(sfWebRequest $request) {
+		$username = $request->getParameter('screen_name');
+
+		Tweetex::registerUsername($username);
+		
+		$this->username = $username;
+	}
+	
 	/**
 	 * Executes the list action which returns a list of tweets for
 	 * the given twitter screen_name.

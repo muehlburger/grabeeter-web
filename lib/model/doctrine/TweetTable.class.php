@@ -81,35 +81,41 @@ class TweetTable extends Doctrine_Table
 
 		try {
 			foreach($results as $result) {
-				$sourceData = Tweetex::extractSourceData($result->source);
-
-				$label = $sourceData[0];
-				$url = $sourceData[1];
 				
-				print("url " . $url . "\n");
-				print("label " . $label . "\n");
 				
-				if(!array_key_exists($url, $sources)) {
-					$source = new TweetSource();
-					if($url != '')
-					$source->setUrl($url);
+//				$sourceData = Tweetex::extractSourceData($result->source);
+//
+//				$label = $sourceData[0];
+//				$url = $sourceData[1];
+//				
+//				print("url: " . $url . "\n");
+//				print("label: " . $label . "\n");
+//				var_dump($sources);
+//
+//				if(isset($sources)) {
+//					if(!array_key_exists($url, $sources)) {
+//						$source = new TweetSource();
+//						if($url != '')
+//						$source->setUrl($url);
+//
+//						if($label != '')
+//						$source->setLabel($label);
+//
+//						$source->save();
+//						$sourceId = $source->getId();
+//					} else {
+//						$sourceId = $sources[$url];
+//					}
+//					$tweet->setSourceId($sourceId);
+//				}
 
-					if($label != '')
-					$source->setLabel($label);
-
-					$source->save();
-					$sources->$url = $source->getId();
-					$sourceId = $source->getId();
-				} else {
-					$sourceId = $sources[$url];
-				}
-
-				// Create new Tweet and populate its values
+				// Create new tweet
 				$tweet = new Tweet();
+				
+				// Populate tweet's values
 				$tweet->setTweetUser($user);
 				$tweet->setStatusesCount($result->user->statuses_count);
-				$tweet->setSourceId($sourceId);
-
+				$tweet->setSourceId(new TweetSource());
 
 				// Add geo information if it is enabled
 				if($result->user->geo_enabled == 1) {
