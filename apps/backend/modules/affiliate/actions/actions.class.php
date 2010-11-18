@@ -15,8 +15,24 @@ class affiliateActions extends autoAffiliateActions
 {
 	public function executeListActivate()
 	{
-		$this->getRoute()->getObject()->activate();
+		$affiliate = $this->getRoute()->getObject();
+		$affiliate->activate();
 
+		// send an email to the affiliate
+		$message = $this->getMailer()->compose(
+		array('muehlburger@tugraz.at' => 'Grabeeter API Bot'),
+		$affiliate->getEmail(),
+      'Grabeeter affiliate token',
+      <<<EOF
+Your Grabeeter affiliate account has been activated.
+ 
+Your token is {$affiliate->getToken()}.
+ 
+The Grabeeter API Bot.
+EOF
+		);
+
+		$this->getMailer()->send($message);
 		$this->redirect('affiliate');
 	}
 

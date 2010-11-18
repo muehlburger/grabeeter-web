@@ -16,7 +16,7 @@ class AffiliateForm extends BaseAffiliateForm
       'url', 
       'email', 
       ));
-      $this->widgetSchema['url']->setLabel('Your website URL');
+      $this->widgetSchema['url']->setLabel('Website URL');
       $this->widgetSchema['url']->setAttribute('size', 50);
 
       $this->widgetSchema['email']->setAttribute('size', 50);
