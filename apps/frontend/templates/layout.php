@@ -43,7 +43,7 @@
 <div id="footer" class="grid_16 round">
 <p>&copy; 2010 <?php echo link_to('Social Learning', 'http://portal.tugraz.at/portal/page/portal/TU_Graz/Studium_Lehre/tugnet_vl_start/tugnet_vl_elearning', array('target' => '_blank')) ?>
 - <?php echo link_to('Graz University of Technology', 'http://www.tugraz.at', array('target' => '_blank')) ?>
-<!-- | Terms of Usage | Privacy Policy --> | <?php echo link_to('Imprint', 'http://portal.tugraz.at/pls/portal/TU_GRAZ.PORTLET_PAGE_IMPRESSUM.show_page_imp?pPageId=1&pSiteId=75&pLanguage=d', array('target' => '_blank')) ?>| <a href="mailto:tugtc@tugraz.at">Contact</a></p>
+<!-- | Terms of Usage | Privacy Policy --> | <?php echo link_to('Imprint', 'http://portal.tugraz.at/pls/portal/TU_GRAZ.PORTLET_PAGE_IMPRESSUM.show_page_imp?pPageId=1&pSiteId=75&pLanguage=d', array('target' => '_blank')) ?>| <a href="mailto:tugtc@tugraz.at">Contact</a> | <a href="<?php echo url_for('affiliate_new') ?>">Become an affiliate</a></p>
 </div>
 <!-- end footer --></div>
 <!-- end container -->

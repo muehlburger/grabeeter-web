@@ -38,6 +38,16 @@ api_register:
     sf_method: get
 
 #########################################
+# Affiliate Routes
+##
+affiliate:
+  class:   sfDoctrineRouteCollection
+  options:
+    model: Affiliate
+    actions: [new, create]
+    object_actions: { wait: get }
+
+#########################################
 # User Routes
 ##
 user:

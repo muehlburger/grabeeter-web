@@ -14,12 +14,14 @@
 <?php if ($sf_user->isAuthenticated()): ?>
 <div id="menu">
 <ul>
+	<li><?php echo link_to('Affiliates', 'affiliate') ?></li>
 	<li><?php echo link_to('Tweet Management', 'tweet') ?></li>
 	<li><?php echo link_to('Twitter Users', 'tweet_user') ?></li>
 	<li><?php echo link_to('Backend Users', 'sf_guard_user') ?></li>
 	<li><?php echo link_to('Groups', 'sf_guard_group') ?></li>
 	<li><?php echo link_to('Permissions', 'sf_guard_permission') ?></li>
 	<li><?php echo link_to('Logout', 'sf_guard_signout') ?></li>
+	
 </ul>
 </div>
 <?php endif ?>
