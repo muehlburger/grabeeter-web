@@ -14,7 +14,7 @@
 <?php if ($sf_user->isAuthenticated()): ?>
 <div id="menu">
 <ul>
-	<li><?php echo link_to('Affiliates', 'affiliate') ?></li>
+	<li><?php echo link_to('Affiliates', 'affiliate') ?> - <strong><?php echo Doctrine_Core::getTable('Affiliate')->countToBeActivated() ?></strong></li>
 	<li><?php echo link_to('Tweet Management', 'tweet') ?></li>
 	<li><?php echo link_to('Twitter Users', 'tweet_user') ?></li>
 	<li><?php echo link_to('Backend Users', 'sf_guard_user') ?></li>
