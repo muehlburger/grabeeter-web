@@ -13,4 +13,50 @@ require_once dirname(__FILE__).'/../lib/affiliateGeneratorHelper.class.php';
  */
 class affiliateActions extends autoAffiliateActions
 {
+	public function executeListActivate()
+	{
+		$this->getRoute()->getObject()->activate();
+
+		$this->redirect('affiliate');
+	}
+
+	public function executeListDeactivate()
+	{
+		$this->getRoute()->getObject()->deactivate();
+
+		$this->redirect('affiliate');
+	}
+
+	public function executeBatchActivate(sfWebRequest $request)
+	{
+		$q = Doctrine_Query::create()
+		->from('Affiliate a')
+		->whereIn('a.id', $request->getParameter('ids'));
+
+		$affiliates = $q->execute();
+
+		foreach ($affiliates as $affiliate)
+		{
+			$affiliate->activate();
+		}
+
+		$this->redirect('affiliate');
+	}
+
+	public function executeBatchDeactivate(sfWebRequest $request)
+	{
+		$q = Doctrine_Query::create()
+		->from('Affiliate a')
+		->whereIn('a.id', $request->getParameter('ids'));
+
+		$affiliates = $q->execute();
+
+		foreach ($affiliates as $affiliate)
+		{
+			$affiliate->deactivate();
+		}
+
+		$this->redirect('affiliate');
+	}
+
 }

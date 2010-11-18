@@ -10,4 +10,9 @@
  */
 class affiliateGeneratorConfiguration extends BaseAffiliateGeneratorConfiguration
 {
+	public function getFilterDefaults()
+	{
+		return array('is_active' => '0');
+	}
+
 }
