@@ -109,17 +109,16 @@ class TweetTable extends Doctrine_Table
 				}
 
 				// Tweet is a reply
-				if(isset($result->in_reply_to_status_id)) {
-					$tweet->setInReplyToStatusId($result->in_reply_to_status_id);
-					$tweet->setInReplyToUserId($result->in_reply_to_user_id);
+				if(isset($result->in_reply_to_status_id_str)) {
+					$tweet->setInReplyToStatusId($result->in_reply_to_status_id_str);
+					$tweet->setInReplyToUserId($result->in_reply_to_user_id_str);
 				}
 
-				echo "bin hier";
 				$parsedDate = date_parse($result->created_at);
 				$createdAt = "{$parsedDate['year']}-{$parsedDate['month']}-{$parsedDate['day']} {$parsedDate['hour']}:{$parsedDate['minute']}:{$parsedDate['second']}";
 				$tweet->setTweetCreatedAt($createdAt);
 
-				$tweet->setTweetTwitterId($result->id);
+				$tweet->setTweetTwitterId($result->id_str);
 				$tweet->setText($result->text);
 
 				$numberOfTweets++;
