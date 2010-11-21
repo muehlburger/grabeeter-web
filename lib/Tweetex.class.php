@@ -1,6 +1,26 @@
 <?php
 class Tweetex {
 
+	public static function extractSourceData($source) {
+		if($source != 'web') {
+			$dom = new DOMDocument;
+			$dom->loadXML($source);
+			if (!$dom) {
+				echo 'Error while parsing the document';
+				exit;
+			}
+
+			$s = simplexml_import_dom($dom);
+			$attributes = $s->attributes();
+			$href = $attributes['href'];
+			$label = $s[0];
+		
+			return array($label, $href);
+		} else {
+			return array('web', 'http://www.twitter.com/');
+		}
+	}
+
 	/**
 	 *
 	 * Saves the username in the dedicated <code>usernames</code> and <code>newUsers</code> file.

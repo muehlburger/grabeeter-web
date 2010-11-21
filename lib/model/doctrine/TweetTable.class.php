@@ -33,25 +33,25 @@ class TweetTable extends Doctrine_Table
 		$query = 'text:"'. $query .'" AND screenName:' . $screenName;
 		else
 		$query = 'screenName:' . $screenName;
-		 
+			
 		$hits = $this->getLuceneIndex()->find($query);
 
 		$pks = array();
 		foreach ($hits as $hit) {
 			$pks[] = $hit->pk;
 		}
-		 
+			
 		if(empty($pks))
 		{
 			return array();
 		}
-		 
+			
 		$q = $this->createQuery('t')
 		->whereIn('t.id', $pks)
 		->orderBy('t.tweet_created_at DESC');
 
 		$q = $this->getMatchingTweets($q, $screenName);
-		 
+			
 		return $q;
 	}
 
@@ -78,19 +78,30 @@ class TweetTable extends Doctrine_Table
 		$conn = $this->getConnection();
 		$conn->beginTransaction();
 
+
 		try {
 			foreach($results as $result) {
-				if(!array_key_exists($result->source, $sources)) {
-					$source = new TweetSource();
+				$sourceData = Tweetex::extractSourceData($result->source);
 
-					// TODO: Parse url and label correctly here
-					$source->setLabel($result->source);
-					$source->setUrl($result->source);
+				$label = $sourceData[0];
+				$url = $sourceData[1];
+				
+				print("url " . $url . "\n");
+				print("label " . $label . "\n");
+				
+				if(!array_key_exists($url, $sources)) {
+					$source = new TweetSource();
+					if($url != '')
+					$source->setUrl($url);
+
+					if($label != '')
+					$source->setLabel($label);
+
 					$source->save();
-					$sources[$source->getLabel()] = $source->getId();
+					$sources->$url = $source->getId();
 					$sourceId = $source->getId();
 				} else {
-					$sourceId = $sources[$result->source];
+					$sourceId = $sources[$url];
 				}
 
 				// Create new Tweet and populate its values
@@ -124,8 +135,6 @@ class TweetTable extends Doctrine_Table
 				$numberOfTweets++;
 
 				$tweet->save($conn);
-
-				echo "id: " . $tweet->getTweetTwitterId() . "\n";
 			}
 			$conn->commit();
 

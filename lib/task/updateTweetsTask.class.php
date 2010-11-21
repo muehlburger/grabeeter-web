@@ -105,7 +105,7 @@ EOF;
 
 		$sources = array();
 		foreach($allTweetSources as $source) {
-			$sources[$source['label']]= $source['id'];
+			$sources[$source['href']]= $source['id'];
 		}
 
 		$url = 'http://twitter.com/statuses/user_timeline.json?count='.$count.'&screen_name='.$this->twitterUser.'&page=';
