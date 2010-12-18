@@ -81,41 +81,53 @@ class TweetTable extends Doctrine_Table
 
 		try {
 			foreach($results as $result) {
-				
-				
-//				$sourceData = Tweetex::extractSourceData($result->source);
-//
-//				$label = $sourceData[0];
-//				$url = $sourceData[1];
-//				
-//				print("url: " . $url . "\n");
-//				print("label: " . $label . "\n");
-//				var_dump($sources);
-//
-//				if(isset($sources)) {
-//					if(!array_key_exists($url, $sources)) {
-//						$source = new TweetSource();
-//						if($url != '')
-//						$source->setUrl($url);
-//
-//						if($label != '')
-//						$source->setLabel($label);
-//
-//						$source->save();
-//						$sourceId = $source->getId();
-//					} else {
-//						$sourceId = $sources[$url];
-//					}
-//					$tweet->setSourceId($sourceId);
-//				}
+
+
+				//				$sourceData = Tweetex::extractSourceData($result->source);
+				//
+				//				$label = $sourceData[0];
+				//				$url = $sourceData[1];
+				//
+				//				print("url: " . $url . "\n");
+				//				print("label: " . $label . "\n");
+				//				var_dump($sources);
+				//
+				//				if(isset($sources)) {
+				//					if(!array_key_exists($url, $sources)) {
+				//						$source = new TweetSource();
+				//						if($url != '')
+				//						$source->setUrl($url);
+				//
+				//						if($label != '')
+				//						$source->setLabel($label);
+				//
+				//						$source->save();
+				//						$sourceId = $source->getId();
+				//					} else {
+				//						$sourceId = $sources[$url];
+				//					}
+				//					$tweet->setSourceId($sourceId);
+				//				}
 
 				// Create new tweet
 				$tweet = new Tweet();
-				
+
 				// Populate tweet's values
 				$tweet->setTweetUser($user);
 				$tweet->setStatusesCount($result->user->statuses_count);
-				$tweet->setSourceId(new TweetSource());
+
+				if(!array_key_exists($result->source, $sources)) {
+					$source = new TweetSource();
+					// TODO: Parse url and label correctly here
+					$source->setLabel($result->source);
+					$source->setUrl($result->source);
+					$source->save();
+					$sources[$source->getLabel()] = $source->getId();
+					$sourceId = $source->getId();
+				} else {
+					$sourceId = $sources[$result->source];
+				}
+				$tweet->setSourceId($sourceId);
 
 				// Add geo information if it is enabled
 				if($result->user->geo_enabled == 1) {
@@ -141,26 +153,26 @@ class TweetTable extends Doctrine_Table
 				$numberOfTweets++;
 
 				$tweet->save($conn);
-			}
-			$conn->commit();
-
-		} catch(Exception $e) {
-			echo $e->getMessage();
-			$conn->rollback();
-			throw $e;
 		}
-		return $numberOfTweets;
-	}
+		$conn->commit();
 
-	public function getLastTweet($userId) {
-		$q = $this->createQuery('t')
-		->select('t.tweet_twitter_id')
-		->from('Tweet t')
-		->where('t.user_id = ?', $userId)
-		->orderBy('t.tweet_twitter_id DESC')
-		->limit(1);
-			
-		return $q->fetchOne();
+	} catch(Exception $e) {
+		echo $e->getMessage();
+		$conn->rollback();
+		throw $e;
 	}
+	return $numberOfTweets;
+}
+
+public function getLastTweet($userId) {
+	$q = $this->createQuery('t')
+	->select('t.tweet_twitter_id')
+	->from('Tweet t')
+	->where('t.user_id = ?', $userId)
+	->orderBy('t.tweet_twitter_id DESC')
+	->limit(1);
+		
+	return $q->fetchOne();
+}
 
 }
