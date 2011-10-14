@@ -3,9 +3,9 @@ README
 
 Requirements
 ------------
- + Symfony Framework[1] (currently 1.4 branch) placed in /lib/vendor/symfony
- + Apache Lucene part of Zend Framework placed in /lib/vendor/Zend
- + php5-curl Apache module installed on your machine
+ - Symfony Framework[1] (currently 1.4 branch) placed in /lib/vendor/symfony
+ - Apache Lucene part of Zend Framework placed in /lib/vendor/Zend
+ - php5-curl Apache module installed on your machine
 
 Setup
 -----
